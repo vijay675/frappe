@@ -1,0 +1,4 @@
+frappe
+hrms
+custom_app
+erpnext

@@ -1,0 +1,11 @@
+{
+ "allow_delete_job_requisition": 1,
+ "db_name": "_8cda561367596af0",
+ "db_password": "yI8izOhXvbCrjtKk",
+ "db_type": "mariadb",
+ "developer_mode": 1,
+ "encryption_key": "y5IT6-fOGey1Ad_TLGO0RcAr8BdaMyA6siXO9jU1L-E=",
+ "user_type_doctype_limit": {
+  "employee_self_service": 40
+ }
+}

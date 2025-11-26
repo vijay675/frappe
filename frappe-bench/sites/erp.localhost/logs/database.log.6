@@ -1,0 +1,1306 @@
+2025-11-17 20:11:21,545 WARNING database DDL Query made to DB:
+create table `tabSalary Structure Assignment` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`employee` varchar(140),
+`employee_name` varchar(140),
+`department` varchar(140),
+`designation` varchar(140),
+`grade` varchar(140),
+`salary_structure` varchar(140),
+`from_date` date,
+`income_tax_slab` varchar(140),
+`company` varchar(140),
+`payroll_payable_account` varchar(140),
+`currency` varchar(140),
+`base` decimal(21,9) not null default 0,
+`variable` decimal(21,9) not null default 0,
+`amended_from` varchar(140),
+`taxable_earnings_till_date` decimal(21,9) not null default 0,
+`tax_deducted_till_date` decimal(21,9) not null default 0,
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index `employee`(`employee`),
+index `salary_structure`(`salary_structure`),
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:21,655 WARNING database DDL Query made to DB:
+create table `tabSalary Withholding Cycle` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`from_date` date,
+`to_date` date,
+`is_salary_released` int(1) not null default 0,
+`journal_entry` varchar(140),
+parent varchar(140),
+parentfield varchar(140),
+parenttype varchar(140),
+index parent(parent))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:21,748 WARNING database DDL Query made to DB:
+create table `tabEmployee Tax Exemption Declaration Category` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`exemption_sub_category` varchar(140),
+`exemption_category` varchar(140),
+`max_amount` decimal(21,9) not null default 0,
+`amount` decimal(21,9) not null default 0,
+parent varchar(140),
+parentfield varchar(140),
+parenttype varchar(140),
+index parent(parent))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:21,855 WARNING database DDL Query made to DB:
+create table `tabEmployee Benefit Application` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`employee` varchar(140),
+`employee_name` varchar(140),
+`department` varchar(140),
+`date` date,
+`payroll_period` varchar(140),
+`company` varchar(140),
+`amended_from` varchar(140),
+`currency` varchar(140),
+`max_benefits` decimal(21,9) not null default 0,
+`remaining_benefit` decimal(21,9) not null default 0,
+`total_amount` decimal(21,9) not null default 0,
+`pro_rata_dispensed_amount` decimal(21,9) not null default 0,
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:21,969 WARNING database DDL Query made to DB:
+create table `tabTaxable Salary Slab` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`from_amount` decimal(21,9) not null default 0,
+`to_amount` decimal(21,9) not null default 0,
+`percent_deduction` decimal(21,9) not null default 0,
+`condition` longtext,
+parent varchar(140),
+parentfield varchar(140),
+parenttype varchar(140),
+index parent(parent))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:22,065 WARNING database DDL Query made to DB:
+create table `tabGratuity Rule Slab` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`from_year` int(11) not null default 0,
+`to_year` int(11) not null default 0,
+`fraction_of_applicable_earnings` decimal(21,9) not null default 0,
+parent varchar(140),
+parentfield varchar(140),
+parenttype varchar(140),
+index parent(parent))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:22,147 WARNING database DDL Query made to DB:
+create table `tabSalary Withholding` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`employee` varchar(140),
+`employee_name` varchar(140),
+`company` varchar(140),
+`posting_date` date,
+`payroll_frequency` varchar(140),
+`number_of_withholding_cycles` int(11) not null default 0,
+`status` varchar(140) default 'Draft',
+`from_date` date,
+`to_date` date,
+`date_of_joining` date,
+`relieving_date` date,
+`reason_for_withholding_salary` text,
+`amended_from` varchar(140),
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index `employee`(`employee`),
+index `amended_from`(`amended_from`),
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:22,258 WARNING database DDL Query made to DB:
+create table `tabEmployee Tax Exemption Proof Submission` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`employee` varchar(140),
+`employee_name` varchar(140),
+`department` varchar(140),
+`currency` varchar(140),
+`amended_from` varchar(140),
+`submission_date` date,
+`payroll_period` varchar(140),
+`company` varchar(140),
+`total_actual_amount` decimal(21,9) not null default 0,
+`exemption_amount` decimal(21,9) not null default 0,
+`attachments` text,
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:22,425 WARNING database DDL Query made to DB:
+create table `tabSalary Slip` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`employee` varchar(140),
+`employee_name` varchar(140),
+`company` varchar(140),
+`department` varchar(140),
+`designation` varchar(140),
+`branch` varchar(140),
+`posting_date` date,
+`letter_head` varchar(140),
+`status` varchar(140),
+`salary_withholding` varchar(140),
+`salary_withholding_cycle` varchar(140),
+`currency` varchar(140),
+`exchange_rate` decimal(21,9) not null default 1.0,
+`payroll_frequency` varchar(140),
+`start_date` date,
+`end_date` date,
+`salary_structure` varchar(140),
+`payroll_entry` varchar(140),
+`mode_of_payment` varchar(140),
+`salary_slip_based_on_timesheet` int(1) not null default 0,
+`deduct_tax_for_unclaimed_employee_benefits` int(1) not null default 0,
+`deduct_tax_for_unsubmitted_tax_exemption_proof` int(1) not null default 0,
+`total_working_days` decimal(21,9) not null default 0,
+`unmarked_days` decimal(21,9) not null default 0,
+`leave_without_pay` decimal(21,9) not null default 0,
+`absent_days` decimal(21,9) not null default 0,
+`payment_days` decimal(21,9) not null default 0,
+`total_working_hours` decimal(21,9) not null default 0,
+`hour_rate` decimal(21,9) not null default 0,
+`base_hour_rate` decimal(21,9) not null default 0,
+`gross_pay` decimal(21,9) not null default 0,
+`base_gross_pay` decimal(21,9) not null default 0,
+`gross_year_to_date` decimal(21,9) not null default 0,
+`base_gross_year_to_date` decimal(21,9) not null default 0,
+`total_deduction` decimal(21,9) not null default 0,
+`base_total_deduction` decimal(21,9) not null default 0,
+`net_pay` decimal(21,9) not null default 0,
+`base_net_pay` decimal(21,9) not null default 0,
+`rounded_total` decimal(21,9) not null default 0,
+`base_rounded_total` decimal(21,9) not null default 0,
+`year_to_date` decimal(21,9) not null default 0,
+`base_year_to_date` decimal(21,9) not null default 0,
+`month_to_date` decimal(21,9) not null default 0,
+`base_month_to_date` decimal(21,9) not null default 0,
+`total_in_words` varchar(240),
+`base_total_in_words` varchar(240),
+`ctc` decimal(21,9) not null default 0,
+`income_from_other_sources` decimal(21,9) not null default 0,
+`total_earnings` decimal(21,9) not null default 0,
+`non_taxable_earnings` decimal(21,9) not null default 0,
+`standard_tax_exemption_amount` decimal(21,9) not null default 0,
+`tax_exemption_declaration` decimal(21,9) not null default 0,
+`deductions_before_tax_calculation` decimal(21,9) not null default 0,
+`annual_taxable_amount` decimal(21,9) not null default 0,
+`income_tax_deducted_till_date` decimal(21,9) not null default 0,
+`current_month_income_tax` decimal(21,9) not null default 0,
+`future_income_tax_deductions` decimal(21,9) not null default 0,
+`total_income_tax` decimal(21,9) not null default 0,
+`journal_entry` varchar(140),
+`amended_from` varchar(140),
+`bank_name` varchar(140),
+`bank_account_no` varchar(140),
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index `employee`(`employee`),
+index `start_date`(`start_date`),
+index `end_date`(`end_date`),
+index `salary_structure`(`salary_structure`),
+index `payroll_entry`(`payroll_entry`),
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:22,542 WARNING database DDL Query made to DB:
+ALTER TABLE `tabSalary Slip`
+				ADD INDEX IF NOT EXISTS `employee_start_date_end_date_index`(employee, start_date, end_date)
+2025-11-17 20:11:22,592 WARNING database DDL Query made to DB:
+create table `tabEmployee Benefit Application Detail` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`earning_component` varchar(140),
+`pay_against_benefit_claim` int(1) not null default 0,
+`max_benefit_amount` decimal(21,9) not null default 0,
+`amount` decimal(21,9) not null default 0,
+parent varchar(140),
+parentfield varchar(140),
+parenttype varchar(140),
+index parent(parent))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:22,686 WARNING database DDL Query made to DB:
+create table `tabSalary Slip Timesheet` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`time_sheet` varchar(140),
+`working_hours` decimal(21,9) not null default 0,
+parent varchar(140),
+parentfield varchar(140),
+parenttype varchar(140),
+index parent(parent))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:22,791 WARNING database DDL Query made to DB:
+create table `tabSalary Structure` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`company` varchar(140),
+`letter_head` varchar(140),
+`is_active` varchar(140) default 'Yes',
+`is_default` varchar(140) default 'No',
+`currency` varchar(140),
+`amended_from` varchar(140),
+`leave_encashment_amount_per_day` decimal(21,9) not null default 0,
+`max_benefits` decimal(21,9) not null default 0,
+`salary_slip_based_on_timesheet` int(1) not null default 0,
+`payroll_frequency` varchar(140) default 'Monthly',
+`salary_component` varchar(140),
+`hour_rate` decimal(21,9) not null default 0,
+`total_earning` decimal(21,9) not null default 0,
+`total_deduction` decimal(21,9) not null default 0,
+`net_pay` decimal(21,9) not null default 0,
+`mode_of_payment` varchar(140),
+`payment_account` varchar(140),
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index `company`(`company`),
+index `currency`(`currency`),
+index `salary_slip_based_on_timesheet`(`salary_slip_based_on_timesheet`),
+index `payroll_frequency`(`payroll_frequency`),
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:22,884 WARNING database DDL Query made to DB:
+create table `tabPayroll Employee Detail` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`employee` varchar(140),
+`employee_name` varchar(140),
+`department` varchar(140),
+`designation` varchar(140),
+`is_salary_withheld` int(1) not null default 0,
+parent varchar(140),
+parentfield varchar(140),
+parenttype varchar(140),
+index parent(parent))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:22,972 WARNING database DDL Query made to DB:
+create table `tabSalary Component Account` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`company` varchar(140),
+`account` varchar(140),
+parent varchar(140),
+parentfield varchar(140),
+parenttype varchar(140),
+index parent(parent))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:23,157 WARNING database DDL Query made to DB:
+create table `tabRetention Bonus` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`employee` varchar(140),
+`employee_name` varchar(140),
+`department` varchar(140),
+`company` varchar(140),
+`date_of_joining` varchar(140),
+`salary_component` varchar(140),
+`bonus_amount` decimal(21,9) not null default 0,
+`bonus_payment_date` date,
+`currency` varchar(140),
+`amended_from` varchar(140),
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:23,269 WARNING database DDL Query made to DB:
+create table `tabEmployee Tax Exemption Sub Category` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`exemption_category` varchar(140),
+`max_amount` decimal(21,9) not null default 0,
+`is_active` int(1) not null default 1,
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:23,386 WARNING database DDL Query made to DB:
+create table `tabAdditional Salary` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`naming_series` varchar(140),
+`employee` varchar(140),
+`employee_name` varchar(140),
+`department` varchar(140),
+`company` varchar(140),
+`is_recurring` int(1) not null default 0,
+`disabled` int(1) not null default 0,
+`from_date` date,
+`to_date` date,
+`payroll_date` date,
+`amended_from` varchar(140),
+`salary_component` varchar(140),
+`type` varchar(140),
+`currency` varchar(140),
+`amount` decimal(21,9) not null default 0,
+`deduct_full_tax_on_selected_payroll_date` int(1) not null default 0,
+`overwrite_salary_structure_amount` int(1) not null default 1,
+`ref_doctype` varchar(140),
+`ref_docname` varchar(140),
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index `employee`(`employee`),
+index `payroll_date`(`payroll_date`),
+index `salary_component`(`salary_component`),
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:23,485 WARNING database DDL Query made to DB:
+create table `tabSalary Slip Leave` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`leave_type` varchar(140),
+`total_allocated_leaves` decimal(21,9) not null default 0,
+`expired_leaves` decimal(21,9) not null default 0,
+`used_leaves` decimal(21,9) not null default 0,
+`pending_leaves` decimal(21,9) not null default 0,
+`available_leaves` decimal(21,9) not null default 0,
+parent varchar(140),
+parentfield varchar(140),
+parenttype varchar(140),
+index parent(parent))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:23,601 WARNING database DDL Query made to DB:
+create table `tabPayroll Entry` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`posting_date` date,
+`company` varchar(140),
+`currency` varchar(140),
+`exchange_rate` decimal(21,9) not null default 0,
+`payroll_payable_account` varchar(140),
+`status` varchar(140),
+`salary_slip_based_on_timesheet` int(1) not null default 0,
+`payroll_frequency` varchar(140),
+`start_date` date,
+`end_date` date,
+`deduct_tax_for_unclaimed_employee_benefits` int(1) not null default 0,
+`deduct_tax_for_unsubmitted_tax_exemption_proof` int(1) not null default 0,
+`branch` varchar(140),
+`department` varchar(140),
+`designation` varchar(140),
+`grade` varchar(140),
+`number_of_employees` int(11) not null default 0,
+`validate_attendance` int(1) not null default 0,
+`cost_center` varchar(140),
+`project` varchar(140),
+`payment_account` varchar(140),
+`bank_account` varchar(140),
+`salary_slips_created` int(1) not null default 0,
+`salary_slips_submitted` int(1) not null default 0,
+`error_message` text,
+`amended_from` varchar(140),
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:23,788 WARNING database DDL Query made to DB:
+create table `tabPayroll Period` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`company` varchar(140),
+`start_date` date,
+`end_date` date,
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:23,909 WARNING database DDL Query made to DB:
+create table `tabGratuity` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`employee` varchar(140),
+`employee_name` varchar(140),
+`department` varchar(140),
+`designation` varchar(140),
+`current_work_experience` decimal(21,9) not null default 0,
+`posting_date` date,
+`gratuity_rule` varchar(140),
+`status` varchar(140) default 'Draft',
+`company` varchar(140),
+`amended_from` varchar(140),
+`pay_via_salary_slip` int(1) not null default 1,
+`amount` decimal(21,9) not null default 0,
+`paid_amount` decimal(21,9) not null default 0,
+`payroll_date` date,
+`salary_component` varchar(140),
+`cost_center` varchar(140),
+`mode_of_payment` varchar(140),
+`expense_account` varchar(140),
+`payable_account` varchar(140),
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index `employee`(`employee`),
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:24,012 WARNING database DDL Query made to DB:
+create table `tabEmployee Cost Center` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`cost_center` varchar(140),
+`percentage` int(11) not null default 0,
+parent varchar(140),
+parentfield varchar(140),
+parenttype varchar(140),
+index parent(parent))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:24,118 WARNING database DDL Query made to DB:
+create table `tabEmployee Incentive` (
+			name varchar(140) primary key,
+			creation datetime(6),
+			modified datetime(6),
+			modified_by varchar(140),
+			owner varchar(140),
+			docstatus int(1) not null default '0',
+			idx int(8) not null default '0',
+			`employee` varchar(140),
+`employee_name` varchar(140),
+`amended_from` varchar(140),
+`company` varchar(140),
+`department` varchar(140),
+`salary_component` varchar(140),
+`currency` varchar(140),
+`payroll_date` date,
+`incentive_amount` decimal(21,9) not null default 0,
+`_user_tags` text,
+`_comments` text,
+`_assign` text,
+`_liked_by` text,
+index modified(modified))
+			ENGINE=InnoDB
+			ROW_FORMAT=DYNAMIC
+			CHARACTER SET=utf8mb4
+			COLLATE=utf8mb4_unicode_ci
+2025-11-17 20:11:25,499 WARNING database DDL Query made to DB:
+ALTER TABLE `tabTimesheet` MODIFY `per_billed` decimal(21,9) not null default 0, MODIFY `total_costing_amount` decimal(21,9) not null default 0, MODIFY `base_total_costing_amount` decimal(21,9) not null default 0, MODIFY `total_billed_hours` decimal(21,9) not null default 0, MODIFY `total_billed_amount` decimal(21,9) not null default 0, MODIFY `base_total_billed_amount` decimal(21,9) not null default 0, MODIFY `total_billable_hours` decimal(21,9) not null default 0, MODIFY `base_total_billable_amount` decimal(21,9) not null default 0
+2025-11-17 20:11:25,597 WARNING database DDL Query made to DB:
+ALTER TABLE `tabEmployee` MODIFY `ctc` decimal(21,9) not null default 0
+2025-11-17 20:11:25,696 WARNING database DDL Query made to DB:
+ALTER TABLE `tabTask` MODIFY `total_costing_amount` decimal(21,9) not null default 0, MODIFY `actual_time` decimal(21,9) not null default 0, MODIFY `total_expense_claim` decimal(21,9) not null default 0, MODIFY `progress` decimal(21,9) not null default 0, MODIFY `total_billing_amount` decimal(21,9) not null default 0, MODIFY `task_weight` decimal(21,9) not null default 0
+2025-11-17 20:11:25,797 WARNING database DDL Query made to DB:
+ALTER TABLE `tabProject` MODIFY `total_consumed_material_cost` decimal(21,9) not null default 0, MODIFY `gross_margin` decimal(21,9) not null default 0, MODIFY `total_sales_amount` decimal(21,9) not null default 0, MODIFY `estimated_costing` decimal(21,9) not null default 0, MODIFY `total_billed_amount` decimal(21,9) not null default 0, MODIFY `total_expense_claim` decimal(21,9) not null default 0, MODIFY `total_billable_amount` decimal(21,9) not null default 0, MODIFY `actual_time` decimal(21,9) not null default 0, MODIFY `per_gross_margin` decimal(21,9) not null default 0, MODIFY `total_costing_amount` decimal(21,9) not null default 0, MODIFY `percent_complete` decimal(21,9) not null default 0, MODIFY `total_purchase_cost` decimal(21,9) not null default 0
+2025-11-17 20:11:25,945 WARNING database DDL Query made to DB:
+ALTER TABLE `tabCompany` MODIFY `credit_limit` decimal(21,9) not null default 0, MODIFY `monthly_sales_target` decimal(21,9) not null default 0, MODIFY `total_monthly_sales` decimal(21,9) not null default 0
+2025-11-17 20:11:28,754 WARNING database DDL Query made to DB:
+ALTER TABLE `tabSalary Component` ADD COLUMN `component_type` varchar(140)
+2025-11-17 20:11:28,802 WARNING database DDL Query made to DB:
+ALTER TABLE `tabSalary Component` MODIFY `amount` decimal(21,9) not null default 0, MODIFY `max_benefit_amount` decimal(21,9) not null default 0
+2025-11-17 20:11:28,854 WARNING database DDL Query made to DB:
+ALTER TABLE `tabSalary Component` ADD INDEX `creation`(`creation`)
+2025-11-17 20:11:28,936 WARNING database DDL Query made to DB:
+ALTER TABLE `tabIncome Tax Slab` ADD COLUMN `marginal_relief_limit` decimal(21,9) not null default 0
+2025-11-17 20:11:28,981 WARNING database DDL Query made to DB:
+ALTER TABLE `tabIncome Tax Slab` MODIFY `standard_tax_exemption_amount` decimal(21,9) not null default 0, MODIFY `tax_relief_limit` decimal(21,9) not null default 0
+2025-11-17 20:11:29,027 WARNING database DDL Query made to DB:
+ALTER TABLE `tabIncome Tax Slab` ADD INDEX `creation`(`creation`)
+2025-11-17 20:11:29,139 WARNING database DDL Query made to DB:
+ALTER TABLE `tabEmployee` MODIFY `ctc` decimal(21,9) not null default 0
+2025-11-17 20:11:29,273 WARNING database DDL Query made to DB:
+ALTER TABLE `tabCompany` MODIFY `total_monthly_sales` decimal(21,9) not null default 0, MODIFY `credit_limit` decimal(21,9) not null default 0, MODIFY `monthly_sales_target` decimal(21,9) not null default 0
+2025-11-17 20:11:29,362 WARNING database DDL Query made to DB:
+ALTER TABLE `tabEmployee Tax Exemption Declaration` ADD COLUMN `monthly_house_rent` decimal(21,9) not null default 0, ADD COLUMN `rented_in_metro_city` int(1) not null default 0, ADD COLUMN `salary_structure_hra` decimal(21,9) not null default 0, ADD COLUMN `annual_hra_exemption` decimal(21,9) not null default 0, ADD COLUMN `monthly_hra_exemption` decimal(21,9) not null default 0
+2025-11-17 20:11:29,407 WARNING database DDL Query made to DB:
+ALTER TABLE `tabEmployee Tax Exemption Declaration` MODIFY `total_declared_amount` decimal(21,9) not null default 0, MODIFY `total_exemption_amount` decimal(21,9) not null default 0
+2025-11-17 20:11:29,506 WARNING database DDL Query made to DB:
+ALTER TABLE `tabEmployee Tax Exemption Proof Submission` ADD COLUMN `house_rent_payment_amount` decimal(21,9) not null default 0, ADD COLUMN `rented_in_metro_city` int(1) not null default 0, ADD COLUMN `rented_from_date` date, ADD COLUMN `rented_to_date` date, ADD COLUMN `monthly_house_rent` decimal(21,9) not null default 0, ADD COLUMN `monthly_hra_exemption` decimal(21,9) not null default 0, ADD COLUMN `total_eligible_hra_exemption` decimal(21,9) not null default 0
+2025-11-17 20:11:29,553 WARNING database DDL Query made to DB:
+ALTER TABLE `tabEmployee Tax Exemption Proof Submission` MODIFY `exemption_amount` decimal(21,9) not null default 0, MODIFY `total_actual_amount` decimal(21,9) not null default 0
+2025-11-18 16:54:30,454 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:54:30,554 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `reports_to` varchar(140)
+2025-11-18 16:54:30,598 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:54:30,688 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:54:30,789 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `requester_department` varchar(140)
+2025-11-18 16:54:30,831 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:55:07,624 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:55:07,739 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 16:55:07,792 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:55:07,896 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `to_be_insured` int(1) not null default 0
+2025-11-18 16:55:07,941 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 16:55:08,050 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 16:55:08,151 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `project` varchar(140)
+2025-11-18 16:55:08,199 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:55:08,306 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `cost_center` varchar(140)
+2025-11-18 16:55:08,356 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:58:35,262 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:58:35,370 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:58:35,473 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 16:58:35,576 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `requester_designation` varchar(140)
+2025-11-18 16:58:35,622 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 16:59:33,832 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 16:59:33,941 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `employment_type` varchar(140)
+2025-11-18 16:59:33,994 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 16:59:34,096 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `position_status` varchar(140) default 'New Position'
+2025-11-18 16:59:34,149 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 16:59:34,264 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `location` varchar(140)
+2025-11-18 16:59:34,310 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 16:59:34,420 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:08:13,628 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `department_name` varchar(140)
+2025-11-18 17:08:13,674 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:31:33,502 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `qualifications_required` text
+2025-11-18 17:31:33,548 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:31:33,679 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `experience_required` text
+2025-11-18 17:31:33,723 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:31:33,846 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `any_reference_checks` text
+2025-11-18 17:31:33,895 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:34:16,445 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:34:16,551 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:34:16,657 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:34:16,757 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:34:16,858 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:34:16,958 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:34:17,066 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:34:17,180 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:34:17,294 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:34:17,406 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:34:17,519 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:34:17,637 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:34:17,738 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:34:17,843 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:34:17,942 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:34:18,050 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:34:18,159 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:37:43,648 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:37:43,764 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:37:43,877 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:37:43,992 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:37:44,104 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:37:44,223 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:37:44,344 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:37:44,451 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:37:44,557 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:37:44,659 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:37:44,756 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:37:44,861 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:37:44,969 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:37:45,083 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:37:45,190 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:37:45,301 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:37:45,419 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:44:44,190 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` ADD COLUMN `job_title` varchar(140)
+2025-11-18 17:44:44,236 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:44:44,357 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:44:44,474 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:44:44,585 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:44:44,697 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:44:44,808 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:44:44,931 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:44:45,038 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:44:45,141 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:44:45,245 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:44:45,362 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:44:45,464 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:44:45,576 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:44:45,693 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:44:45,806 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:44:45,912 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:44:46,014 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:44:46,126 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:44:46,227 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:44:46,327 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:44:46,442 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:44:46,565 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:44:46,683 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:47:44,289 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:47:44,417 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:47:44,524 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:47:44,637 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:47:44,749 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:47:44,870 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:47:44,971 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:47:45,081 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:47:45,193 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:47:45,304 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:47:45,418 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:47:45,532 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:47:45,655 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:47:45,764 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:47:45,877 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:47:45,995 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:47:46,102 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:47:46,206 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:47:46,321 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:47:46,436 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:28,977 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:50:29,086 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:29,214 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:50:29,316 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:50:29,424 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:29,529 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:50:29,628 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:29,740 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:29,850 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:50:29,968 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:30,086 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:50:30,207 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:30,321 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:50:30,423 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:50:30,533 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:30,641 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:30,753 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:50:30,867 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:50:30,977 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:31,095 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:50:31,213 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:50:31,334 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:50:31,454 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:51:56,631 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:51:56,740 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:51:56,856 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:51:56,969 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:51:57,085 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:51:57,198 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:51:57,317 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:51:57,427 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:51:57,534 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:51:57,642 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:51:57,758 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:51:57,877 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:51:58,003 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:51:58,113 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:51:58,229 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:51:58,347 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:51:58,465 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:51:58,567 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:51:58,679 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:51:58,795 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:51:58,908 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:51:59,013 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:54:11,633 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:54:11,755 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:54:11,895 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:54:12,011 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:54:12,124 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:54:12,232 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:54:12,357 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:54:12,474 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:54:12,592 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:54:12,725 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:54:12,848 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:54:12,959 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:54:13,069 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:54:13,173 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:54:13,282 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:54:13,391 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:54:13,503 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:54:13,627 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:54:13,755 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:54:13,879 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:54:14,001 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:54:14,124 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:54:14,243 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:55:49,651 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:49,760 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:55:49,871 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:49,974 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:50,084 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:55:50,197 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:50,310 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:50,424 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:50,542 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:55:50,656 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:50,756 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:50,863 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:50,978 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:55:51,089 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:55:51,205 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:51,333 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:51,456 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:55:51,579 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:51,707 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:55:51,817 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:55:51,918 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:55:52,024 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:58:16,323 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:58:16,433 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:58:16,540 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:58:16,656 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:58:16,766 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:58:16,877 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:58:16,992 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:58:17,117 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:58:17,228 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:58:17,343 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:58:17,449 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:58:17,561 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:58:17,677 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 17:58:17,789 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:58:17,895 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:58:18,016 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:58:18,145 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:58:18,265 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:58:18,379 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 17:58:18,472 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:58:18,579 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 17:58:18,690 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:06:11,178 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:06:11,302 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:06:11,431 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:06:11,549 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:06:11,659 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:06:11,770 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:06:11,886 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:06:12,002 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:06:12,114 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:06:12,235 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:06:12,365 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:06:12,486 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:06:12,616 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:06:12,745 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:06:12,844 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:06:12,951 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:06:13,067 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:06:13,184 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:06:13,302 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:06:13,419 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:06:13,532 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:06:13,638 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:10:47,085 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:10:47,198 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:10:47,311 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:10:47,421 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:10:47,535 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:10:47,649 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:10:47,762 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:10:47,871 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:10:47,981 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:10:48,096 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:10:48,208 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:10:48,334 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:10:48,446 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:10:48,536 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:10:48,648 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:10:48,766 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:10:48,878 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:10:48,993 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:10:49,106 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:10:49,221 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:10:49,340 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:17:24,689 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:17:24,806 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:17:24,924 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:17:25,047 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:17:25,147 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:17:25,248 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:17:25,361 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:17:25,480 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:17:25,605 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:17:25,728 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:17:25,839 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:17:25,961 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:17:26,086 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:17:26,211 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:17:26,319 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:17:26,432 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:17:26,556 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:17:26,686 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:17:26,818 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:19:17,296 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:19:17,404 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:19:17,527 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `monthly_ctc` decimal(21,9) not null default 0
+2025-11-18 18:19:17,637 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:19:17,750 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)
+2025-11-18 18:19:17,866 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9), MODIFY `expected_compensation` decimal(21,9) not null default 0
+2025-11-18 18:19:17,974 WARNING database DDL Query made to DB:
+ALTER TABLE `tabJob Requisition` MODIFY `expected_compensation` decimal(21,9) not null default 0, MODIFY `monthly_ctc` decimal(21,9) not null default 0, MODIFY `time_to_fill` decimal(21,9)

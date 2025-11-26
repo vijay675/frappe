@@ -1,0 +1,33 @@
+2025-11-25 20:28:38,799 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2025-11-25 20:28:44,666 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2025-11-25 20:29:45,450 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2025-11-25 20:29:54,790 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2025-11-25 20:31:05,522 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2025-11-25 20:32:07,947 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2025-11-25 20:32:51,122 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2025-11-25 20:33:08,173 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2025-11-25 20:36:31,203 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2025-11-25 20:37:28,864 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2025-11-25 20:42:15,626 ERROR frappe New Exception collected in error log
+Site: erp.localhost
+Form Dict: {'doctype': 'Deal', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}

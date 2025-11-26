@@ -1,0 +1,1364 @@
+2025-11-17 19:32:46,142 DEBUG cd frappe-bench && python3.11 -m venv env
+2025-11-17 19:32:47,333 DEBUG cd frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade pip
+2025-11-17 19:32:47,548 DEBUG cd frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet wheel
+2025-11-17 19:32:48,499 LOG Getting frappe
+2025-11-17 19:32:48,499 DEBUG cd frappe-bench/apps && git clone https://github.com/frappe/frappe.git --branch version-15 --depth 1 --origin upstream
+2025-11-17 19:32:53,204 LOG Installing frappe
+2025-11-17 19:32:53,204 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/frappe 
+2025-11-17 19:32:57,709 WARNING cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/frappe  executed with exit code 1
+2025-11-17 19:32:58,717 ERROR There was a problem while creating frappe-bench
+2025-11-17 19:32:58,718 WARNING /Users/vijayrasquinha/Work/venv/bin/bench init frappe-bench --frappe-branch version-15 --python python3.11 --skip-redis-config-generation executed with exit code 1
+2025-11-17 19:32:58,827 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 19:37:15,177 INFO /Users/vijayrasquinha/Work/venv/bin/bench setup env
+2025-11-17 19:37:15,180 DEBUG /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade pip
+2025-11-17 19:37:15,473 DEBUG /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet wheel
+2025-11-17 19:37:15,647 DEBUG /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e ./apps/frappe
+2025-11-17 19:37:16,590 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 19:37:26,894 INFO /Users/vijayrasquinha/Work/venv/bin/bench --version
+2025-11-17 19:42:08,053 INFO /Users/vijayrasquinha/Work/venv/bin/bench get-app erpnext --branch version-15
+2025-11-17 19:42:08,555 LOG Getting erpnext
+2025-11-17 19:42:08,556 DEBUG cd ./apps && git clone https://github.com/frappe/erpnext.git --branch version-15 --depth 1 --origin upstream
+2025-11-17 19:42:19,388 LOG Installing erpnext
+2025-11-17 19:42:19,388 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/erpnext 
+2025-11-17 19:42:27,902 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/erpnext && yarn install --check-files
+2025-11-17 19:42:27,906 WARNING /Users/vijayrasquinha/Work/venv/bin/bench get-app erpnext --branch version-15 executed with exit code 1
+2025-11-17 19:42:27,974 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 19:42:59,876 INFO /Users/vijayrasquinha/Work/venv/bin/bench setup requirements
+2025-11-17 19:42:59,880 DEBUG /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade pip
+2025-11-17 19:43:00,261 LOG Installing frappe
+2025-11-17 19:43:00,261 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/frappe 
+2025-11-17 19:43:01,166 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/frappe && yarn install --check-files
+2025-11-17 19:43:17,659 LOG Installing erpnext
+2025-11-17 19:43:17,659 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/erpnext 
+2025-11-17 19:43:18,674 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/erpnext && yarn install --check-files
+2025-11-17 19:43:19,040 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 19:44:48,748 INFO /Users/vijayrasquinha/Work/venv/bin/bench new-app custom_app --no-git
+2025-11-17 19:44:48,751 LOG creating new app custom_app
+2025-11-17 19:44:52,934 WARNING /Users/vijayrasquinha/Work/venv/bin/bench new-app custom_app --no-git executed with exit code 1
+2025-11-17 19:44:53,055 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 19:45:22,660 INFO /Users/vijayrasquinha/Work/venv/bin/bench new-app custom_app --no-git
+2025-11-17 19:45:22,663 LOG creating new app custom_app
+2025-11-17 19:46:45,420 INFO /Users/vijayrasquinha/Work/venv/bin/bench new-app custom_app --no-git
+2025-11-17 19:46:45,423 LOG creating new app custom_app
+2025-11-17 19:46:46,238 WARNING /Users/vijayrasquinha/Work/venv/bin/bench new-app custom_app --no-git executed with exit code 1
+2025-11-17 19:46:46,348 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 19:49:48,858 INFO /Users/vijayrasquinha/Work/venv/bin/bench --version
+2025-11-17 19:49:51,254 INFO /Users/vijayrasquinha/Work/venv/bin/bench list-apps
+2025-11-17 19:55:29,340 INFO /Users/vijayrasquinha/Work/venv/bin/bench new-site erp.localhost --mariadb-root-password root123 --admin-password admin
+2025-11-17 19:56:10,523 INFO /Users/vijayrasquinha/Work/venv/bin/bench --site erp.localhost install-app erpnext
+2025-11-17 19:57:38,144 INFO /Users/vijayrasquinha/Work/venv/bin/bench --site erp.localhost list-apps
+2025-11-17 19:57:51,866 INFO /Users/vijayrasquinha/Work/venv/bin/bench use erp.localhost
+2025-11-17 19:58:01,773 INFO /Users/vijayrasquinha/Work/venv/bin/bench --site erp.localhost enable-scheduler
+2025-11-17 19:58:05,902 INFO /Users/vijayrasquinha/Work/venv/bin/bench start
+2025-11-17 19:58:06,772 INFO /Users/vijayrasquinha/Work/venv/bin/bench watch
+2025-11-17 19:58:06,774 INFO /Users/vijayrasquinha/Work/venv/bin/bench serve --port 8000
+2025-11-17 19:58:06,774 INFO /Users/vijayrasquinha/Work/venv/bin/bench worker
+2025-11-17 19:58:06,774 INFO /Users/vijayrasquinha/Work/venv/bin/bench schedule
+2025-11-17 19:58:58,565 INFO /Users/vijayrasquinha/Work/venv/bin/bench start
+2025-11-17 19:58:58,852 INFO /Users/vijayrasquinha/Work/venv/bin/bench worker
+2025-11-17 19:58:58,852 INFO /Users/vijayrasquinha/Work/venv/bin/bench watch
+2025-11-17 19:58:58,852 INFO /Users/vijayrasquinha/Work/venv/bin/bench serve --port 8000
+2025-11-17 19:58:58,853 INFO /Users/vijayrasquinha/Work/venv/bin/bench schedule
+2025-11-17 20:06:32,172 INFO /Users/vijayrasquinha/Work/venv/bin/bench get-app hrms
+2025-11-17 20:06:32,686 LOG Getting hrms
+2025-11-17 20:06:32,686 DEBUG cd ./apps && git clone https://github.com/frappe/hrms.git  --depth 1 --origin upstream
+2025-11-17 20:06:34,640 LOG Installing hrms
+2025-11-17 20:06:34,641 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/hrms 
+2025-11-17 20:06:35,426 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/hrms && yarn install --check-files
+2025-11-17 20:07:09,589 DEBUG bench build --app hrms
+2025-11-17 20:07:09,718 INFO /Users/vijayrasquinha/Work/venv/bin/bench build --app hrms
+2025-11-17 20:07:20,706 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 20:07:45,970 INFO /Users/vijayrasquinha/Work/venv/bin/bench --site erp.localhost install-app hrms
+2025-11-17 20:08:33,504 INFO /Users/vijayrasquinha/Work/venv/bin/bench --site erp.localhost list-apps
+2025-11-17 20:09:14,869 INFO /Users/vijayrasquinha/Work/venv/bin/bench --site erp.localhost uninstall-app hrms --yes
+2025-11-17 20:09:43,373 INFO /Users/vijayrasquinha/Work/venv/bin/bench remove-app hrms --no-backup --force
+2025-11-17 20:09:43,378 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip uninstall -y hrms
+2025-11-17 20:09:46,880 INFO App deleted from apps/hrms
+2025-11-17 20:09:46,986 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 20:09:55,691 INFO /Users/vijayrasquinha/Work/venv/bin/bench get-app hrms --branch version-15
+2025-11-17 20:09:56,193 LOG Getting hrms
+2025-11-17 20:09:56,193 DEBUG cd ./apps && git clone https://github.com/frappe/hrms.git --branch version-15 --depth 1 --origin upstream
+2025-11-17 20:09:57,933 LOG Installing hrms
+2025-11-17 20:09:57,934 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/hrms 
+2025-11-17 20:09:58,608 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/hrms && yarn install --check-files
+2025-11-17 20:10:08,085 DEBUG bench build --app hrms
+2025-11-17 20:10:08,185 INFO /Users/vijayrasquinha/Work/venv/bin/bench build --app hrms
+2025-11-17 20:10:18,763 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 20:11:07,481 INFO /Users/vijayrasquinha/Work/venv/bin/bench --site erp.localhost install-app hrms
+2025-11-17 20:11:40,883 INFO /Users/vijayrasquinha/Work/venv/bin/bench --site erp.localhost list-apps
+2025-11-17 20:12:32,392 INFO /Users/vijayrasquinha/Work/venv/bin/bench setup requirements
+2025-11-17 20:12:32,396 DEBUG /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade pip
+2025-11-17 20:12:32,730 LOG Installing frappe
+2025-11-17 20:12:32,730 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/frappe 
+2025-11-17 20:12:33,663 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/frappe && yarn install --check-files
+2025-11-17 20:12:34,259 LOG Installing hrms
+2025-11-17 20:12:34,259 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/hrms 
+2025-11-17 20:12:35,035 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/hrms && yarn install --check-files
+2025-11-17 20:12:37,513 LOG Installing erpnext
+2025-11-17 20:12:37,513 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/erpnext 
+2025-11-17 20:12:38,318 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/erpnext && yarn install --check-files
+2025-11-17 20:12:38,571 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 20:12:45,314 INFO /Users/vijayrasquinha/Work/venv/bin/bench build --force
+2025-11-17 20:13:09,065 INFO /Users/vijayrasquinha/Work/venv/bin/bench start
+2025-11-17 20:13:09,356 INFO /Users/vijayrasquinha/Work/venv/bin/bench watch
+2025-11-17 20:13:09,356 INFO /Users/vijayrasquinha/Work/venv/bin/bench serve --port 8000
+2025-11-17 20:13:09,356 INFO /Users/vijayrasquinha/Work/venv/bin/bench schedule
+2025-11-17 20:13:09,356 INFO /Users/vijayrasquinha/Work/venv/bin/bench worker
+2025-11-17 20:15:59,588 INFO /Users/vijayrasquinha/Work/venv/bin/bench new-app custom_app --no-git
+2025-11-17 20:15:59,591 LOG creating new app custom_app
+2025-11-17 20:16:00,319 WARNING /Users/vijayrasquinha/Work/venv/bin/bench new-app custom_app --no-git executed with exit code 1
+2025-11-17 20:16:00,424 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 20:16:12,294 INFO /Users/vijayrasquinha/Work/venv/bin/bench new-app custom_app --no-git
+2025-11-17 20:16:12,296 LOG creating new app custom_app
+2025-11-17 20:16:12,639 WARNING /Users/vijayrasquinha/Work/venv/bin/bench new-app custom_app --no-git executed with exit code 1
+2025-11-17 20:16:12,729 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 20:16:25,016 INFO /Users/vijayrasquinha/Work/venv/bin/bench new-app custom_app --no-git
+2025-11-17 20:16:25,018 LOG creating new app custom_app
+2025-11-17 20:16:25,717 LOG Installing custom_app
+2025-11-17 20:16:25,719 DEBUG cd /Users/vijayrasquinha/Work/frappe/frappe-bench && /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /Users/vijayrasquinha/Work/frappe/frappe-bench/apps/custom_app 
+2025-11-17 20:16:26,479 DEBUG bench build --app custom_app
+2025-11-17 20:16:26,565 INFO /Users/vijayrasquinha/Work/venv/bin/bench build --app custom_app
+2025-11-17 20:16:27,837 INFO A newer version of bench is available: 5.24.1 → 5.27.0
+2025-11-17 20:16:42,206 INFO /Users/vijayrasquinha/Work/venv/bin/bench --site erp.localhost install-app custom_app
+2025-11-17 20:16:52,831 INFO /Users/vijayrasquinha/Work/venv/bin/bench --site erp.localhost list-apps
+2025-11-17 20:24:43,689 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench start
+2025-11-17 20:24:44,313 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench watch
+2025-11-17 20:24:44,313 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench serve --port 8000
+2025-11-17 20:24:44,315 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench worker
+2025-11-17 20:24:44,315 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench schedule
+2025-11-17 20:32:48,466 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench start
+2025-11-17 20:32:48,655 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench serve --port 8000
+2025-11-17 20:32:48,655 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench watch
+2025-11-17 20:32:48,656 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench worker
+2025-11-17 20:32:48,656 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench schedule
+2025-11-17 20:33:31,066 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench execute custom_app.tasks.send_birthday_wishes
+2025-11-17 20:44:29,157 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench start
+2025-11-17 20:44:29,354 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench watch
+2025-11-17 20:44:29,355 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench serve --port 8000
+2025-11-17 20:44:29,355 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench schedule
+2025-11-17 20:44:29,355 INFO /Users/vijayrasquinha/Work/frappe/frappe-bench/env/bin/bench worker
+2025-11-18 16:41:32,436 INFO ./env/bin/bench --site all execute custom_app.tasks.send_birthday_wishes
+2025-11-18 16:41:42,906 INFO ./env/bin/bench --site all execute custom_app.tasks.send_anniversary_wishes
+2025-11-18 16:53:31,142 INFO ./env/bin/bench --site all execute custom_app.custom_fields.execute
+2025-11-18 16:53:40,912 INFO ./env/bin/bench --site all execute frappe.db.sql --args ['SELECT fieldname, label FROM `tabCustom Field` WHERE dt = "Job Requisition" ORDER BY idx']
+2025-11-18 16:53:50,587 INFO ./env/bin/bench console --site all
+2025-11-18 16:54:29,988 INFO ./env/bin/bench --site all execute custom_app.custom_fields.execute
+2025-11-18 16:54:41,536 INFO ./env/bin/bench --site all execute frappe.get_meta --args ['Job Requisition'] --kwargs {'cached': False}
+2025-11-18 16:55:07,091 INFO ./env/bin/bench --site all execute custom_app.add_remaining_fields.execute
+2025-11-18 16:55:20,632 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 16:58:34,471 INFO ./env/bin/bench --site all execute custom_app.fix_job_requisition_layout.execute
+2025-11-18 16:59:33,268 INFO ./env/bin/bench --site all execute custom_app.finalize_job_req_fields.execute
+2025-11-18 16:59:54,545 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:02:37,621 INFO ./env/bin/bench --site all execute frappe.db.sql --args ['UPDATE `tabCustom Field` SET fieldtype="Link", options="Location" WHERE dt="Job Requisition" AND fieldname="location"']
+2025-11-18 17:02:45,774 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:07:00,580 INFO ./env/bin/bench --site all execute frappe.db.sql --args ['SELECT name, fieldname, label, fieldtype, options FROM `tabDocField` WHERE parent="Job Requisition" AND fieldname="department"']
+2025-11-18 17:08:13,061 INFO ./env/bin/bench --site all execute custom_app.add_department_name_field.execute
+2025-11-18 17:08:32,470 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:10:29,701 INFO ./env/bin/bench --site all execute custom_app.fix_department_link.execute
+2025-11-18 17:10:53,250 INFO ./env/bin/bench --site all execute custom_app.fix_department_link.execute
+2025-11-18 17:10:59,983 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:12:52,294 INFO ./env/bin/bench --site all execute custom_app.fix_employee_link.execute
+2025-11-18 17:13:04,793 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:14:19,881 INFO ./env/bin/bench --site all execute frappe.db.sql --args ['SELECT name, fieldname, label, is_custom_field FROM `tabDocField` WHERE parent="Job Requisition" AND fieldname="requested_by_name"']
+2025-11-18 17:14:41,322 INFO ./env/bin/bench --site all execute custom_app.hide_requested_by_name.execute
+2025-11-18 17:14:49,778 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:31:32,942 INFO ./env/bin/bench --site all execute custom_app.add_job_description_fields.execute
+2025-11-18 17:31:41,370 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:34:15,708 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 17:37:43,196 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 17:37:53,564 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:43:39,838 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 17:44:43,723 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 17:44:56,895 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:47:43,795 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 17:48:05,034 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:50:28,311 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 17:50:40,667 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:51:56,112 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 17:52:06,303 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:54:11,062 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 17:54:20,846 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:55:49,040 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 17:55:58,962 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 17:58:15,806 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 17:58:25,677 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:06:10,653 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 18:06:23,263 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:10:46,467 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 18:10:58,408 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:14:01,272 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 18:14:12,653 INFO ./env/bin/bench --site all execute frappe.db.sql --kwargs {'query': 'DELETE FROM `tabProperty Setter` WHERE doc_type="Job Requisition" AND field_name="expected_compensation" AND property="hidden"'}
+2025-11-18 18:14:20,968 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:15:38,522 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 18:15:47,610 INFO ./env/bin/bench --site all execute frappe.db.sql --kwargs {'query': 'DELETE FROM `tabProperty Setter` WHERE doc_type="Job Requisition" AND field_name="status" AND property="hidden"'}
+2025-11-18 18:15:53,425 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:17:24,142 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 18:17:33,615 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:19:16,682 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 18:20:03,353 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:21:53,316 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 18:22:05,437 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:23:07,055 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 18:23:16,786 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:26:33,504 INFO ./env/bin/bench --site all execute custom_app.job_requisition_customizations.execute
+2025-11-18 18:26:43,046 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:32:37,385 INFO ./env/bin/bench --site all execute custom_app.reset_job_requisition.execute
+2025-11-18 18:32:46,287 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:43:30,334 INFO ./env/bin/bench --site all execute custom_app.add_location_field.execute
+2025-11-18 18:43:38,274 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 18:45:02,613 INFO ./env/bin/bench --site all execute custom_app.customize_job_requisition.execute
+2025-11-18 18:45:39,303 INFO ./env/bin/bench --site all clear-cache
+2025-11-18 19:08:14,307 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:08:22,736 INFO ./env/bin/bench clear-cache
+2025-11-18 19:09:41,214 INFO ./env/bin/bench start
+2025-11-18 19:09:41,219 WARNING ./env/bin/bench start executed with exit code 1
+2025-11-18 19:09:50,189 INFO ./env/bin/bench serve
+2025-11-18 19:16:15,926 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:16:21,616 INFO ./env/bin/bench clear-cache
+2025-11-18 19:19:08,120 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:19:09,259 INFO ./env/bin/bench clear-cache
+2025-11-18 19:20:07,681 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:20:08,781 INFO ./env/bin/bench clear-cache
+2025-11-18 19:22:45,439 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:22:46,871 INFO ./env/bin/bench clear-cache
+2025-11-18 19:25:09,809 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:25:11,236 INFO ./env/bin/bench clear-cache
+2025-11-18 19:26:04,954 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:26:06,453 INFO ./env/bin/bench clear-cache
+2025-11-18 19:26:46,858 INFO ./env/bin/bench execute frappe.delete_doc('Custom Field', frappe.db.get_value('Custom Field', {'dt': 'Job Requisition', 'fieldname': 'col_break_insurance'}), ignore_missing=True)
+2025-11-18 19:27:01,558 INFO ./env/bin/bench execute custom_app.delete_col_break.execute
+2025-11-18 19:27:02,034 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:27:03,335 INFO ./env/bin/bench clear-cache
+2025-11-18 19:27:59,007 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:28:00,489 INFO ./env/bin/bench clear-cache
+2025-11-18 19:29:42,778 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:29:44,230 INFO ./env/bin/bench clear-cache
+2025-11-18 19:30:26,898 INFO ./env/bin/bench console
+2025-11-18 19:30:52,498 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:30:53,932 INFO ./env/bin/bench clear-cache
+2025-11-18 19:34:23,672 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:34:25,153 INFO ./env/bin/bench clear-cache
+2025-11-18 19:34:25,606 INFO ./env/bin/bench migrate
+2025-11-18 19:34:37,710 INFO ./env/bin/bench clear-cache
+2025-11-18 19:36:04,942 INFO ./env/bin/bench execute custom_app.cleanup_job_details.execute
+2025-11-18 19:36:05,939 INFO ./env/bin/bench clear-cache
+2025-11-18 19:37:32,239 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:37:33,662 INFO ./env/bin/bench clear-cache
+2025-11-18 19:39:24,746 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:39:26,230 INFO ./env/bin/bench clear-cache
+2025-11-18 19:40:37,710 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-18 19:40:39,218 INFO ./env/bin/bench clear-cache
+2025-11-19 10:07:02,903 INFO ./env/bin/bench serve
+2025-11-19 10:09:40,954 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-19 10:09:42,787 INFO ./env/bin/bench clear-cache
+2025-11-19 10:12:47,570 INFO ./env/bin/bench execute custom_app.setup_job_requisition_workflow.execute
+2025-11-19 10:13:17,175 INFO ./env/bin/bench execute custom_app.setup_job_requisition_workflow.execute
+2025-11-19 10:13:17,845 INFO ./env/bin/bench clear-cache
+2025-11-19 10:15:36,838 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-19 10:15:38,728 INFO ./env/bin/bench clear-cache
+2025-11-19 10:17:49,496 INFO ./env/bin/bench execute custom_app.setup_job_requisition_workflow.execute
+2025-11-19 10:17:49,993 INFO ./env/bin/bench clear-cache
+2025-11-19 10:24:04,373 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-19 10:24:06,402 INFO ./env/bin/bench clear-cache
+2025-11-19 10:27:41,679 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-19 10:28:00,515 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-19 10:28:18,802 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-19 10:28:51,069 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-19 10:28:53,044 INFO ./env/bin/bench clear-cache
+2025-11-19 12:28:30,123 INFO ./env/bin/bench clear-cache
+2025-11-19 12:37:38,115 INFO ./env/bin/bench clear-cache
+2025-11-19 12:38:41,348 INFO ./env/bin/bench execute custom_app.customize_job_opening.execute
+2025-11-19 12:41:41,763 INFO ./env/bin/bench clear-cache
+2025-11-19 12:43:27,996 INFO ./env/bin/bench clear-cache
+2025-11-19 12:45:03,490 INFO ./env/bin/bench clear-cache
+2025-11-19 12:45:58,189 INFO ./env/bin/bench clear-cache
+2025-11-19 12:47:30,516 INFO ./env/bin/bench --site erp.localhost console
+2025-11-19 12:47:57,082 INFO ./env/bin/bench execute custom_app.check_location_field.execute
+2025-11-19 12:48:32,095 INFO ./env/bin/bench execute custom_app.customize_job_requisition.execute
+2025-11-19 12:48:34,078 INFO ./env/bin/bench clear-cache
+2025-11-19 12:51:29,881 INFO ./env/bin/bench execute custom_app.setup_job_requisition_workflow.execute
+2025-11-19 12:52:01,640 INFO ./env/bin/bench execute custom_app.setup_job_requisition_workflow.execute
+2025-11-19 12:52:02,121 INFO ./env/bin/bench clear-cache
+2025-11-19 12:54:36,502 INFO ./env/bin/bench execute custom_app.setup_job_requisition_workflow.execute
+2025-11-19 12:54:37,072 INFO ./env/bin/bench clear-cache
+2025-11-19 13:00:14,739 INFO ./env/bin/bench clear-cache
+2025-11-19 13:02:52,320 INFO ./env/bin/bench execute custom_app.customize_job_application.execute
+2025-11-19 13:04:59,235 INFO ./env/bin/bench execute custom_app.customize_job_application.execute
+2025-11-19 13:05:14,572 INFO ./env/bin/bench clear-cache
+2025-11-19 13:06:52,645 INFO ./env/bin/bench execute custom_app.customize_job_application.execute
+2025-11-19 13:07:12,013 INFO ./env/bin/bench execute custom_app.customize_job_application.execute
+2025-11-19 13:07:12,638 INFO ./env/bin/bench clear-cache
+2025-11-19 13:08:49,984 INFO ./env/bin/bench --site all execute frappe.client.get_list --args {"doctype": "Custom Field", "filters": {"dt": "Job Applicant"}, "fields": ["fieldname", "label", "fieldtype", "hidden"]}
+2025-11-19 13:08:50,400 INFO ./env/bin/bench console
+2025-11-19 13:09:15,716 INFO ./env/bin/bench execute frappe.get_meta --args "Job Applicant"
+2025-11-19 13:10:53,584 INFO ./env/bin/bench --site erp.localhost execute frappe.get_all --args ["Custom Field", {"filters": {"dt": "Job Applicant"}, "fields": ["fieldname", "label", "fieldtype", "hidden"]}]
+2025-11-19 13:11:04,943 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype FROM `tabCustom Field` WHERE dt='Job Applicant';
+2025-11-19 13:11:16,304 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype, hidden FROM `tabDocField` WHERE parent='Job Applicant' AND fieldname LIKE '%resume%';
+2025-11-19 13:11:23,301 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, doc_type, field_name, property, value FROM `tabProperty Setter` WHERE doc_type='Job Applicant' AND field_name='resume_link';
+2025-11-19 13:11:30,121 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:13:01,246 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype, options FROM `tabCustom Field` WHERE dt='Job Applicant' AND fieldname='job_opening';
+2025-11-19 13:14:44,638 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabProperty Setter` WHERE doc_type='Job Applicant' AND field_name='resume_link'; DELETE FROM `tabCustom Field` WHERE dt='Job Applicant' AND fieldname='job_opening';
+2025-11-19 13:14:53,700 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype, options, reqd FROM `tabDocField` WHERE parent='Job Applicant' ORDER BY idx;
+2025-11-19 13:16:07,164 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-19 13:17:45,647 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-19 13:19:04,042 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-19 13:19:56,203 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-19 13:20:08,573 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:21:53,509 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, fieldtype FROM `tabDocField` WHERE parent='Job Opening' AND fieldname LIKE '%route%';
+2025-11-19 13:22:20,372 INFO ./env/bin/bench --site erp.localhost execute custom_app.set_job_application_route.execute
+2025-11-19 13:22:21,031 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:23:17,030 INFO ./env/bin/bench build --app custom_app
+2025-11-19 13:23:18,633 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:25:51,391 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabProperty Setter` WHERE doc_type='Job Opening' AND field_name='job_application_route'; UPDATE `tabJob Opening` SET job_application_route = NULL;
+2025-11-19 13:25:58,242 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabProperty Setter` WHERE doc_type='Job Opening' AND field_name='job_application_route'; UPDATE `tabJob Opening` SET job_application_route = '' WHERE job_application_route = 'app/job-application';
+2025-11-19 13:26:06,452 INFO ./env/bin/bench --site erp.localhost execute frappe.db.sql --args ["DELETE FROM `tabProperty Setter` WHERE doc_type=%s AND field_name=%s", ["Job Opening", "job_application_route"]]
+2025-11-19 13:26:13,915 INFO ./env/bin/bench --site erp.localhost execute frappe.db.sql --args ["UPDATE `tabJob Opening` SET job_application_route = \"\" WHERE job_application_route = %s", ["app/job-application"]]
+2025-11-19 13:26:14,215 INFO ./env/bin/bench --site erp.localhost execute frappe.db.commit
+2025-11-19 13:26:36,523 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:28:16,190 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-19 13:28:37,152 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:29:45,909 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-19 13:29:49,389 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:30:39,636 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, module, route FROM `tabWeb Form` WHERE name='job-application';
+2025-11-19 13:31:19,199 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:33:06,521 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-19 13:33:09,796 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:34:01,751 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, fieldtype FROM `tabDocField` WHERE parent='Job Application' AND fieldname IN ('currency', 'lower_range', 'upper_range');
+2025-11-19 13:34:29,072 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, fieldtype, label FROM `tabWeb Form Field` WHERE parent='job-application' ORDER BY idx;
+2025-11-19 13:34:43,925 INFO ./env/bin/bench --site erp.localhost execute frappe.modules.import_file.import_file_by_path --args "/Users/vijayrasquinha/Work/frappe/frappe-bench/apps/custom_app/custom_app/custom_app/web_form/job_application/job_application.json", "force"
+2025-11-19 13:34:44,535 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:35:07,918 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, fieldtype, label FROM `tabWeb Form Field` WHERE parent='job-application' ORDER BY idx;
+2025-11-19 13:36:33,577 INFO ./env/bin/bench --site erp.localhost execute frappe.modules.import_file.import_file_by_path --args "/Users/vijayrasquinha/Work/frappe/frappe-bench/apps/custom_app/custom_app/custom_app/web_form/job_application/job_application.json", "force"
+2025-11-19 13:36:34,133 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:38:04,934 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, in_standard_filter, in_list_view FROM `tabDocField` WHERE parent='Job Opening' AND fieldname='company';
+2025-11-19 13:39:21,425 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:40:55,571 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:42:01,536 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:43:29,661 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:44:36,270 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:45:58,282 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 13:46:48,324 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, employment_type FROM `tabJob Opening` WHERE status='Open' AND publish=1;
+2025-11-19 13:57:30,378 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 14:02:09,993 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 14:05:52,299 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_project.execute
+2025-11-19 14:05:53,304 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 14:07:23,031 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname FROM `tabDocField` WHERE parent='Project' AND fieldtype='Section Break' ORDER BY idx;
+2025-11-19 14:07:41,747 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label FROM `tabDocField` WHERE parent='Project' AND (label LIKE '%Costing%' OR label LIKE '%Billing%' OR fieldname LIKE '%cost%' OR fieldname LIKE '%bill%') ORDER BY idx;
+2025-11-19 14:07:55,165 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype FROM `tabDocField` WHERE parent='Project' ORDER BY idx;
+2025-11-19 14:09:31,480 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_project.execute
+2025-11-19 14:09:32,197 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 14:11:52,385 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label FROM `tabDocField` WHERE parent='Project' AND fieldname='department' OR label LIKE '%Department%' ORDER BY idx;
+2025-11-19 14:12:32,091 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label FROM `tabDocField` WHERE parent='Project' AND fieldname='department';
+2025-11-19 14:12:56,045 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_project.execute
+2025-11-19 14:12:56,875 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 14:18:50,411 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-19 14:18:54,127 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_customer.execute
+2025-11-19 14:18:54,795 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 14:24:12,838 INFO ./env/bin/bench --site dev.localhost execute custom_app.customize_project.execute
+2025-11-19 14:24:23,177 INFO ./env/bin/bench --site erpnext.localhost execute custom_app.customize_project.execute
+2025-11-19 14:24:36,182 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_project.execute
+2025-11-19 14:24:37,203 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 14:39:10,314 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 14:44:55,887 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 14:51:15,303 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 14:54:58,918 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_email_templates.execute
+2025-11-19 14:54:59,360 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 16:35:08,310 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 16:37:32,839 INFO ./env/bin/bench --site erp.localhost set-config -p allow_delete_job_requisition 1
+2025-11-19 16:37:33,262 INFO ./env/bin/bench --site erp.localhost console
+2025-11-19 16:38:06,119 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.execute
+2025-11-19 16:38:08,044 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 16:41:14,810 INFO ./env/bin/bench --site erp.localhost execute frappe.modules.import_file.import_file_by_path --args ["/Users/vijayrasquinha/Work/frappe/frappe-bench/apps/custom_app/custom_app/web_form/job_application/job_application.json", "force"]
+2025-11-19 16:41:15,483 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 16:43:49,099 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 16:46:29,692 INFO ./env/bin/bench --site erp.localhost execute frappe.modules.import_file.import_file_by_path --args ["/Users/vijayrasquinha/Work/frappe/frappe-bench/apps/custom_app/custom_app/custom_app/web_form/job_application/job_application.json", "force"]
+2025-11-19 16:46:30,373 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 16:49:07,250 INFO ./env/bin/bench --site erp.localhost execute frappe.client.get_value --args {"doctype": "Job Opening", "filters": {}, "fieldname": ["name", "job_application_route"]}
+2025-11-19 16:50:27,957 INFO ./env/bin/bench --site erp.localhost execute frappe.modules.import_file.import_file_by_path --args ["/Users/vijayrasquinha/Work/frappe/frappe-bench/apps/custom_app/custom_app/custom_app/web_form/job_application/job_application.json", "force"]
+2025-11-19 16:50:28,652 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 16:52:12,309 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 16:53:35,378 INFO ./env/bin/bench --site erp.localhost execute frappe.modules.import_file.import_file_by_path --args ["/Users/vijayrasquinha/Work/frappe/frappe-bench/apps/custom_app/custom_app/custom_app/web_form/job_application/job_application.json", "force"]
+2025-11-19 16:53:36,086 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 16:54:52,264 INFO ./env/bin/bench --site erp.localhost console
+2025-11-19 16:55:14,532 INFO ./env/bin/bench --site erp.localhost execute frappe.modules.import_file.import_file_by_path --args ["/Users/vijayrasquinha/Work/frappe/frappe-bench/apps/custom_app/custom_app/custom_app/web_form/job_application/job_application.json", "force"]
+2025-11-19 16:55:15,263 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-19 20:12:42,057 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-19 20:12:46,233 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-20 18:43:57,631 INFO ./env/bin/bench --site site1.local execute custom_app.customize_job_requisition.execute
+2025-11-20 18:44:41,734 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.execute
+2025-11-20 18:44:49,046 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-20 19:02:40,586 INFO ./env/bin/bench --site erp.localhost console
+2025-11-20 19:05:24,967 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-20 19:07:45,317 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-20 19:09:04,868 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-20 19:11:02,386 INFO ./env/bin/bench --site erp.localhost console
+2025-11-20 19:11:12,590 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, applicant_name, email_id, job_opening, creation FROM `tabJob Application` ORDER BY creation DESC LIMIT 5;
+2025-11-20 19:12:15,021 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-20 19:14:35,261 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabJob Application`; DELETE FROM `tabJob Applicant` WHERE name LIKE 'HR-APP-%';
+2025-11-20 19:14:42,163 INFO ./env/bin/bench --site erp.localhost console
+2025-11-20 19:14:54,631 INFO ./env/bin/bench --site erp.localhost execute 
+import frappe
+
+# Delete all Job Applications
+for name in frappe.get_all('Job Application', pluck='name'):
+    frappe.delete_doc('Job Application', name, force=True)
+
+# Delete all Job Applicants
+for name in frappe.get_all('Job Applicant', pluck='name'):
+    frappe.delete_doc('Job Applicant', name, force=True)
+
+frappe.db.commit()
+print('Deleted all Job Applications and Job Applicants')
+
+2025-11-20 19:15:13,849 INFO ./env/bin/bench --site erp.localhost execute custom_app.delete_applications.delete_all_applications
+2025-11-20 19:15:23,313 INFO ./env/bin/bench --site erp.localhost mariadb -e SET SQL_SAFE_UPDATES=0; DELETE FROM `tabJob Application`; DELETE FROM `tabJob Applicant`; SET SQL_SAFE_UPDATES=1;
+2025-11-20 19:39:49,480 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_job_requisition_workflow.execute
+2025-11-20 19:51:35,461 INFO ./env/bin/bench --site erp.localhost migrate --verbose
+2025-11-20 19:51:56,508 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-20 19:59:04,825 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.execute
+2025-11-20 20:00:54,975 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-20 20:08:30,076 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_job_requisition_email_notifications.execute
+2025-11-20 20:09:04,306 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_job_requisition_email_notifications.execute
+2025-11-20 20:14:58,182 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, fieldname, label FROM `tabCustom Field` WHERE dt='Job Requisition' AND fieldname='job_title';
+2025-11-20 20:33:24,923 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_job_requisition_email_notifications.execute
+2025-11-20 20:46:58,585 INFO ./env/bin/bench --site erp.localhost execute frappe.db.get_list --args ['Notification', {'document_type': 'Job Requisition'}, ['name', 'enabled', 'event', 'channel']]
+2025-11-20 20:47:07,098 INFO ./env/bin/bench --site erp.localhost execute frappe.get_doc('Notification', 'Job Requisition Approved - Requester').as_dict() --kwargs {'fields': ['name', 'enabled', 'event', 'value_changed', 'condition', 'recipients']}
+2025-11-20 20:51:45,214 INFO ./env/bin/bench --site erp.localhost execute custom_app.check_notifications.execute
+2025-11-20 20:51:58,797 INFO ./env/bin/bench --site erp.localhost execute frappe.db.get_list --args ['Email Queue', {}, ['name', 'status', 'recipients', 'subject', 'modified'], 'modified desc', 5]
+2025-11-20 20:53:37,561 INFO ./env/bin/bench --site erp.localhost execute custom_app.test_notification.execute
+2025-11-20 20:54:11,056 INFO ./env/bin/bench --site erp.localhost execute custom_app.test_notification.execute
+2025-11-20 20:54:20,507 INFO ./env/bin/bench --site erp.localhost mariadb -e SHOW COLUMNS FROM `tabEmail Queue`
+2025-11-20 20:54:27,800 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, status, reference_doctype, reference_name, modified FROM `tabEmail Queue` ORDER BY modified DESC LIMIT 5
+2025-11-20 20:54:42,435 INFO ./env/bin/bench --site erp.localhost execute frappe.db.set_value('Notification', 'Job Requisition Approved', 'enabled', 0); frappe.db.set_value('Notification', 'Job Requisition Rejected', 'enabled', 0); frappe.db.commit(); print('Disabled old duplicate notifications')
+2025-11-20 20:55:05,775 INFO ./env/bin/bench --site erp.localhost execute custom_app.disable_duplicate_notifications.execute
+2025-11-20 20:55:12,617 INFO ./env/bin/bench --site erp.localhost execute custom_app.check_notifications.execute
+2025-11-20 20:58:57,636 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, workflow_state, requested_by, modified FROM `tabJob Requisition` ORDER BY modified DESC LIMIT 5
+2025-11-20 20:59:08,445 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT eq.name, eq.status, eq.reference_doctype, eq.reference_name, eq.modified, eqr.recipient FROM `tabEmail Queue` eq LEFT JOIN `tabEmail Queue Recipient` eqr ON eq.name = eqr.parent WHERE eq.reference_doctype = 'Job Requisition' ORDER BY eq.modified DESC LIMIT 10
+2025-11-20 20:59:16,997 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, workflow_state, requested_by, reports_to FROM `tabJob Requisition` WHERE name = 'HR-HIREQ-00001'
+2025-11-20 20:59:30,874 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT e.name, e.employee_name, e.user_id, u.email FROM `tabEmployee` e LEFT JOIN `tabUser` u ON e.user_id = u.name WHERE e.name = 'HR-EMP-00001'
+2025-11-20 20:59:43,489 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, fieldtype, options FROM `tabDocField` WHERE parent = 'Job Requisition' AND fieldname IN ('requested_by', 'reports_to')
+2025-11-20 21:00:01,804 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, fieldtype, options FROM `tabCustom Field` WHERE dt = 'Job Requisition' AND fieldname = 'reports_to'
+2025-11-20 21:01:50,435 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-20 21:02:18,574 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-20 21:04:13,817 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, workflow_state, requested_by, reports_to, requested_by_user, reports_to_user FROM `tabJob Requisition` WHERE name = 'HR-HIREQ-00001'
+2025-11-20 21:04:28,579 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, email, full_name FROM `tabUser` WHERE enabled = 1 AND user_type = 'System User' LIMIT 5
+2025-11-20 21:04:36,711 INFO ./env/bin/bench --site erp.localhost mariadb -e UPDATE `tabEmployee` SET user_id = 'vijay.rasquinha@atree.org' WHERE name = 'HR-EMP-00001'
+2025-11-20 21:04:58,143 INFO ./env/bin/bench --site erp.localhost execute custom_app.update_job_req_user_fields.execute
+2025-11-20 21:05:19,068 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, workflow_state, requested_by_user, reports_to_user FROM `tabJob Requisition` WHERE name = 'HR-HIREQ-00001'
+2025-11-20 21:05:34,349 INFO ./env/bin/bench --site erp.localhost mariadb -e UPDATE `tabJob Requisition` SET workflow_state = 'Pending HR Approval' WHERE name = 'HR-HIREQ-00001'
+2025-11-20 21:11:49,342 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_job_requisition_email_notifications.execute
+2025-11-20 21:49:13,226 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 09:56:56,358 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 09:57:13,321 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 09:58:40,110 INFO ./env/bin/bench --site erp.localhost execute custom_app.tasks.send_anniversary_wishes
+2025-11-21 09:59:04,791 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 09:59:16,086 INFO ./env/bin/bench --site erp.localhost execute custom_app.tasks.send_anniversary_wishes
+2025-11-21 09:59:26,397 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 09:59:38,584 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, recipients, subject, status, creation FROM `tabEmail Queue` WHERE reference_doctype = 'Employee' ORDER BY creation DESC LIMIT 5
+2025-11-21 09:59:46,403 INFO ./env/bin/bench --site erp.localhost mariadb -e SHOW COLUMNS FROM `tabEmail Queue`
+2025-11-21 09:59:54,656 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+SELECT 
+    eq.name, 
+    eqr.recipient, 
+    eq.status, 
+    eq.reference_doctype,
+    eq.creation
+FROM `tabEmail Queue` eq
+LEFT JOIN `tabEmail Queue Recipient` eqr ON eq.name = eqr.parent
+WHERE eq.reference_doctype = 'Employee'
+ORDER BY eq.creation DESC
+LIMIT 5
+
+2025-11-21 10:00:03,371 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+SELECT 
+    name,
+    LEFT(message, 200) as message_preview,
+    status,
+    creation
+FROM `tabEmail Queue`
+WHERE name = 'agvcpto7nt'
+
+2025-11-21 10:00:11,505 INFO ./env/bin/bench --site erp.localhost execute frappe.email.queue.flush
+2025-11-21 10:01:13,669 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+SELECT 
+    eq.name, 
+    eqr.recipient, 
+    eq.status, 
+    eq.creation
+FROM `tabEmail Queue` eq
+LEFT JOIN `tabEmail Queue Recipient` eqr ON eq.name = eqr.parent
+WHERE eq.name = 'agvcpto7nt'
+
+2025-11-21 10:01:22,328 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 11:17:22,216 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.execute
+2025-11-21 11:17:33,489 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 11:59:02,320 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.execute
+2025-11-21 11:59:15,383 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:00:07,859 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:01:08,748 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:01:19,386 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:01:30,351 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:01:30,901 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:02:45,757 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:02:58,934 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:03:22,344 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:03:37,217 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:03:50,101 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:03:58,355 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:05:04,617 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:05:18,551 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:05:27,587 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype, hidden, `read_only`, permlevel, idx FROM `tabDocField` WHERE parent = 'Job Requisition' AND idx BETWEEN 20 AND 30 ORDER BY idx
+2025-11-21 12:05:59,745 INFO ./env/bin/bench --site erp.localhost mariadb -e UPDATE `tabDocField` SET idx = 21 WHERE parent = 'Job Requisition' AND fieldname = 'requested_by'
+2025-11-21 12:06:07,172 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:07:17,157 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT idx, fieldname, label, fieldtype, hidden FROM `tabDocField` WHERE parent = 'Job Requisition' AND idx BETWEEN 1 AND 30 ORDER BY idx
+2025-11-21 12:07:28,224 INFO ./env/bin/bench --site erp.localhost mariadb -e UPDATE `tabDocField` SET idx = 11 WHERE parent = 'Job Requisition' AND fieldname = 'requested_by'
+2025-11-21 12:07:34,892 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:08:29,467 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, dt, fieldname, label, idx, hidden, `read_only` FROM `tabCustom Field` WHERE dt = 'Job Requisition' ORDER BY idx
+2025-11-21 12:08:47,267 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:09:46,727 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:10:43,155 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:13:27,412 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:15:24,025 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:15:34,089 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype FROM `tabDocField` WHERE parent = 'Job Requisition' AND fieldname IN ('requested_by_name', 'requested_by_dept', 'requested_by_designation')
+2025-11-21 12:15:48,376 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:16:11,887 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:17:39,609 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:18:20,417 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.execute
+2025-11-21 12:18:33,351 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:21:16,382 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.execute
+2025-11-21 12:21:18,785 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:28:18,720 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype, hidden FROM `tabCustom Field` WHERE dt = 'Job Requisition' ORDER BY idx
+2025-11-21 12:28:39,972 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:28:59,169 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:31:13,221 INFO ./env/bin/bench start
+2025-11-21 12:31:13,225 WARNING ./env/bin/bench start executed with exit code 1
+2025-11-21 12:32:36,431 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:33:22,917 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:33:53,687 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:39:09,187 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:42:38,852 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.customize_job_requisition
+2025-11-21 12:43:38,938 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:45:51,545 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 12:46:01,153 INFO ./env/bin/bench --site erp.localhost execute frappe.db.get_value('Custom Field', {'dt': 'Job Requisition', 'fieldname': 'requester_name'}, ['fieldname', 'label', 'fieldtype', 'insert_after', 'hidden', 'read_only', 'idx'], as_dict=True)
+2025-11-21 12:46:10,445 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype, insert_after, hidden, read_only, idx FROM `tabCustom Field` WHERE dt='Job Requisition' AND fieldname='requester_name';
+2025-11-21 12:46:19,817 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype, idx FROM `tabDocField` WHERE parent='Job Requisition' AND (fieldname='section_break_7' OR idx BETWEEN 14 AND 18) ORDER BY idx;
+2025-11-21 12:46:27,269 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, fieldtype, insert_after, idx FROM `tabCustom Field` WHERE dt='Job Requisition' AND (insert_after='section_break_7' OR insert_after='reports_to') ORDER BY idx;
+2025-11-21 12:46:34,335 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabCustom Field` WHERE dt='Job Requisition' AND fieldname='requested_by_user';
+2025-11-21 12:46:41,246 INFO ./env/bin/bench --site erp.localhost mariadb -e UPDATE `tabCustom Field` SET idx = 11 WHERE dt='Job Requisition' AND fieldname='requester_name';
+2025-11-21 12:46:49,427 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT 'DocField' as source, fieldname, label, fieldtype, idx FROM `tabDocField` WHERE parent='Job Requisition' AND idx BETWEEN 10 AND 16 UNION SELECT 'Custom' as source, fieldname, label, fieldtype, idx FROM `tabCustom Field` WHERE dt='Job Requisition' AND idx BETWEEN 10 AND 16 ORDER BY idx, source;
+2025-11-21 12:46:57,139 INFO ./env/bin/bench --site erp.localhost mariadb -e UPDATE `tabCustom Field` SET insert_after='col_break_rb_1', idx=13 WHERE dt='Job Requisition' AND fieldname='requester_name';
+2025-11-21 12:47:04,819 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:48:04,572 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabCustom Field` WHERE dt='Job Requisition' AND fieldname='requester_name';
+2025-11-21 12:49:37,232 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.customize_job_requisition
+2025-11-21 12:49:47,190 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, insert_after, idx, hidden, read_only FROM `tabCustom Field` WHERE dt='Job Requisition' AND fieldname='requested_by_employee';
+2025-11-21 12:49:57,136 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 12:55:17,339 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT 'DocField' as source, fieldname, label, fieldtype, hidden, idx FROM `tabDocField` WHERE parent='Job Requisition' AND idx BETWEEN 8 AND 12 UNION SELECT 'Custom' as source, fieldname, label, fieldtype, hidden, idx FROM `tabCustom Field` WHERE dt='Job Requisition' AND idx BETWEEN 8 AND 12 ORDER BY idx, source;
+2025-11-21 12:55:28,796 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT fieldname, label, insert_after FROM `tabCustom Field` WHERE dt='Job Requisition' AND fieldname='salary_section';
+2025-11-21 12:55:37,676 INFO ./env/bin/bench --site erp.localhost mariadb -e UPDATE `tabCustom Field` SET insert_after='job_title' WHERE dt='Job Requisition' AND fieldname='requested_by_employee';
+2025-11-21 12:55:43,144 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 13:01:04,720 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name FROM `tabProperty Setter` WHERE doc_type='Job Requisition' AND field_name='requested_by' AND property='reqd';
+2025-11-21 13:01:18,541 INFO ./env/bin/bench --site erp.localhost mariadb -e INSERT INTO `tabProperty Setter` (name, creation, modified, modified_by, owner, docstatus, parent, parentfield, parenttype, idx, doctype_or_field, doc_type, field_name, property, value, property_type, `_user_tags`, `_comments`, `_assign`, `_liked_by`) VALUES (UUID(), NOW(), NOW(), 'Administrator', 'Administrator', 0, NULL, NULL, NULL, 0, 'DocField', 'Job Requisition', 'requested_by', 'reqd', '0', 'Check', NULL, NULL, NULL, NULL) ON DUPLICATE KEY UPDATE value='0';
+2025-11-21 13:01:26,572 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.customize_job_requisition
+2025-11-21 13:01:58,040 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.customize_job_requisition
+2025-11-21 13:02:06,032 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 13:08:03,905 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabCustom Field` WHERE dt='Job Requisition' AND fieldname='requested_by_employee';
+2025-11-21 13:08:30,146 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 13:09:19,701 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, field_name, property, value FROM `tabProperty Setter` WHERE doc_type='Job Requisition' AND field_name='requested_by';
+2025-11-21 13:09:29,375 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabProperty Setter` WHERE doc_type='Job Requisition' AND field_name='requested_by' AND property IN ('bold', 'fetch_from', 'in_list_view', 'in_standard_filter', 'read_only');
+2025-11-21 13:09:36,442 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name FROM `tabClient Script` WHERE dt='Job Requisition';
+2025-11-21 13:09:42,575 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabClient Script` WHERE name='Job Requisition - Show Requested By';
+2025-11-21 13:10:52,931 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 13:12:33,848 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.customize_job_requisition
+2025-11-21 13:12:41,432 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 13:15:32,294 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_job_requisition.customize_job_requisition
+2025-11-21 13:15:34,784 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 14:44:10,219 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_workspaces.execute
+2025-11-21 14:44:30,041 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_workspaces.execute
+2025-11-21 14:44:45,984 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_workspaces.execute
+2025-11-21 14:45:25,087 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_workspaces.execute
+2025-11-21 14:46:09,124 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-21 14:46:26,723 INFO ./env/bin/bench --site erp.localhost console --execute import frappe; workspaces = frappe.get_all('Workspace', filters={'name': ['in', ['HR Manager', 'HR User']]}, fields=['name', 'label', 'icon']); print('\nInstalled Workspaces:'); [print(f'  ✅ {w.name} - {w.label} ({w.icon})') for w in workspaces]
+2025-11-21 14:46:35,244 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, icon FROM tabWorkspace WHERE name IN ('HR Manager', 'HR User');
+2025-11-21 14:46:44,216 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT parent, role FROM `tabWorkspace Role` WHERE parent IN ('HR Manager', 'HR User');
+2025-11-21 14:46:54,351 INFO ./env/bin/bench --site erp.localhost mariadb -e SHOW TABLES LIKE '%workspace%';
+2025-11-21 14:47:14,376 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT parent, label, link_to, type FROM `tabWorkspace Shortcut` WHERE parent IN ('HR Manager', 'HR User') LIMIT 10;
+2025-11-21 14:48:46,869 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, public, roles FROM tabWorkspace WHERE name IN ('HR Manager', 'HR User');
+2025-11-21 14:48:57,130 INFO ./env/bin/bench --site erp.localhost mariadb -e DESCRIBE tabWorkspace;
+2025-11-21 14:49:21,777 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_workspaces.execute
+2025-11-21 14:49:41,005 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_workspaces.execute
+2025-11-21 14:49:47,532 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, public, icon FROM tabWorkspace WHERE name IN ('HR Manager', 'HR User');
+2025-11-21 14:49:53,379 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT * FROM tabWorkspace WHERE name = 'HR Manager'\G
+2025-11-21 14:50:15,431 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT parent, role, parenttype FROM `tabHas Role` WHERE parent IN ('HR Manager', 'HR User') AND parenttype = 'Workspace';
+2025-11-21 14:50:23,766 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+SELECT 
+    w.name AS workspace_name,
+    w.label,
+    w.icon,
+    w.public,
+    hr.role AS restricted_to_role
+FROM tabWorkspace w
+LEFT JOIN `tabHas Role` hr ON hr.parent = w.name AND hr.parenttype = 'Workspace'
+WHERE w.name IN ('HR Manager', 'HR User')
+ORDER BY w.name;
+
+2025-11-21 14:51:28,191 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label FROM tabWorkspace WHERE label LIKE '%HR%';
+2025-11-21 14:51:59,909 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM tabWorkspace WHERE name IN ('HR Manager', 'HR User');
+2025-11-21 14:52:12,806 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabHas Role` WHERE parent IN ('HR Manager', 'HR User') AND parenttype = 'Workspace';
+2025-11-21 14:52:19,464 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabWorkspace Shortcut` WHERE parent IN ('HR Manager', 'HR User');
+2025-11-21 14:52:25,215 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabWorkspace Link` WHERE parent IN ('HR Manager', 'HR User');
+2025-11-21 14:52:31,850 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_workspaces.execute
+2025-11-21 14:52:42,854 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+SELECT 
+    w.name AS workspace_name,
+    w.label,
+    w.icon,
+    w.public,
+    hr.role AS restricted_to_role
+FROM tabWorkspace w
+LEFT JOIN `tabHas Role` hr ON hr.parent = w.name AND hr.parenttype = 'Workspace'
+WHERE w.name IN ('hr-manager', 'hr-user')
+ORDER BY w.name;
+
+2025-11-21 14:52:48,415 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, public, icon FROM tabWorkspace WHERE name LIKE 'hr-%';
+2025-11-21 14:53:05,794 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, public FROM tabWorkspace WHERE module = 'Custom App';
+2025-11-21 14:53:14,020 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, public FROM tabWorkspace ORDER BY modified DESC LIMIT 5;
+2025-11-21 14:53:21,827 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, title, public FROM tabWorkspace WHERE name IN ('HR Manager', 'HR User')\G
+2025-11-21 14:53:28,078 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 14:53:34,076 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT parent, role FROM `tabHas Role` WHERE parent IN ('HR Manager', 'HR User') AND parenttype = 'Workspace';
+2025-11-21 14:53:48,867 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT DISTINCT u.name as user, hr.role FROM tabUser u LEFT JOIN `tabHas Role` hr ON hr.parent = u.name WHERE hr.role IN ('HR Manager', 'HR User') AND u.enabled = 1 ORDER BY u.name;
+2025-11-21 14:54:28,316 INFO ./env/bin/bench restart
+2025-11-21 14:55:24,373 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, title FROM tabWorkspace WHERE name LIKE '%-%' LIMIT 5;
+2025-11-21 14:55:31,647 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label FROM tabWorkspace WHERE module IN ('HR', 'Payroll') LIMIT 10;
+2025-11-21 14:55:40,556 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, public FROM tabWorkspace WHERE label IN ('HR Manager', 'HR User');
+2025-11-21 14:55:48,539 INFO ./env/bin/bench --site erp.localhost mariadb -e DESCRIBE tabWorkspace;
+2025-11-21 14:56:00,930 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, content IS NOT NULL as has_content, LENGTH(content) as content_length FROM tabWorkspace WHERE name IN ('HR Manager', 'HR User');
+2025-11-21 14:56:12,483 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, public, is_hidden, for_user FROM tabWorkspace WHERE name = 'HR User'\G
+2025-11-21 14:56:20,345 INFO ./env/bin/bench --site erp.localhost mariadb -e UPDATE tabWorkspace SET public = 1 WHERE name IN ('HR Manager', 'HR User');
+2025-11-21 14:56:26,607 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 14:56:27,149 INFO ./env/bin/bench restart
+2025-11-21 14:59:03,108 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_workspaces.execute
+2025-11-21 14:59:33,734 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_workspaces.execute
+2025-11-21 14:59:40,742 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT parent, label, link_to FROM `tabWorkspace Link` WHERE parent = 'HR User' AND label = 'Job Requisition';
+2025-11-21 14:59:47,833 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 14:59:48,367 INFO ./env/bin/bench restart
+2025-11-21 15:08:51,465 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, module, public, is_hidden FROM tabWorkspace WHERE name IN ('HR User', 'HR Manager')\G
+2025-11-21 15:09:10,656 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT w.name, w.public, GROUP_CONCAT(hr.role) as roles FROM tabWorkspace w LEFT JOIN `tabHas Role` hr ON hr.parent = w.name AND hr.parenttype = 'Workspace' WHERE w.name IN ('HR User', 'HR Manager') GROUP BY w.name;
+2025-11-21 15:09:20,917 INFO ./env/bin/bench --site erp.localhost mariadb -e UPDATE tabWorkspace SET public = 1 WHERE name IN ('HR User', 'HR Manager');
+2025-11-21 15:09:28,532 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:09:50,825 INFO ./env/bin/bench --site erp.localhost execute custom_app.fix_workspace_routing.execute
+2025-11-21 15:09:59,473 INFO ./env/bin/bench restart
+2025-11-21 15:12:30,879 INFO ./env/bin/bench --site erp.localhost execute custom_app.hide_workspaces_for_hr.execute
+2025-11-21 15:12:48,337 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:12:48,854 INFO ./env/bin/bench restart
+2025-11-21 15:13:00,522 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+SELECT w.name, w.label, w.public,
+       CASE 
+           WHEN w.public = 1 THEN 'Everyone'
+           WHEN EXISTS (SELECT 1 FROM `tabHas Role` hr WHERE hr.parent = w.name AND hr.parenttype = 'Workspace' AND hr.role IN ('HR Manager', 'HR User')) THEN 'Has HR Access'
+           ELSE 'No HR Access'
+       END as hr_visibility
+FROM tabWorkspace w
+WHERE w.module IN ('HR', 'Custom App', 'Core', 'Desk', 'Accounts', 'Buying', 'Selling', 'Stock', 'Assets', 'Manufacturing', 'Quality', 'CRM', 'Website', 'Integrations', 'Setup')
+ORDER BY hr_visibility DESC, w.label;
+
+2025-11-21 15:13:09,581 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+UPDATE tabWorkspace 
+SET public = 0 
+WHERE name IN ('HR Manager', 'HR User');
+
+2025-11-21 15:13:16,151 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:13:16,666 INFO ./env/bin/bench restart
+2025-11-21 15:14:11,159 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, title, public, module FROM tabWorkspace WHERE name = 'HR' LIMIT 1\G
+2025-11-21 15:14:44,334 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+DELETE FROM `tabWorkspace Link` WHERE parent IN ('HR Manager', 'HR User');
+DELETE FROM `tabWorkspace Shortcut` WHERE parent IN ('HR Manager', 'HR User');
+DELETE FROM `tabHas Role` WHERE parent IN ('HR Manager', 'HR User') AND parenttype = 'Workspace';
+DELETE FROM tabWorkspace WHERE name IN ('HR Manager', 'HR User');
+
+2025-11-21 15:15:21,850 INFO ./env/bin/bench --site erp.localhost execute custom_app.hide_workspaces_for_hr.execute
+2025-11-21 15:15:29,681 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:15:30,206 INFO ./env/bin/bench restart
+2025-11-21 15:16:09,820 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, public FROM tabWorkspace WHERE name LIKE '%HR%' OR label LIKE '%HR%';
+2025-11-21 15:16:20,266 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT label, link_to FROM `tabWorkspace Link` WHERE parent = 'HR' AND label IN ('Job Requisition', 'Job Opening', 'Job Application', 'Employee', 'Leave Application', 'Attendance') ORDER BY label;
+2025-11-21 15:16:49,067 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_hr_workspace.execute
+2025-11-21 15:17:18,740 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_hr_workspace.execute
+2025-11-21 15:17:31,713 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+INSERT INTO `tabWorkspace Link` (name, creation, modified, modified_by, owner, docstatus, parent, parentfield, parenttype, idx, hidden, is_query_report, label, link_count, link_to, link_type, onboard, type, dependencies)
+SELECT 
+    UUID() as name,
+    NOW() as creation,
+    NOW() as modified,
+    'Administrator' as modified_by,
+    'Administrator' as owner,
+    0 as docstatus,
+    'HR' as parent,
+    'links' as parentfield,
+    'Workspace' as parenttype,
+    5 as idx,
+    0 as hidden,
+    0 as is_query_report,
+    'Job Requisition' as label,
+    0 as link_count,
+    'Job Requisition' as link_to,
+    'DocType' as link_type,
+    0 as onboard,
+    'Link' as type,
+    '' as dependencies
+WHERE NOT EXISTS (
+    SELECT 1 FROM `tabWorkspace Link` 
+    WHERE parent = 'HR' AND label = 'Job Requisition'
+);
+
+2025-11-21 15:17:38,859 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:17:39,379 INFO ./env/bin/bench restart
+2025-11-21 15:18:48,503 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, default_workspace FROM tabUser WHERE name IN ('Administrator', 'vijay.rasquinha@atree.org');
+2025-11-21 15:18:55,045 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT defkey, defvalue FROM tabDefaultValue WHERE parent IN ('Administrator', 'vijay.rasquinha@atree.org') AND defkey LIKE '%workspace%';
+2025-11-21 15:19:00,728 INFO ./env/bin/bench --site erp.localhost mariadb -e DESCRIBE tabUser;
+2025-11-21 15:19:07,603 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT * FROM `tabSessions` ORDER BY lastupdate DESC LIMIT 1\G
+2025-11-21 15:19:27,134 INFO ./env/bin/bench --site erp.localhost execute custom_app.clear_workspace_references.execute
+2025-11-21 15:19:52,394 INFO ./env/bin/bench --site erp.localhost execute custom_app.clear_workspace_references.execute
+2025-11-21 15:19:58,569 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:19:59,072 INFO ./env/bin/bench --site erp.localhost clear-website-cache
+2025-11-21 15:19:59,491 INFO ./env/bin/bench restart
+2025-11-21 15:22:03,688 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, role, home_page, desk_theme FROM `tabRole` WHERE name IN ('HR Manager', 'HR User');
+2025-11-21 15:22:09,973 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, home_page, desk_theme FROM tabRole WHERE name IN ('HR Manager', 'HR User');
+2025-11-21 15:22:16,844 INFO ./env/bin/bench --site erp.localhost mariadb -e DESCRIBE tabRole;
+2025-11-21 15:22:22,501 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, home_page FROM tabRole WHERE name IN ('HR Manager', 'HR User');
+2025-11-21 15:22:39,434 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name FROM `tabRole Profile` WHERE name LIKE '%HR%';
+2025-11-21 15:22:56,086 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT * FROM `tabDefaultValue` WHERE defvalue LIKE '%hr%' OR defvalue LIKE '%HR%';
+2025-11-21 15:23:22,908 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:23:23,468 INFO ./env/bin/bench restart
+2025-11-21 15:24:43,258 INFO ./env/bin/bench --site erp.localhost mariadb -e SHOW TABLES LIKE '%workspace%';
+2025-11-21 15:24:54,265 INFO ./env/bin/bench --site erp.localhost mariadb -e SHOW TABLES LIKE '%sidebar%';
+2025-11-21 15:25:08,442 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name FROM tabWorkspace WHERE name LIKE '%user%' OR name LIKE '%User%' OR name LIKE '%manager%' OR name LIKE '%Manager%';
+2025-11-21 15:25:29,807 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, username, enabled, default_workspace FROM tabUser WHERE enabled = 1 AND user_type = 'System User' LIMIT 5;
+2025-11-21 15:27:02,627 INFO ./env/bin/bench restart
+2025-11-21 15:29:53,704 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:29:54,380 INFO ./env/bin/bench --site erp.localhost clear-website-cache
+2025-11-21 15:29:54,801 INFO ./env/bin/bench restart
+2025-11-21 15:33:32,162 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+-- Reset all workspaces to public and clear role restrictions
+UPDATE tabWorkspace SET public = 1 WHERE module != 'Custom App';
+DELETE FROM `tabHas Role` WHERE parenttype = 'Workspace' AND parent IN (
+    SELECT name FROM tabWorkspace WHERE module != 'Custom App'
+);
+
+2025-11-21 15:33:57,050 INFO ./env/bin/bench --site erp.localhost mariadb -e 
+SET SQL_SAFE_UPDATES = 0;
+UPDATE tabWorkspace SET public = 1;
+DELETE FROM `tabHas Role` WHERE parenttype = 'Workspace';
+SET SQL_SAFE_UPDATES = 1;
+
+2025-11-21 15:34:27,260 INFO ./env/bin/bench build --app custom_app
+2025-11-21 15:34:34,833 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:34:35,350 INFO ./env/bin/bench restart
+2025-11-21 15:36:39,160 INFO ./env/bin/bench --site erp.localhost execute custom_app.create_hr_home.execute
+2025-11-21 15:37:17,132 INFO ./env/bin/bench --site erp.localhost execute custom_app.create_hr_home.execute
+2025-11-21 15:37:27,394 INFO ./env/bin/bench --site erp.localhost mariadb -e UPDATE tabRole SET home_page = 'hr-home' WHERE name IN ('HR Manager', 'HR User');
+2025-11-21 15:37:55,822 INFO ./env/bin/bench build --app custom_app
+2025-11-21 15:37:57,139 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:37:57,649 INFO ./env/bin/bench restart
+2025-11-21 15:38:12,963 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, label, public FROM tabWorkspace WHERE name = 'HR Home';
+2025-11-21 15:38:36,769 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:38:37,310 INFO ./env/bin/bench restart
+2025-11-21 15:40:55,359 INFO ./env/bin/bench build --app custom_app
+2025-11-21 15:40:56,965 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:40:57,493 INFO ./env/bin/bench restart
+2025-11-21 15:41:09,838 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:47:12,647 INFO ./env/bin/bench build --app custom_app
+2025-11-21 15:47:14,357 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:47:14,918 INFO ./env/bin/bench restart
+2025-11-21 15:53:22,950 INFO ./env/bin/bench build --app custom_app
+2025-11-21 15:53:24,635 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:53:25,187 INFO ./env/bin/bench restart
+2025-11-21 15:57:07,672 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 15:57:36,868 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 15:57:37,442 INFO ./env/bin/bench restart
+2025-11-21 16:02:22,098 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 16:03:27,517 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:03:28,155 INFO ./env/bin/bench restart
+2025-11-21 16:04:20,096 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:07:26,368 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:08:25,100 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 16:08:42,767 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:08:43,269 INFO ./env/bin/bench restart
+2025-11-21 16:13:45,042 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:14:36,338 INFO ./env/bin/bench build --app custom_app
+2025-11-21 16:14:43,654 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:32:57,544 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 16:33:09,037 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:33:16,834 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:33:27,478 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:33:39,018 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:33:47,662 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:34:12,153 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 16:34:19,798 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:34:20,399 INFO ./env/bin/bench restart
+2025-11-21 16:36:20,532 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:37:11,488 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 16:37:18,348 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:37:18,846 INFO ./env/bin/bench restart
+2025-11-21 16:38:24,459 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:38:49,342 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 16:38:55,746 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:38:56,279 INFO ./env/bin/bench restart
+2025-11-21 16:41:10,255 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:41:26,348 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:41:37,531 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:42:29,931 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 16:42:36,559 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:42:37,047 INFO ./env/bin/bench restart
+2025-11-21 16:43:43,431 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:43:54,292 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:44:40,944 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:44:49,831 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:45:57,443 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 16:46:07,194 INFO ./env/bin/bench --site erp.localhost execute 
+import frappe
+
+# List first 10 workspace names to see what they actually are
+workspaces = frappe.get_all('Workspace', fields=['name', 'title'], limit=10)
+print('Sample workspace names:')
+for ws in workspaces:
+    print(f'  name={ws.name}, title={ws.title}')
+
+2025-11-21 16:46:59,693 INFO ./env/bin/bench --site erp.localhost execute custom_app.debug_workspaces.execute
+2025-11-21 16:47:11,295 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:47:29,677 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:47:41,093 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:47:41,575 INFO ./env/bin/bench restart
+2025-11-21 16:49:34,280 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:49:42,060 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:50:00,455 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:50:13,450 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:50:26,820 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:50:33,893 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:50:34,436 INFO ./env/bin/bench restart
+2025-11-21 16:51:39,265 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 16:52:04,992 INFO ./env/bin/bench --site erp.localhost execute custom_app.test_workspace_visibility.execute
+2025-11-21 16:53:08,652 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 16:53:23,144 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:53:23,640 INFO ./env/bin/bench restart
+2025-11-21 16:57:57,126 INFO ./env/bin/bench --site erp.localhost execute custom_app.configure_hr_workspaces.execute
+2025-11-21 16:58:04,800 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 16:58:05,328 INFO ./env/bin/bench restart
+2025-11-21 17:01:21,270 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:01:30,334 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:02:03,939 INFO ./env/bin/bench --site erp.localhost execute custom_app.assign_hr_role_to_vijay.execute
+2025-11-21 17:02:16,193 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:02:22,651 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 17:02:23,163 INFO ./env/bin/bench restart
+2025-11-21 17:03:57,502 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:04:10,674 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:04:26,870 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:04:38,855 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:04:46,440 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:04:53,607 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 17:04:54,115 INFO ./env/bin/bench restart
+2025-11-21 17:08:07,169 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_hr_role_profile.execute
+2025-11-21 17:12:11,676 INFO ./env/bin/bench build --app custom_app
+2025-11-21 17:12:23,077 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 17:12:23,624 INFO ./env/bin/bench restart
+2025-11-21 17:15:04,061 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_hr_role_profile.execute
+2025-11-21 17:16:05,879 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:16:15,040 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 17:16:15,562 INFO ./env/bin/bench restart
+2025-11-21 17:18:56,405 INFO ./env/bin/bench build --app custom_app
+2025-11-21 17:18:58,141 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 17:18:58,671 INFO ./env/bin/bench restart
+2025-11-21 17:20:32,542 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:22:22,348 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 17:22:23,000 INFO ./env/bin/bench restart
+2025-11-21 17:23:46,791 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 17:24:18,124 INFO ./env/bin/bench build --app custom_app
+2025-11-21 17:24:19,892 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 17:24:20,438 INFO ./env/bin/bench restart
+2025-11-21 18:14:24,205 INFO ./env/bin/bench execute custom_app.configure_workspace_roles.configure_all_workspaces
+2025-11-21 18:14:31,046 INFO ./env/bin/bench clear-cache
+2025-11-21 18:14:31,663 INFO ./env/bin/bench restart
+2025-11-21 18:16:03,437 INFO ./env/bin/bench execute custom_app.configure_workspace_roles.configure_all_workspaces
+2025-11-21 18:16:25,498 INFO ./env/bin/bench execute custom_app.list_workspaces.list_all
+2025-11-21 18:16:42,473 INFO ./env/bin/bench execute custom_app.configure_workspace_roles.configure_all_workspaces
+2025-11-21 18:16:43,594 INFO ./env/bin/bench clear-cache
+2025-11-21 18:18:55,660 INFO ./env/bin/bench execute custom_app.configure_workspace_roles.configure_all_workspaces
+2025-11-21 18:18:56,820 INFO ./env/bin/bench clear-cache
+2025-11-21 18:23:34,388 INFO ./env/bin/bench execute custom_app.configure_workspace_roles.configure_all_workspaces
+2025-11-21 18:23:35,596 INFO ./env/bin/bench clear-cache
+2025-11-21 18:24:15,694 INFO ./env/bin/bench execute custom_app.setup_accounts_permissions.setup_all
+2025-11-21 18:24:16,329 INFO ./env/bin/bench clear-cache
+2025-11-21 18:24:50,532 INFO ./env/bin/bench execute custom_app.setup_accounts_permissions.setup_all
+2025-11-21 18:24:51,096 INFO ./env/bin/bench clear-cache
+2025-11-21 18:26:05,014 INFO ./env/bin/bench execute custom_app.configure_workspace_roles.configure_all_workspaces
+2025-11-21 18:26:06,329 INFO ./env/bin/bench clear-cache
+2025-11-21 18:31:43,237 INFO ./env/bin/bench execute custom_app.setup_accounts_permissions.setup_all
+2025-11-21 18:31:43,531 INFO ./env/bin/bench clear-cache
+2025-11-21 18:33:39,373 INFO ./env/bin/bench execute custom_app.check_permissions.check_all
+2025-11-21 18:34:14,562 INFO ./env/bin/bench execute custom_app.fix_customer_permission.fix
+2025-11-21 18:34:15,269 INFO ./env/bin/bench clear-cache
+2025-11-21 18:35:40,686 INFO ./env/bin/bench execute custom_app.setup_accounts_permissions.setup_all
+2025-11-21 18:35:41,225 INFO ./env/bin/bench clear-cache
+2025-11-21 18:36:27,724 INFO ./env/bin/bench execute import frappe; perms = frappe.get_all('Custom DocPerm', filters={'parent': 'Sales Order', 'role': 'Accounts Manager'}, fields=['*']); print('Sales Order permissions for Accounts Manager:'); [print(f'  Read: {p.read}, Write: {p.write}, Create: {p.create}, Submit: {p.submit}') for p in perms]
+2025-11-21 18:37:21,467 INFO ./env/bin/bench execute custom_app.verify_sales_order_perm.verify
+2025-11-21 18:37:31,926 INFO ./env/bin/bench clear-cache
+2025-11-21 18:37:32,446 INFO ./env/bin/bench restart
+2025-11-21 20:17:05,643 INFO ./env/bin/bench execute custom_app.configure_workspace_roles.configure_all_workspaces
+2025-11-21 20:17:15,491 INFO ./env/bin/bench clear-cache
+2025-11-21 20:17:16,130 INFO ./env/bin/bench restart
+2025-11-21 20:48:25,698 INFO ./env/bin/bench execute custom_app.setup_pi_role.setup_all
+2025-11-21 20:48:32,225 INFO ./env/bin/bench execute custom_app.setup_pi_role.update_workspaces_for_pi
+2025-11-21 20:48:42,967 INFO ./env/bin/bench clear-cache
+2025-11-21 20:50:42,865 INFO ./env/bin/bench execute import frappe; role = frappe.db.exists('Role', 'PI'); print('PI role exists:', role); if role: r = frappe.get_doc('Role', 'PI'); print('Role name:', r.role_name); print('Desk access:', r.desk_access)
+2025-11-21 20:55:54,026 INFO ./env/bin/bench execute custom_app.setup_pi_role.update_workspaces_for_pi
+2025-11-21 20:55:54,580 INFO ./env/bin/bench clear-cache
+2025-11-21 20:57:16,199 INFO ./env/bin/bench execute custom_app.setup_pi_role.update_workspaces_for_pi
+2025-11-21 20:57:16,823 INFO ./env/bin/bench clear-cache
+2025-11-21 21:02:53,358 INFO ./env/bin/bench execute custom_app.setup_pi_role.setup_all
+2025-11-21 21:02:53,860 INFO ./env/bin/bench clear-cache
+2025-11-21 21:03:59,463 INFO ./env/bin/bench execute custom_app.setup_pi_role.update_workspaces_for_pi
+2025-11-21 21:04:00,001 INFO ./env/bin/bench clear-cache
+2025-11-21 21:04:00,485 INFO ./env/bin/bench restart
+2025-11-21 21:06:35,603 INFO ./env/bin/bench execute custom_app.remove_pi_from_leaves.remove
+2025-11-21 21:06:36,175 INFO ./env/bin/bench clear-cache
+2025-11-21 21:07:45,972 INFO ./env/bin/bench execute custom_app.add_leave_link_to_hr.add
+2025-11-21 21:07:46,576 INFO ./env/bin/bench clear-cache
+2025-11-21 21:11:49,054 INFO ./env/bin/bench execute custom_app.add_pi_shortcuts_to_employee_lifecycle.add
+2025-11-21 21:11:49,628 INFO ./env/bin/bench clear-cache
+2025-11-21 21:11:58,176 INFO ./env/bin/bench execute custom_app.setup_pi_role.update_workspaces_for_pi
+2025-11-21 21:11:58,905 INFO ./env/bin/bench clear-cache
+2025-11-21 21:15:14,834 INFO ./env/bin/bench execute custom_app.cleanup_pi_workspaces.cleanup
+2025-11-21 21:15:15,448 INFO ./env/bin/bench clear-cache
+2025-11-21 21:16:48,224 INFO ./env/bin/bench execute custom_app.check_pi_workspaces.check
+2025-11-21 21:17:27,843 INFO ./env/bin/bench clear-cache
+2025-11-21 21:17:28,475 INFO ./env/bin/bench restart
+2025-11-21 21:19:12,828 INFO ./env/bin/bench execute custom_app.test_pi_workspaces.test
+2025-11-21 21:19:54,611 INFO ./env/bin/bench execute custom_app.fix_pi_module_access.fix
+2025-11-21 21:19:55,128 INFO ./env/bin/bench clear-cache
+2025-11-21 21:19:55,601 INFO ./env/bin/bench restart
+2025-11-21 21:20:59,150 INFO ./env/bin/bench clear-cache
+2025-11-21 21:20:59,668 INFO ./env/bin/bench restart
+2025-11-21 21:22:15,410 INFO ./env/bin/bench execute custom_app.restore_pi_workspaces.restore
+2025-11-21 21:22:16,107 INFO ./env/bin/bench clear-cache
+2025-11-21 21:22:16,626 INFO ./env/bin/bench restart
+2025-11-21 21:23:49,190 INFO ./env/bin/bench execute custom_app.move_hr_shortcuts_to_recruitment.move
+2025-11-21 21:23:49,843 INFO ./env/bin/bench clear-cache
+2025-11-21 21:24:40,865 INFO ./env/bin/bench execute import frappe; ws = frappe.get_doc('Workspace', 'Recruitment'); print(f'Recruitment workspace:'); print(f'  Public: {ws.public}'); print(f'  Module: {ws.module}'); print(f'  Roles: {[r.role for r in ws.roles]}')
+2025-11-21 21:24:57,703 INFO ./env/bin/bench execute custom_app.check_recruitment_workspace.check
+2025-11-21 21:25:12,374 INFO ./env/bin/bench execute custom_app.fix_pi_module_access.fix
+2025-11-21 21:25:12,955 INFO ./env/bin/bench clear-cache
+2025-11-21 21:25:13,465 INFO ./env/bin/bench restart
+2025-11-21 21:29:18,279 INFO ./env/bin/bench clear-cache
+2025-11-21 21:29:18,927 INFO ./env/bin/bench restart
+2025-11-21 21:52:17,402 INFO ./env/bin/bench --site atree.local migrate
+2025-11-21 21:52:23,131 INFO ./env/bin/bench --site all list
+2025-11-21 21:52:36,992 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-21 21:52:55,847 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-21 21:53:14,884 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 21:55:32,715 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 21:55:40,576 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 21:57:32,462 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-21 21:57:48,428 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 22:14:23,595 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:14:52,794 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 22:15:59,562 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-21 22:17:15,744 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 22:21:54,007 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:22:04,332 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:22:43,511 INFO ./env/bin/bench --site erp.localhost execute custom_app.verify_hr_fixtures
+2025-11-21 22:22:51,095 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 22:22:59,397 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 22:23:53,941 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 22:24:35,569 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 22:24:43,967 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT role, COUNT(*) as permissions, COUNT(DISTINCT parent) as doctypes FROM \`tabCustom DocPerm\` WHERE role IN ('HR Manager', 'PI', 'Accounts Manager', 'Accounts User') GROUP BY role ORDER BY role
+2025-11-21 22:27:02,362 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT parent, `read`, `write`, `create`, submit, cancel FROM \`tabCustom DocPerm\` WHERE role = 'HR Manager' AND parent IN ('Job Requisition', 'Job Opening', 'Job Offer', 'Interview', 'Job Applicant')
+2025-11-21 22:30:59,200 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:31:15,651 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:31:25,987 INFO ./env/bin/bench --site erp.localhost execute frappe.tests.utils.make_test_records --args ['Custom DocPerm']
+2025-11-21 22:32:59,876 INFO ./env/bin/bench --site erp.localhost execute custom_app.add_recruitment_perms_temp.run
+2025-11-21 22:33:11,378 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 22:36:27,617 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-21 22:37:15,840 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 22:38:58,711 INFO ./env/bin/bench --site erp.localhost execute custom_app.add_project_perm_temp.run
+2025-11-21 22:39:08,400 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:39:16,152 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 22:40:26,050 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-21 22:40:42,371 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 22:42:28,460 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 22:42:39,377 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:42:52,040 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:43:03,655 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 22:43:04,187 INFO ./env/bin/bench --site erp.localhost restart
+2025-11-21 22:43:04,188 WARNING ./env/bin/bench --site erp.localhost restart executed with exit code 2
+2025-11-21 22:43:10,663 INFO ./env/bin/bench restart
+2025-11-21 22:44:13,128 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:45:36,945 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:45:46,666 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 22:45:47,101 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 22:45:53,233 INFO ./env/bin/bench restart
+2025-11-21 22:46:41,086 INFO ./env/bin/bench --site erp.localhost migrate --skip-failing
+2025-11-21 22:47:02,430 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 22:47:03,039 INFO ./env/bin/bench restart
+2025-11-21 22:48:42,686 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:48:58,460 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:49:45,994 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:51:21,246 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:51:31,993 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:51:44,753 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:51:53,792 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT role FROM `tabHas Role` WHERE parent = 'vijay.rasquinha@atree.org' ORDER BY role
+2025-11-21 22:52:02,020 INFO ./env/bin/bench --site erp.localhost mariadb -e DELETE FROM `tabHas Role` WHERE parent = 'vijay.rasquinha@atree.org' AND role = 'Projects User'
+2025-11-21 22:52:07,993 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT role FROM `tabHas Role` WHERE parent = 'vijay.rasquinha@atree.org' ORDER BY role
+2025-11-21 22:52:14,867 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 22:52:15,392 INFO ./env/bin/bench restart
+2025-11-21 22:52:25,794 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:59:37,105 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 22:59:47,512 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 23:00:02,151 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 23:00:10,723 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 23:00:21,427 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT role FROM tabHasRole WHERE parent = 'vijay.rasquinha@atree.org' ORDER BY role
+2025-11-21 23:00:40,594 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT role FROM \`tabHas Role\` WHERE parent = 'vijay.rasquinha@atree.org' ORDER BY role
+2025-11-21 23:02:12,400 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 23:04:06,043 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 23:04:15,142 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 23:04:15,775 INFO ./env/bin/bench restart
+2025-11-21 23:04:28,233 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 23:04:37,050 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 23:04:44,210 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 23:04:44,716 INFO ./env/bin/bench restart
+2025-11-21 23:04:58,265 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 23:08:02,150 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 23:10:48,269 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 23:11:00,435 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 23:11:17,712 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 23:12:07,287 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 23:12:32,518 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 23:12:46,693 INFO ./env/bin/bench --site erp.localhost mariadb -e DESCRIBE \`tabCustom DocPerm\`
+2025-11-21 23:12:57,044 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 23:13:08,947 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 23:13:16,645 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 23:14:27,496 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-21 23:14:44,915 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 23:14:45,481 INFO ./env/bin/bench restart
+2025-11-21 23:14:58,117 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 23:16:54,446 INFO ./env/bin/bench --site erp.localhost console
+2025-11-21 23:17:20,718 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 23:17:45,677 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 23:18:10,049 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 23:18:44,561 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 23:18:45,210 INFO ./env/bin/bench restart
+2025-11-21 23:20:29,842 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-21 23:20:35,813 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-21 23:21:16,605 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-21 23:21:17,138 INFO ./env/bin/bench restart
+2025-11-21 23:39:52,796 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-23 17:45:21,366 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-23 17:46:55,660 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-23 17:49:17,213 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-23 17:49:17,879 INFO ./env/bin/bench restart
+2025-11-23 17:49:38,745 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 17:51:58,749 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-23 17:53:45,867 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 17:54:03,295 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 17:54:14,616 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-23 17:54:31,921 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 17:55:28,544 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 17:55:39,062 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-23 17:55:39,653 INFO ./env/bin/bench restart
+2025-11-23 17:55:58,026 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 17:56:19,707 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 17:56:51,732 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 17:57:28,029 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-23 17:59:08,476 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 18:01:58,407 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-23 18:01:59,120 INFO ./env/bin/bench --site erp.localhost clear-website-cache
+2025-11-23 18:02:18,210 INFO ./env/bin/bench build --app custom_app
+2025-11-23 18:02:47,336 INFO ./env/bin/bench restart
+2025-11-23 18:03:01,857 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 18:05:53,948 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 18:06:47,599 INFO ./env/bin/bench restart
+2025-11-23 18:07:27,022 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-23 18:09:47,288 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 18:10:15,282 INFO ./env/bin/bench --site erp.localhost console
+2025-11-23 18:10:32,958 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-23 18:10:33,561 INFO ./env/bin/bench restart
+2025-11-23 18:12:09,280 INFO ./env/bin/bench --site erp.localhost mariadb
+2025-11-23 18:12:20,055 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-23 18:13:09,717 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-23 18:13:10,357 INFO ./env/bin/bench restart
+2025-11-23 18:22:58,234 INFO env/bin/bench --site dev.localhost console
+2025-11-23 18:23:11,613 INFO env/bin/bench --site all list
+2025-11-23 18:23:29,186 INFO env/bin/bench --site erp.localhost console
+2025-11-23 18:27:56,236 INFO env/bin/bench --site erp.localhost export-fixtures
+2025-11-23 18:28:45,632 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 18:28:50,126 INFO env/bin/bench restart
+2025-11-23 18:30:27,840 INFO env/bin/bench --site erp.localhost export-fixtures
+2025-11-23 18:31:26,721 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 18:33:56,219 INFO env/bin/bench --site erp.localhost console
+2025-11-23 18:40:14,338 INFO env/bin/bench --site erp.localhost export-fixtures
+2025-11-23 18:40:33,669 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 18:43:46,738 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 18:45:39,232 INFO env/bin/bench --site erp.localhost export-fixtures
+2025-11-23 18:45:59,516 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 19:09:09,339 INFO env/bin/bench --site erp.localhost export-fixtures
+2025-11-23 19:09:20,712 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 19:16:30,919 INFO env/bin/bench --site erp.localhost export-fixtures
+2025-11-23 19:16:36,637 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 19:19:01,870 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 19:21:30,212 INFO env/bin/bench --site erp.localhost export-fixtures
+2025-11-23 19:21:40,079 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 19:22:29,142 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 19:25:38,671 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-23 19:25:39,210 INFO env/bin/bench restart
+2025-11-23 19:29:10,044 INFO env/bin/bench --site erp.localhost clear-cache
+2025-11-24 10:01:36,645 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:07:31,359 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:20:25,505 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:23:37,133 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:24:39,529 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:25:55,946 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:26:07,694 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:26:20,909 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:27:06,450 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:27:18,640 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:27:51,318 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:28:09,793 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:29:07,816 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:29:21,720 INFO env/bin/bench --site erp.localhost console
+2025-11-24 10:29:45,634 INFO env/bin/bench --site erp.localhost console
+2025-11-24 13:38:15,793 INFO ./env/bin/bench --site erp.localhost execute custom_app.run_add_project_types.add_project_types
+2025-11-24 14:04:30,090 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_cost_center_hierarchy.setup_cost_centers
+2025-11-24 14:05:36,161 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_accounting_dimensions.setup_dimensions
+2025-11-24 14:06:38,147 INFO ./env/bin/bench --site erp.localhost execute custom_app.enable_dimensions.enable_dimensions_on_doctypes
+2025-11-24 14:08:06,397 INFO ./env/bin/bench --site erp.localhost execute custom_app.cleanup_cost_centers_dimensions.cleanup_all
+2025-11-24 14:11:34,373 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_cost_center_hierarchy.setup_cost_centers
+2025-11-24 14:30:25,579 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_functions_cost_centers.setup_functions
+2025-11-24 14:35:51,466 INFO ./env/bin/bench --site erp.localhost execute custom_app.delete_functions_cc.delete_functions
+2025-11-24 14:36:42,254 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_all_cost_centers.setup_all_cost_centers
+2025-11-24 14:37:56,908 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_funding_source_dimension.setup_funding_source
+2025-11-24 14:39:36,832 INFO ./env/bin/bench --site erp.localhost console --execute import frappe; print('Accounting Dimension exists:', frappe.db.exists('Accounting Dimension', 'Funding Source')); print('DocType exists:', frappe.db.exists('DocType', 'Funding Source')); print('Values:', frappe.get_all('Funding Source', fields=['name', 'description']))
+2025-11-24 14:40:09,641 INFO ./env/bin/bench --site erp.localhost execute custom_app.check_dimensions.check_status
+2025-11-24 14:40:46,292 INFO ./env/bin/bench --site erp.localhost execute custom_app.fix_enable_dimension.enable_dimension
+2025-11-24 14:41:22,517 INFO ./env/bin/bench --site erp.localhost execute custom_app.inspect_dimension.inspect
+2025-11-24 14:44:06,807 INFO ./env/bin/bench --site erp.localhost execute custom_app.check_dimensions.check_status
+2025-11-24 14:44:50,815 INFO ./env/bin/bench --site erp.localhost execute custom_app.inspect_dimension.inspect
+2025-11-24 14:53:48,355 INFO ./env/bin/bench --site erp.localhost execute custom_app.fix_funding_source_dimension.fix_dimension
+2025-11-24 14:56:45,628 INFO ./env/bin/bench --site erp.localhost execute custom_app.check_dimensions.check_status
+2025-11-24 14:57:29,182 INFO ./env/bin/bench --site erp.localhost execute custom_app.check_cost_centers.check_all
+2025-11-24 15:04:13,704 INFO ./env/bin/bench --site erp.localhost execute custom_app.check_dimension_details.check_details
+2025-11-24 15:09:56,745 INFO ./env/bin/bench --site erp.localhost execute custom_app.show_dimension_config.show_config
+2025-11-24 15:20:16,542 INFO ./env/bin/bench --site erp.localhost execute custom_app.create_account_funding_field.create_field
+2025-11-24 15:20:31,606 INFO ./env/bin/bench --site erp.localhost execute custom_app.set_account_funding_defaults.set_defaults
+2025-11-24 15:20:50,640 INFO ./env/bin/bench --site erp.localhost execute custom_app.setup_funding_validation_hooks.add_hooks
+2025-11-24 15:21:38,918 INFO ./env/bin/bench restart
+2025-11-24 15:29:00,853 INFO ./env/bin/bench --site erp.localhost execute custom_app.make_fields_mandatory.make_mandatory
+2025-11-24 15:29:50,954 INFO ./env/bin/bench --site erp.localhost execute custom_app.make_fields_mandatory_custom.make_mandatory
+2025-11-24 15:30:00,279 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 15:31:15,465 INFO ./env/bin/bench --site erp.localhost execute custom_app.make_funding_source_mandatory.make_mandatory
+2025-11-24 15:32:05,392 INFO ./env/bin/bench --site erp.localhost execute custom_app.fix_dimension_duplicates.fix_duplicates
+2025-11-24 15:32:42,555 INFO ./env/bin/bench --site erp.localhost execute custom_app.make_funding_mandatory_db.make_mandatory
+2025-11-24 15:33:15,821 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 15:34:43,164 INFO ./env/bin/bench --site erp.localhost execute custom_app.check_dimension_details.check_details
+2025-11-24 15:35:19,272 INFO ./env/bin/bench --site erp.localhost execute custom_app.make_funding_field_mandatory.make_mandatory
+2025-11-24 15:35:31,052 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 19:00:32,396 INFO ./env/bin/bench --site atree.local execute custom_app.create_account_funding_field.create_field
+2025-11-24 19:00:56,474 INFO ./env/bin/bench --site erp.localhost execute custom_app.create_account_funding_field.create_field
+2025-11-24 19:01:04,497 INFO ./env/bin/bench --site erp.localhost execute custom_app.show_dimension_config.show_config
+2025-11-24 19:01:53,656 INFO ./env/bin/bench --site erp.localhost execute custom_app.check_account_custom_field.check_and_fix
+2025-11-24 19:02:04,186 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 19:05:03,387 INFO ./env/bin/bench --site erp.localhost execute custom_app.disable_account_quick_entry.disable_quick_entry
+2025-11-24 19:05:27,932 INFO ./env/bin/bench --site erp.localhost execute custom_app.add_funding_to_quick_entry.add_to_quick_entry
+2025-11-24 19:05:36,946 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 19:05:37,499 INFO ./env/bin/bench restart
+2025-11-24 19:07:41,173 INFO ./env/bin/bench --site erp.localhost execute custom_app.inspect_account_form.inspect
+2025-11-24 19:08:14,765 INFO ./env/bin/bench --site erp.localhost execute custom_app.fix_funding_field_visibility.fix_visibility
+2025-11-24 19:15:20,284 INFO ./env/bin/bench --site erp.localhost execute frappe.db.sql --args ['SELECT fieldname, label, fieldtype, hidden FROM tabDocField WHERE parent="Account" AND fieldname IN ("account_name", "account_number", "account_type", "is_group") ORDER BY idx', 1]
+2025-11-24 19:17:32,914 INFO ./env/bin/bench --site erp.localhost execute custom_app.show_account_number_field.show_field
+2025-11-24 19:21:02,912 INFO ./env/bin/bench --site erp.localhost execute custom_app.force_show_account_number.force_show
+2025-11-24 19:22:03,161 INFO ./env/bin/bench --site erp.localhost execute custom_app.set_test_account_gl_code.set_gl_code
+2025-11-24 19:22:43,760 INFO ./env/bin/bench --site erp.localhost execute custom_app.customize_account_form.customize_form
+2025-11-24 19:23:22,391 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 19:23:23,020 INFO ./env/bin/bench restart
+2025-11-24 19:25:13,121 INFO ./env/bin/bench --site erp.localhost execute custom_app.make_account_number_editable.make_editable
+2025-11-24 19:27:11,139 INFO ./env/bin/bench restart
+2025-11-24 19:30:31,634 INFO ./env/bin/bench --site erp.localhost console
+2025-11-24 19:33:55,004 INFO ./env/bin/bench restart
+2025-11-24 19:34:03,752 INFO ./env/bin/bench --site erp.localhost execute custom_app.rename_test_account_with_gl.rename_test
+2025-11-24 19:34:53,887 INFO ./env/bin/bench --site erp.localhost execute custom_app.rename_test_account_with_gl.rename_test
+2025-11-24 19:39:24,417 INFO ./env/bin/bench --site erp.localhost execute custom_app.add_funding_to_account_quick_entry.add_field
+2025-11-24 19:39:42,281 INFO ./env/bin/bench --site erp.localhost execute custom_app.disable_account_quick_entry.disable_quick_entry
+2025-11-24 19:40:07,032 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 19:40:07,711 INFO ./env/bin/bench restart
+2025-11-24 19:42:05,366 INFO ./env/bin/bench --site erp.localhost execute custom_app.force_disable_quick_entry.force_disable
+2025-11-24 19:44:58,712 INFO ./env/bin/bench --site erp.localhost execute custom_app.make_account_number_readonly.make_readonly
+2025-11-24 19:45:07,364 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 19:45:07,916 INFO ./env/bin/bench restart
+2025-11-24 19:56:56,078 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-24 19:57:39,815 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.add_deal_fields_to_project.add_fields
+2025-11-24 19:57:59,333 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 19:57:59,966 INFO ./env/bin/bench restart
+2025-11-24 19:58:08,698 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.add_deal_fields_to_project.add_fields
+2025-11-24 20:00:18,404 INFO ./env/bin/bench --site erp.localhost console --execute import frappe; print(frappe.db.exists('DocType', 'Deal'))
+2025-11-24 20:01:21,323 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.check_deal_doctype.check_and_fix
+2025-11-24 20:01:46,965 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-24 20:02:14,861 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 20:02:15,489 INFO ./env/bin/bench restart
+2025-11-24 20:03:51,587 INFO ./env/bin/bench --site erp.localhost execute import frappe; print('Deal exists:', frappe.db.exists('DocType', 'Deal'))
+2025-11-24 20:04:26,714 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.check_deal_exists.check
+2025-11-24 20:04:39,726 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 20:04:40,417 INFO ./env/bin/bench restart
+2025-11-24 20:05:57,969 INFO ./env/bin/bench --site erp.localhost execute from frappe.modules.import_file import import_file_by_path; import frappe; path = frappe.get_app_path('custom_app', 'deal_management', 'doctype', 'deal_allocation', 'deal_allocation.json'); import_file_by_path(path); frappe.db.commit(); print('Deal Allocation imported')
+2025-11-24 20:06:27,313 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.import_deal_allocation.import_it
+2025-11-24 20:06:46,640 INFO ./env/bin/bench --site erp.localhost migrate --skip-search-index
+2025-11-24 20:07:06,439 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 20:07:06,984 INFO ./env/bin/bench restart
+2025-11-24 20:09:34,021 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.check_deal_exists.check
+2025-11-24 20:09:41,812 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.import_deal_allocation.import_it
+2025-11-24 20:12:42,935 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_deal_creation.test
+2025-11-24 20:14:02,159 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.add_deal_to_workspace.create_custom_workspace
+2025-11-24 20:14:10,536 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.add_deal_to_workspace.add_links
+2025-11-24 20:14:31,864 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.add_deal_to_navbar.add_navbar_item
+2025-11-24 20:14:40,204 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 20:16:40,940 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_allocation_validation.test
+2025-11-24 20:20:03,200 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.create_test_projects.create
+2025-11-24 20:20:55,436 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.create_test_projects.create
+2025-11-24 20:20:55,914 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_allocation_validation.test
+2025-11-24 20:21:39,822 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_allocation_validation.test
+2025-11-24 20:21:59,608 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_allocation_validation.test
+2025-11-24 20:22:09,211 INFO ./env/bin/bench --site erp.localhost restart
+2025-11-24 20:22:09,213 WARNING ./env/bin/bench --site erp.localhost restart executed with exit code 2
+2025-11-24 20:22:17,006 INFO ./env/bin/bench restart
+2025-11-24 20:22:22,979 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_allocation_validation.test
+2025-11-24 20:23:12,667 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.demonstrate_validation.demo
+2025-11-24 20:37:52,898 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.add_deal_fields_to_project.add_fields
+2025-11-24 20:40:43,359 INFO ./env/bin/bench restart
+2025-11-24 20:41:20,752 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_validation_real.test
+2025-11-24 20:41:46,734 INFO ./env/bin/bench restart
+2025-11-24 20:41:49,935 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_validation_real.test
+2025-11-24 20:42:14,093 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.check_saved_deal.check
+2025-11-24 20:42:39,140 INFO ./env/bin/bench --site erp.localhost execute frappe.reload_doctype('Deal', force=True)
+2025-11-24 20:43:37,966 INFO ./env/bin/bench --site erp.localhost migrate --skip-search-index
+2025-11-24 20:44:02,266 INFO ./env/bin/bench restart
+2025-11-24 20:44:05,476 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.check_saved_deal.check
+2025-11-24 20:44:32,317 INFO ./env/bin/bench --site erp.localhost migrate --skip-search-index
+2025-11-24 20:44:41,013 INFO ./env/bin/bench restart
+2025-11-24 20:44:44,218 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_validation_real.test
+2025-11-24 20:45:10,752 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-24 20:45:11,255 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.check_saved_deal.check
+2025-11-24 20:45:24,515 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_validation_real.test
+2025-11-24 20:46:39,035 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.simple_create_deal.create
+2025-11-24 20:47:26,082 INFO ./env/bin/bench restart
+2025-11-24 20:47:29,281 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.simple_create_deal.create
+2025-11-24 20:47:57,486 INFO ./env/bin/bench --site erp.localhost migrate --skip-search-index
+2025-11-24 20:48:21,673 INFO ./env/bin/bench restart
+2025-11-24 20:48:26,894 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.simple_create_deal.create
+2025-11-24 20:49:07,863 INFO ./env/bin/bench restart
+2025-11-24 20:49:13,061 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.simple_create_deal.create
+2025-11-24 20:49:22,804 INFO ./env/bin/bench --site erp.localhost execute import frappe; dt = frappe.get_doc('DocType', 'Deal'); print(f'Deal module: {dt.module}'); dta = frappe.get_doc('DocType', 'Deal Allocation'); print(f'Deal Allocation module: {dta.module}')
+2025-11-24 20:49:59,338 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.fix_module.fix
+2025-11-24 20:49:59,873 INFO ./env/bin/bench restart
+2025-11-24 20:50:05,073 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.simple_create_deal.create
+2025-11-25 10:22:07,533 INFO ./env/bin/bench restart
+2025-11-25 11:33:09,979 INFO ./env/bin/bench --site erp.localhost migrate --skip-search-index
+2025-11-25 11:33:34,547 INFO ./env/bin/bench --site erp.localhost execute import frappe; deal = frappe.get_doc('DocType', 'Deal'); print(f'✓ Deal exists - Module: {deal.module}'); alloc = frappe.get_doc('DocType', 'Deal Allocation'); print(f'✓ Deal Allocation exists - Module: {alloc.module}')
+2025-11-25 11:34:24,767 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.verify_setup.verify
+2025-11-25 11:34:49,039 INFO ./env/bin/bench restart
+2025-11-25 11:34:52,240 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.verify_setup.verify
+2025-11-25 11:39:36,756 INFO ./env/bin/bench --site erp.localhost migrate --skip-search-index
+2025-11-25 11:39:58,764 INFO ./env/bin/bench restart
+2025-11-25 11:40:01,987 INFO ./env/bin/bench --site erp.localhost execute import frappe; deal_meta = frappe.get_meta('Deal'); pt_field = [f for f in deal_meta.fields if f.fieldname == 'project_type']; print('✓ Project Type field added\!' if pt_field else '✗ Field not found'); print(f'  Label: {pt_field[0].label}') if pt_field else None; print(f'  Type: {pt_field[0].fieldtype}') if pt_field else None; print(f'  Options: {pt_field[0].options}') if pt_field else None
+2025-11-25 11:40:32,934 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.verify_project_type_field.verify
+2025-11-25 11:46:29,868 INFO ./env/bin/bench restart
+2025-11-25 11:50:55,249 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_allocation_modifications.test
+2025-11-25 11:52:34,449 INFO ./env/bin/bench --site erp.localhost new-doctype
+2025-11-25 11:55:14,965 INFO ./env/bin/bench --site erp.localhost migrate --skip-search-index
+2025-11-25 11:56:33,692 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_history_tracking.test
+2025-11-25 11:56:42,282 INFO ./env/bin/bench restart
+2025-11-25 11:58:50,703 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 11:59:59,311 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 12:01:53,052 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.verify_history_ui.verify
+2025-11-25 12:12:19,695 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.test_approved_amount_tracking.test
+2025-11-25 12:12:28,522 INFO ./env/bin/bench restart
+2025-11-25 12:19:17,235 INFO ./env/bin/bench --site erp.localhost migrate --skip-search-index
+2025-11-25 12:19:43,326 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 12:19:43,928 INFO ./env/bin/bench restart
+2025-11-25 12:20:41,950 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 12:26:36,665 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.check_deal.check
+2025-11-25 13:41:48,693 INFO ./env/bin/bench --site erp.localhost migrate --skip-search-index
+2025-11-25 13:41:58,446 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 13:41:59,107 INFO ./env/bin/bench restart
+2025-11-25 14:42:50,210 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 15:04:17,174 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.create_sample_budget.setup
+2025-11-25 15:05:07,525 INFO ./env/bin/bench --site erp.localhost execute custom_app.deal_management.create_sample_budget.setup
+2025-11-25 17:24:51,833 INFO ./env/bin/bench --site erp.localhost console --execute import frappe; budget = frappe.get_last_doc('Budget'); print('Budget:', budget.name); print('Cost Center:', budget.cost_center); print('Project:', budget.project if hasattr(budget, 'project') else 'N/A'); print('Budget Against:', budget.budget_against); print('Fiscal Year:', budget.fiscal_year); print('\nBudget Accounts:'); total = 0; [print(f'  {acc.account}: {acc.budget_amount}') or (total := total + acc.budget_amount) for acc in budget.accounts]; print(f'\nTotal Budget: {total}')
+2025-11-25 17:29:34,254 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 19:34:40,167 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-25 19:35:05,945 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 19:49:33,889 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 19:52:30,398 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 19:54:34,836 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-25 20:05:04,442 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-25 20:18:24,316 INFO ./env/bin/bench --site erp.localhost console --execute import frappe; print('Funding Source exists:', frappe.db.exists('DocType', 'Funding Source'))
+2025-11-25 20:21:19,852 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-25 20:21:40,433 INFO ./env/bin/bench --site erp.localhost execute custom_app.install.create_funding_sources
+2025-11-25 20:22:32,929 INFO ./env/bin/bench --site erp.localhost execute custom_app.create_funding_sources.create
+2025-11-25 20:22:44,585 INFO ./env/bin/bench --site erp.localhost export-fixtures
+2025-11-25 20:24:28,033 INFO ./env/bin/bench --site erp.localhost mariadb -e SHOW TABLES LIKE '%Deal%'
+2025-11-25 20:24:38,549 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, module, is_submittable FROM tabDocType WHERE name LIKE '%Deal%'
+2025-11-25 20:24:47,016 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name FROM tabDocType WHERE name = 'Deal'
+2025-11-25 20:25:05,260 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 20:25:05,841 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-25 20:25:29,255 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, module FROM tabDocType WHERE name IN ('Deal', 'Deal Allocation', 'Deal Allocation History', 'Funding Source')
+2025-11-25 20:25:48,924 INFO ./env/bin/bench --site erp.localhost reinstall-app custom_app --yes
+2025-11-25 20:26:45,170 INFO ./env/bin/bench --site erp.localhost execute custom_app.install_deal_doctype.install
+2025-11-25 20:27:13,717 INFO ./env/bin/bench --site erp.localhost set-config developer_mode 1
+2025-11-25 20:27:14,027 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 20:27:41,594 INFO ./env/bin/bench --site erp.localhost execute custom_app.install_deal_doctype.install
+2025-11-25 20:27:56,795 INFO ./env/bin/bench --site erp.localhost execute custom_app.install_deal_doctype.install
+2025-11-25 20:28:10,681 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 20:29:15,098 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, module FROM tabDocType WHERE name IN ('Deal', 'Deal Allocation', 'Deal Allocation History')
+2025-11-25 20:29:25,610 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 20:29:26,194 INFO ./env/bin/bench build
+2025-11-25 20:29:41,526 INFO ./env/bin/bench restart
+2025-11-25 20:29:53,014 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, module FROM tabDocType WHERE name = 'Deal'
+2025-11-25 20:32:19,157 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:33:25,974 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, module, issingle, istable FROM tabDocType WHERE name LIKE 'Deal%'
+2025-11-25 20:34:08,348 INFO ./env/bin/bench --site erp.localhost clear-website-cache
+2025-11-25 20:34:09,095 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 20:34:09,622 INFO ./env/bin/bench build --app custom_app
+2025-11-25 20:34:31,811 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT * FROM `tabModule Def` WHERE name = 'Custom App' OR app_name = 'custom_app'
+2025-11-25 20:35:26,170 INFO ./env/bin/bench restart
+2025-11-25 20:35:53,807 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:36:06,229 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, module FROM tabDocType WHERE name IN ('Deal', 'Deal Allocation', 'Deal Allocation History')
+2025-11-25 20:36:16,769 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:36:34,774 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:36:50,056 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, module_name, app_name FROM `tabModule Def` WHERE app_name = 'custom_app' OR name LIKE '%Custom%'
+2025-11-25 20:37:09,686 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:37:17,143 INFO ./env/bin/bench restart
+2025-11-25 20:37:39,819 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:37:52,005 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, module, custom FROM tabDocType WHERE name = 'Deal'
+2025-11-25 20:38:05,842 INFO ./env/bin/bench --site erp.localhost mariadb -e SELECT name, module_name, app_name FROM `tabModule Def` ORDER BY name
+2025-11-25 20:38:24,536 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:38:37,564 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:38:58,719 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:39:57,965 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:40:12,375 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:42:08,615 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 20:42:09,248 INFO ./env/bin/bench restart
+2025-11-25 20:42:22,064 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:42:37,205 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:43:21,796 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:45:31,349 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:46:12,049 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:46:21,640 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 20:46:22,182 INFO ./env/bin/bench restart
+2025-11-25 20:47:04,209 INFO ./env/bin/bench --site erp.localhost execute custom_app.add_deal_to_workspaces.execute
+2025-11-25 20:50:48,101 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-25 20:50:48,594 INFO ./env/bin/bench restart
+2025-11-25 20:52:00,711 INFO ./env/bin/bench --site erp.localhost console
+2025-11-25 20:52:17,895 INFO ./env/bin/bench --site erp.localhost console
+2025-11-26 14:49:54,527 INFO ./env/bin/bench --site erp.localhost migrate
+2025-11-26 14:51:01,293 INFO ./env/bin/bench --site erp.localhost console
+2025-11-26 14:51:10,442 INFO ./env/bin/bench --site erp.localhost clear-cache
+2025-11-26 14:51:11,001 INFO ./env/bin/bench build --app custom_app
+2025-11-26 14:53:08,515 INFO ./env/bin/bench --site erp.localhost console
+2025-11-26 14:54:26,024 INFO ./env/bin/bench --site erp.localhost execute custom_app.test_account_field.test
+2025-11-26 15:05:21,063 INFO ./env/bin/bench --site erp.localhost console
+2025-11-26 15:18:24,228 INFO ./env/bin/bench build --app custom_app

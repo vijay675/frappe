@@ -1,0 +1,1720 @@
+2025-11-18 19:30:27,328 INFO ipython === bench console session ===
+2025-11-18 19:30:27,328 INFO ipython === session end ===
+2025-11-19 12:47:30,967 INFO ipython === bench console session ===
+2025-11-19 12:47:30,968 INFO ipython import frappe
+2025-11-19 12:47:30,968 INFO ipython meta = frappe.get_meta("Job Opening")
+2025-11-19 12:47:30,968 INFO ipython === session end ===
+2025-11-19 13:08:50,778 INFO ipython === bench console session ===
+2025-11-19 13:08:50,779 INFO ipython import frappe
+2025-11-19 13:08:50,779 INFO ipython fields = frappe.get_all("Custom Field", filters={"dt": "Job Applicant"}, fields=["fieldname", "label", "fieldtype", "hidden"])
+2025-11-19 13:08:50,779 INFO ipython === session end ===
+2025-11-19 16:37:33,676 INFO ipython === bench console session ===
+2025-11-19 16:37:33,676 INFO ipython import frappe
+2025-11-19 16:37:33,676 INFO ipython # Check current permissions for Job Requisition
+2025-11-19 16:37:33,676 INFO ipython meta = frappe.get_meta("Job Requisition")
+2025-11-19 16:37:33,676 INFO ipython print("Current permissions:")
+2025-11-19 16:37:33,676 INFO ipython === session end ===
+2025-11-19 16:54:52,873 INFO ipython === bench console session ===
+2025-11-19 16:54:52,874 INFO ipython import frappe
+2025-11-19 16:54:52,874 INFO ipython wf = frappe.get_doc("Web Form", "job-application")
+2025-11-19 16:54:52,874 INFO ipython print("Client Script:", wf.client_script[:100] if wf.client_script else "None")
+2025-11-19 16:54:52,874 INFO ipython print("Route:", wf.route)
+2025-11-19 16:54:52,874 INFO ipython === session end ===
+2025-11-20 19:02:41,057 INFO ipython === bench console session ===
+2025-11-20 19:02:41,057 INFO ipython === session end ===
+2025-11-20 19:11:02,742 INFO ipython === bench console session ===
+2025-11-20 19:11:02,743 INFO ipython === session end ===
+2025-11-20 19:14:42,504 INFO ipython === bench console session ===
+2025-11-20 19:14:42,505 INFO ipython === session end ===
+2025-11-21 09:56:56,838 INFO ipython === bench console session ===
+2025-11-21 09:56:56,838 INFO ipython import frappe
+2025-11-21 09:56:56,838 INFO ipython from frappe.utils import today, getdate
+2025-11-21 09:56:56,838 INFO ipython # Check today's date
+2025-11-21 09:56:56,838 INFO ipython today_date = getdate(today())
+2025-11-21 09:56:56,838 INFO ipython print(f"Today's date: {today_date}")
+2025-11-21 09:56:56,838 INFO ipython print(f"Month: {today_date.month}, Day: {today_date.day}")
+2025-11-21 09:56:56,839 INFO ipython # Get all active employees with their joining dates
+2025-11-21 09:56:56,839 INFO ipython employees = frappe.db.get_list(
+    "Employee",
+    filters={"status": "Active"},
+    fields=["name", "employee_name", "date_of_joining"]
+)
+2025-11-21 09:56:56,839 INFO ipython print(f"\nTotal active employees: {len(employees)}")
+2025-11-21 09:56:56,839 INFO ipython # Check for anniversary matches
+2025-11-21 09:56:56,839 INFO ipython anniversary_matches = []
+2025-11-21 09:56:56,839 INFO ipython for emp in employees:
+    if emp.date_of_joining:
+        join_date = getdate(emp.date_of_joining)
+        if join_date.month == today_date.month and join_date.day == today_date.day:
+            years = today_date.year - join_date.year
+            print(f"\nAnniversary Match: {emp.employee_name}")
+            print(f"  Joined: {emp.date_of_joining}")
+            print(f"  Years of service: {years}")
+            anniversary_matches.append(emp)
+2025-11-21 09:56:56,839 INFO ipython if not anniversary_matches:
+    print(f"\nNo employees with joining date on {today_date.month}/{today_date.day}")
+    print("\nShowing some sample joining dates:")
+    for emp in employees[:5]:
+        if emp.date_of_joining:
+            join_date = getdate(emp.date_of_joining)
+            print(f"  {emp.employee_name}: {join_date.month}/{join_date.day}/{join_date.year}")
+2025-11-21 09:56:56,839 INFO ipython # Check if template exists
+2025-11-21 09:56:56,839 INFO ipython template_exists = frappe.db.exists("Email Template", "Work Anniversary Wishes")
+2025-11-21 09:56:56,839 INFO ipython print(f"\nWork Anniversary Wishes template exists: {template_exists}")
+2025-11-21 09:56:56,839 INFO ipython === session end ===
+2025-11-21 09:57:13,987 INFO ipython === bench console session ===
+2025-11-21 09:57:13,988 INFO ipython import frappe
+2025-11-21 09:57:13,988 INFO ipython # Check scheduled job logs for today
+2025-11-21 09:57:13,988 INFO ipython logs = frappe.get_all(
+    "Scheduled Job Log",
+    filters={
+        "scheduled_job_type": ["in", ["custom_app.tasks.send_birthday_wishes", "custom_app.tasks.send_anniversary_wishes"]],
+    },
+    fields=["scheduled_job_type", "status", "creation", "error"],
+    order_by="creation desc",
+    limit=10
+)
+2025-11-21 09:57:13,988 INFO ipython print("Recent Scheduled Job Logs:")
+2025-11-21 09:57:13,988 INFO ipython for log in logs:
+    print(f"\n{log.scheduled_job_type}")
+    print(f"  Status: {log.status}")
+    print(f"  Time: {log.creation}")
+    if log.error:
+        print(f"  Error: {log.error}")
+2025-11-21 09:57:13,988 INFO ipython === session end ===
+2025-11-21 09:59:05,278 INFO ipython === bench console session ===
+2025-11-21 09:59:05,278 INFO ipython import frappe
+2025-11-21 09:59:05,278 INFO ipython from frappe.utils import today, getdate
+2025-11-21 09:59:05,278 INFO ipython # Update employee's joining date to today for testing
+2025-11-21 09:59:05,278 INFO ipython today_date = getdate(today())
+2025-11-21 09:59:05,278 INFO ipython employee_id = "HR-EMP-00001"  # Change to your employee ID
+2025-11-21 09:59:05,278 INFO ipython # Get current joining date
+2025-11-21 09:59:05,278 INFO ipython current_join_date = frappe.db.get_value("Employee", employee_id, "date_of_joining")
+2025-11-21 09:59:05,278 INFO ipython print(f"Current joining date: {current_join_date}")
+2025-11-21 09:59:05,278 INFO ipython # Update to today's date but keep the year as 2011 (to ensure years_of_service >= 1)
+2025-11-21 09:59:05,278 INFO ipython test_join_date = f"{today_date.year - 14}-{today_date.month:02d}-{today_date.day:02d}"
+2025-11-21 09:59:05,278 INFO ipython frappe.db.set_value("Employee", employee_id, "date_of_joining", test_join_date)
+2025-11-21 09:59:05,278 INFO ipython frappe.db.commit()
+2025-11-21 09:59:05,278 INFO ipython print(f"Updated joining date to: {test_join_date}")
+2025-11-21 09:59:05,278 INFO ipython print(f"Years of service will be: 14")
+2025-11-21 09:59:05,278 INFO ipython print("\nNow run: bench --site erp.localhost execute custom_app.tasks.send_anniversary_wishes")
+2025-11-21 09:59:05,278 INFO ipython === session end ===
+2025-11-21 09:59:27,066 INFO ipython === bench console session ===
+2025-11-21 09:59:27,066 INFO ipython import frappe
+2025-11-21 09:59:27,066 INFO ipython # Check Email Queue for anniversary emails
+2025-11-21 09:59:27,066 INFO ipython emails = frappe.get_all(
+    "Email Queue",
+    filters={
+        "reference_doctype": "Employee"
+    },
+    fields=["name", "recipient", "subject", "status", "creation"],
+    order_by="creation desc",
+    limit=5
+)
+2025-11-21 09:59:27,066 INFO ipython print("Recent Employee-related emails:")
+2025-11-21 09:59:27,066 INFO ipython for email in emails:
+    print(f"\n{email.name}")
+    print(f"  To: {email.recipient}")
+    print(f"  Subject: {email.subject}")
+    print(f"  Status: {email.status}")
+    print(f"  Time: {email.creation}")
+2025-11-21 09:59:27,066 INFO ipython === session end ===
+2025-11-21 10:01:22,754 INFO ipython === bench console session ===
+2025-11-21 10:01:22,754 INFO ipython import frappe
+2025-11-21 10:01:22,754 INFO ipython # Restore original joining date
+2025-11-21 10:01:22,755 INFO ipython frappe.db.set_value("Employee", "HR-EMP-00001", "date_of_joining", "2011-11-18")
+2025-11-21 10:01:22,755 INFO ipython frappe.db.commit()
+2025-11-21 10:01:22,755 INFO ipython print("Restored original joining date to: 2011-11-18")
+2025-11-21 10:01:22,755 INFO ipython === session end ===
+2025-11-21 12:00:08,322 INFO ipython === bench console session ===
+2025-11-21 12:00:08,322 INFO ipython import frappe
+2025-11-21 12:00:08,322 INFO ipython # Check if requested_by has hidden property set
+2025-11-21 12:00:08,322 INFO ipython hidden_prop = frappe.db.get_value(
+    "Property Setter",
+    {
+        "doc_type": "Job Requisition",
+        "field_name": "requested_by",
+        "property": "hidden"
+    },
+    "value"
+)
+2025-11-21 12:00:08,322 INFO ipython readonly_prop = frappe.db.get_value(
+    "Property Setter",
+    {
+        "doc_type": "Job Requisition",
+        "field_name": "requested_by",
+        "property": "read_only"
+    },
+    "value"
+)
+2025-11-21 12:00:08,322 INFO ipython print(f"requested_by hidden: {hidden_prop}")
+2025-11-21 12:00:08,323 INFO ipython print(f"requested_by read_only: {readonly_prop}")
+2025-11-21 12:00:08,323 INFO ipython === session end ===
+2025-11-21 12:01:09,182 INFO ipython === bench console session ===
+2025-11-21 12:01:09,183 INFO ipython import frappe
+2025-11-21 12:01:09,183 INFO ipython # Get all Property Setters for requested_by field
+2025-11-21 12:01:09,183 INFO ipython prop_setters = frappe.get_all(
+    "Property Setter",
+    filters={
+        "doc_type": "Job Requisition",
+        "field_name": "requested_by"
+    },
+    fields=["name", "property", "value"]
+)
+2025-11-21 12:01:09,183 INFO ipython print("Property Setters for requested_by:")
+2025-11-21 12:01:09,183 INFO ipython for prop in prop_setters:
+    print(f"  {prop.property}: {prop.value}")
+2025-11-21 12:01:09,183 INFO ipython # Check if field exists in DocType
+2025-11-21 12:01:09,183 INFO ipython meta = frappe.get_meta("Job Requisition")
+2025-11-21 12:01:09,183 INFO ipython field = meta.get_field("requested_by")
+2025-11-21 12:01:09,183 INFO ipython if field:
+    print(f"\nrequested_by field found:")
+    print(f"  fieldtype: {field.fieldtype}")
+    print(f"  label: {field.label}")
+    print(f"  hidden: {field.hidden}")
+    print(f"  read_only: {field.read_only}")
+    print(f"  depends_on: {field.depends_on}")
+else:
+    print("\nrequested_by field NOT found in meta!")
+2025-11-21 12:01:09,183 INFO ipython === session end ===
+2025-11-21 12:01:19,671 INFO ipython === bench console session ===
+2025-11-21 12:01:19,671 INFO ipython import frappe
+2025-11-21 12:01:19,671 INFO ipython # Get the full field details including position
+2025-11-21 12:01:19,671 INFO ipython meta = frappe.get_meta("Job Requisition")
+2025-11-21 12:01:19,671 INFO ipython # Find requested_by and nearby fields
+2025-11-21 12:01:19,671 INFO ipython fields = meta.fields
+2025-11-21 12:01:19,671 INFO ipython for i, field in enumerate(fields):
+    if field.fieldname in ["requested_by", "requested_by_name", "department", "company"]:
+        print(f"{i}. {field.fieldname}")
+        print(f"   label: {field.label}")
+        print(f"   fieldtype: {field.fieldtype}")
+        print(f"   hidden: {field.hidden}")
+        print(f"   read_only: {field.read_only}")
+        print(f"   permlevel: {field.permlevel}")
+        print()
+2025-11-21 12:01:19,671 INFO ipython === session end ===
+2025-11-21 12:01:31,330 INFO ipython === bench console session ===
+2025-11-21 12:01:31,330 INFO ipython import frappe
+2025-11-21 12:01:31,330 INFO ipython # Force reload the doctype
+2025-11-21 12:01:31,330 INFO ipython frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:01:31,330 INFO ipython print("Cache cleared and Job Requisition doctype reloaded")
+2025-11-21 12:01:31,330 INFO ipython === session end ===
+2025-11-21 12:02:46,209 INFO ipython === bench console session ===
+2025-11-21 12:02:46,209 INFO ipython import frappe
+2025-11-21 12:02:46,209 INFO ipython # Get the field order around requested_by
+2025-11-21 12:02:46,209 INFO ipython meta = frappe.get_meta("Job Requisition")
+2025-11-21 12:02:46,210 INFO ipython fields = meta.fields
+2025-11-21 12:02:46,210 INFO ipython print("Fields around 'Requested By' section:")
+2025-11-21 12:02:46,210 INFO ipython for i, field in enumerate(fields):
+    if i >= 22 and i <= 32:
+        indicator = ">>>" if field.fieldname == "requested_by" else "   "
+        print(f"{indicator} {i}. [{field.fieldtype:15}] {field.fieldname:30} | label: {field.label} | hidden: {field.hidden}")
+2025-11-21 12:02:46,210 INFO ipython === session end ===
+2025-11-21 12:02:59,217 INFO ipython === bench console session ===
+2025-11-21 12:02:59,217 INFO ipython import frappe
+2025-11-21 12:02:59,217 INFO ipython # Let's check what the section break before requested_by looks like
+2025-11-21 12:02:59,217 INFO ipython meta = frappe.get_meta("Job Requisition")
+2025-11-21 12:02:59,217 INFO ipython fields = meta.fields
+2025-11-21 12:02:59,217 INFO ipython print("Looking for section breaks before requested_by:")
+2025-11-21 12:02:59,217 INFO ipython for i, field in enumerate(fields):
+    if i >= 18 and i <= 28:
+        print(f"{i}. [{field.fieldtype:15}] {field.fieldname:30} | label: {field.label}")
+2025-11-21 12:02:59,217 INFO ipython === session end ===
+2025-11-21 12:03:22,996 INFO ipython === bench console session ===
+2025-11-21 12:03:22,996 INFO ipython import frappe
+2025-11-21 12:03:22,996 INFO ipython # Move requested_by to appear before reports_to in the first column
+2025-11-21 12:03:22,996 INFO ipython # We need to change the idx (index) of the field
+2025-11-21 12:03:22,996 INFO ipython # Get current field
+2025-11-21 12:03:22,996 INFO ipython field = frappe.get_doc("DocField", {"parent": "Job Requisition", "fieldname": "requested_by"})
+2025-11-21 12:03:22,996 INFO ipython print(f"Current requested_by idx: {field.idx}")
+2025-11-21 12:03:22,997 INFO ipython # Change to come right after section_break_7
+2025-11-21 12:03:22,997 INFO ipython field.idx = 22  # Right after section_break_7
+2025-11-21 12:03:22,997 INFO ipython field.save()
+2025-11-21 12:03:22,997 INFO ipython # Now move reports_to after it
+2025-11-21 12:03:22,997 INFO ipython reports_to = frappe.get_doc("DocField", {"parent": "Job Requisition", "fieldname": "reports_to"})
+2025-11-21 12:03:22,997 INFO ipython reports_to.idx = 23
+2025-11-21 12:03:22,997 INFO ipython reports_to.save()
+2025-11-21 12:03:22,997 INFO ipython frappe.db.commit()
+2025-11-21 12:03:22,997 INFO ipython # Clear cache
+2025-11-21 12:03:22,997 INFO ipython frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:03:22,997 INFO ipython print("Fields reordered. requested_by should now appear first in the Requested By section.")
+2025-11-21 12:03:22,997 INFO ipython === session end ===
+2025-11-21 12:03:37,516 INFO ipython === bench console session ===
+2025-11-21 12:03:37,517 INFO ipython import frappe
+2025-11-21 12:03:37,517 INFO ipython # Check if requested_by is a Custom Field
+2025-11-21 12:03:37,517 INFO ipython custom_field = frappe.db.get_value(
+    "Custom Field",
+    {"dt": "Job Requisition", "fieldname": "requested_by"},
+    ["name", "hidden", "read_only", "permlevel"],
+    as_dict=True
+)
+2025-11-21 12:03:37,517 INFO ipython if custom_field:
+    print("requested_by is a CUSTOM field:")
+    print(f"  name: {custom_field.name}")
+    print(f"  hidden: {custom_field.hidden}")
+    print(f"  read_only: {custom_field.read_only}")
+    print(f"  permlevel: {custom_field.permlevel}")
+else:
+    print("requested_by is a STANDARD field")
+2025-11-21 12:03:37,517 INFO ipython # Also check Property Setters affecting visibility
+2025-11-21 12:03:37,517 INFO ipython props = frappe.get_all(
+    "Property Setter",
+    filters={"doc_type": "Job Requisition", "field_name": "requested_by"},
+    fields=["property", "value"]
+)
+2025-11-21 12:03:37,517 INFO ipython print("\nProperty Setters:")
+2025-11-21 12:03:37,517 INFO ipython for p in props:
+    print(f"  {p.property}: {p.value}")
+2025-11-21 12:03:37,517 INFO ipython === session end ===
+2025-11-21 12:03:50,553 INFO ipython === bench console session ===
+2025-11-21 12:03:50,553 INFO ipython import frappe
+2025-11-21 12:03:50,553 INFO ipython # Add property to make field more visible
+2025-11-21 12:03:50,553 INFO ipython frappe.get_doc({
+    "doctype": "Property Setter",
+    "doctype_or_field": "DocField",
+    "doc_type": "Job Requisition",
+    "field_name": "requested_by",
+    "property": "in_standard_filter",
+    "value": "1",
+    "property_type": "Check"
+}).insert(ignore_if_duplicate=True)
+2025-11-21 12:03:50,553 INFO ipython # Also ensure it's in list view
+2025-11-21 12:03:50,553 INFO ipython frappe.get_doc({
+    "doctype": "Property Setter",
+    "doctype_or_field": "DocField",
+    "doc_type": "Job Requisition",
+    "field_name": "requested_by",
+    "property": "in_list_view",
+    "value": "1",
+    "property_type": "Check"
+}).insert(ignore_if_duplicate=True)
+2025-11-21 12:03:50,553 INFO ipython # Also set bold property
+2025-11-21 12:03:50,553 INFO ipython frappe.get_doc({
+    "doctype": "Property Setter",
+    "doctype_or_field": "DocField",
+    "doc_type": "Job Requisition",
+    "field_name": "requested_by",
+    "property": "bold",
+    "value": "1",
+    "property_type": "Check"
+}).insert(ignore_if_duplicate=True)
+2025-11-21 12:03:50,553 INFO ipython frappe.db.commit()
+2025-11-21 12:03:50,553 INFO ipython frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:03:50,553 INFO ipython print("Added visibility properties to requested_by field")
+2025-11-21 12:03:50,553 INFO ipython === session end ===
+2025-11-21 12:05:05,091 INFO ipython === bench console session ===
+2025-11-21 12:05:05,091 INFO ipython import frappe
+2025-11-21 12:05:05,091 INFO ipython # Check if there's a Customize Form entry
+2025-11-21 12:05:05,091 INFO ipython custom_form = frappe.db.exists("Customize Form", {"doc_type": "Job Requisition"})
+2025-11-21 12:05:05,091 INFO ipython if custom_form:
+    print(f"Customize Form exists: {custom_form}")
+    
+2025-11-21 12:05:05,091 INFO ipython     # Get the customization
+2025-11-21 12:05:05,091 INFO ipython     cf = frappe.get_doc("Customize Form", custom_form)
+2025-11-21 12:05:05,091 INFO ipython     # Find requested_by field
+2025-11-21 12:05:05,091 INFO ipython     for field in cf.fields:
+        if field.fieldname == "requested_by":
+            print(f"\nrequested_by in Customize Form:")
+            print(f"  hidden: {field.hidden}")
+            print(f"  read_only: {field.read_only}")
+            print(f"  idx: {field.idx}")
+            print(f"  fieldtype: {field.fieldtype}")
+else:
+    print("No Customize Form found")
+2025-11-21 12:05:05,091 INFO ipython # Let's also check what the actual form sees
+2025-11-21 12:05:05,091 INFO ipython print("\n\nChecking meta.get_field():")
+2025-11-21 12:05:05,091 INFO ipython meta = frappe.get_meta("Job Requisition")
+2025-11-21 12:05:05,091 INFO ipython field = meta.get_field("requested_by")
+2025-11-21 12:05:05,091 INFO ipython if field:
+    print(f"  fieldname: {field.fieldname}")
+    print(f"  label: {field.label}")
+    print(f"  hidden: {field.hidden}")
+    print(f"  read_only: {field.read_only}")
+    print(f"  fieldtype: {field.fieldtype}")
+    print(f"  idx: {field.idx}")
+else:
+    print("  Field not found!")
+2025-11-21 12:05:05,091 INFO ipython === session end ===
+2025-11-21 12:05:18,834 INFO ipython === bench console session ===
+2025-11-21 12:05:18,834 INFO ipython import frappe
+2025-11-21 12:05:18,834 INFO ipython import json
+2025-11-21 12:05:18,834 INFO ipython # Get the form meta as JSON to see what the browser receives
+2025-11-21 12:05:18,834 INFO ipython meta = frappe.get_meta("Job Requisition")
+2025-11-21 12:05:18,835 INFO ipython # Find the section with requested_by
+2025-11-21 12:05:18,835 INFO ipython print("Fields in 'Requested By' section:")
+2025-11-21 12:05:18,835 INFO ipython in_section = False
+2025-11-21 12:05:18,835 INFO ipython for i, field in enumerate(meta.fields):
+    if field.fieldtype == "Section Break" and field.label == "Requested By":
+        in_section = True
+        print(f"\n{i}. >>> SECTION: {field.label}")
+        continue
+    
+2025-11-21 12:05:18,835 INFO ipython     if in_section:
+        if field.fieldtype == "Section Break":
+            break
+2025-11-21 12:05:18,835 INFO ipython         print(f"{i}. [{field.fieldtype:15}] {field.fieldname:25} | label: {field.label:20} | hidden: {field.hidden} | depends_on: {field.depends_on}")
+2025-11-21 12:05:18,835 INFO ipython === session end ===
+2025-11-21 12:08:47,956 INFO ipython === bench console session ===
+2025-11-21 12:08:47,957 INFO ipython import frappe
+2025-11-21 12:08:47,957 INFO ipython # Check if there's a hidden property setter
+2025-11-21 12:08:47,957 INFO ipython existing = frappe.db.get_value(
+    "Property Setter",
+    {
+        "doc_type": "Job Requisition",
+        "field_name": "requested_by",
+        "property": "hidden"
+    }
+)
+2025-11-21 12:08:47,957 INFO ipython if existing:
+    # Update to not hidden
+    doc = frappe.get_doc("Property Setter", existing)
+    doc.value = "0"
+    doc.save()
+    print(f"Updated existing hidden property setter to 0")
+else:
+    # Create one
+    frappe.get_doc({
+        "doctype": "Property Setter",
+        "doctype_or_field": "DocField",
+        "doc_type": "Job Requisition",
+        "field_name": "requested_by",
+        "property": "hidden",
+        "value": "0",
+        "property_type": "Check"
+    }).insert()
+    print("Created new hidden=0 property setter")
+2025-11-21 12:08:47,957 INFO ipython frappe.db.commit()
+2025-11-21 12:08:47,957 INFO ipython frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:08:47,957 INFO ipython # Now check the field meta
+2025-11-21 12:08:47,957 INFO ipython meta = frappe.get_meta("Job Requisition")
+2025-11-21 12:08:47,957 INFO ipython field = meta.get_field("requested_by")
+2025-11-21 12:08:47,957 INFO ipython print(f"\nrequested_by field:")
+2025-11-21 12:08:47,957 INFO ipython print(f"  hidden: {field.hidden}")
+2025-11-21 12:08:47,957 INFO ipython print(f"  read_only: {field.read_only}")
+2025-11-21 12:08:47,957 INFO ipython print(f"  fieldtype: {field.fieldtype}")
+2025-11-21 12:08:47,957 INFO ipython === session end ===
+2025-11-21 12:09:47,438 INFO ipython === bench console session ===
+2025-11-21 12:09:47,438 INFO ipython import frappe
+2025-11-21 12:09:47,438 INFO ipython # Use Customize Form to properly configure the field
+2025-11-21 12:09:47,438 INFO ipython # First check if a Customize Form doc exists
+2025-11-21 12:09:47,438 INFO ipython cf_name = frappe.db.exists("Customize Form", {"doc_type": "Job Requisition"})
+2025-11-21 12:09:47,438 INFO ipython if not cf_name:
+    # Create from scratch
+    print("Creating new Customize Form...")
+    cf = frappe.new_doc("Customize Form")
+    cf.doc_type = "Job Requisition"
+    cf.fetch_to_customize()
+else:
+    print(f"Loading existing Customize Form: {cf_name}")
+    cf = frappe.get_doc("Customize Form", cf_name)
+2025-11-21 12:09:47,438 INFO ipython # Find the requested_by field in the fields list
+2025-11-21 12:09:47,438 INFO ipython found = False
+2025-11-21 12:09:47,438 INFO ipython for field in cf.fields:
+    if field.fieldname == "requested_by":
+        print(f"\nFound requested_by field:")
+        print(f"  idx: {field.idx}")
+        print(f"  hidden: {field.hidden}")
+        print(f"  read_only: {field.read_only}")
+        
+2025-11-21 12:09:47,438 INFO ipython         # Ensure it's visible and read-only
+2025-11-21 12:09:47,438 INFO ipython         field.hidden = 0
+2025-11-21 12:09:47,438 INFO ipython         field.read_only = 1
+2025-11-21 12:09:47,438 INFO ipython         field.idx = 11  # Position in Requested By section
+2025-11-21 12:09:47,438 INFO ipython         found = True
+2025-11-21 12:09:47,438 INFO ipython         break
+2025-11-21 12:09:47,438 INFO ipython if found:
+    # Save the customization
+    cf.save()
+    print("\nSaved Customize Form with requested_by visible")
+else:
+    print("\nWARNING: requested_by field not found in Customize Form fields")
+2025-11-21 12:09:47,438 INFO ipython frappe.db.commit()
+2025-11-21 12:09:47,439 INFO ipython frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:09:47,439 INFO ipython === session end ===
+2025-11-21 12:13:28,016 INFO ipython === bench console session ===
+2025-11-21 12:13:28,016 INFO ipython import frappe
+2025-11-21 12:13:28,016 INFO ipython # Get Customize Form
+2025-11-21 12:13:28,016 INFO ipython cf_name = frappe.db.exists("Customize Form", {"doc_type": "Job Requisition"})
+2025-11-21 12:13:28,016 INFO ipython if cf_name:
+    cf = frappe.get_doc("Customize Form", cf_name)
+    
+2025-11-21 12:13:28,016 INFO ipython     # Click "Update" button - this applies the customization
+2025-11-21 12:13:28,016 INFO ipython     try:
+        cf.sync_fields()  # Sync fields from DocType
+        cf.save_customization()  # Apply the customization
+        print("Applied customization using save_customization()")
+    except Exception as e:
+        print(f"Error: {e}")
+        # Try alternative method
+        try:
+            from frappe.custom.doctype.customize_form.customize_form import reset_customization
+            # Just save it
+            cf.flags.ignore_validate = True
+            cf.save()
+            print("Saved Customize Form directly")
+        except Exception as e2:
+            print(f"Error 2: {e2}")
+2025-11-21 12:13:28,016 INFO ipython frappe.db.commit()
+2025-11-21 12:13:28,017 INFO ipython frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:13:28,017 INFO ipython # Verify the field is visible
+2025-11-21 12:13:28,017 INFO ipython meta = frappe.get_meta("Job Requisition")
+2025-11-21 12:13:28,017 INFO ipython field = meta.get_field("requested_by")
+2025-11-21 12:13:28,017 INFO ipython if field:
+    print(f"\nField verification:")
+    print(f"  fieldname: {field.fieldname}")
+    print(f"  hidden: {field.hidden}")
+    print(f"  read_only: {field.read_only}")
+    print(f"  idx: {field.idx}")
+2025-11-21 12:13:28,017 INFO ipython === session end ===
+2025-11-21 12:15:24,632 INFO ipython === bench console session ===
+2025-11-21 12:15:24,632 INFO ipython import frappe
+2025-11-21 12:15:24,632 INFO ipython # Fields to remove
+2025-11-21 12:15:24,632 INFO ipython fields_to_remove = [
+    "requested_by_user",
+    "reports_to_user", 
+    "requested_by_name",
+    "requested_by_dept",
+    "requested_by_designation"
+]
+2025-11-21 12:15:24,632 INFO ipython print("Removing fields from Job Requisition:\n")
+2025-11-21 12:15:24,632 INFO ipython for fieldname in fields_to_remove:
+    # Check if it's a Custom Field
+    custom_field = frappe.db.get_value("Custom Field", 
+        {"dt": "Job Requisition", "fieldname": fieldname}, 
+        "name")
+    
+2025-11-21 12:15:24,632 INFO ipython     if custom_field:
+        frappe.delete_doc("Custom Field", custom_field)
+        print(f"  ✓ Deleted Custom Field: {fieldname}")
+    else:
+        print(f"  ✗ Custom Field not found: {fieldname}")
+2025-11-21 12:15:24,632 INFO ipython frappe.db.commit()
+2025-11-21 12:15:24,632 INFO ipython frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:15:24,632 INFO ipython print("\nFields removed successfully!")
+2025-11-21 12:15:24,632 INFO ipython === session end ===
+2025-11-21 12:15:48,870 INFO ipython === bench console session ===
+2025-11-21 12:15:48,870 INFO ipython import frappe
+2025-11-21 12:15:48,870 INFO ipython # Fields to hide
+2025-11-21 12:15:48,870 INFO ipython fields_to_hide = [
+    "requested_by_user",
+    "reports_to_user", 
+    "requested_by_name",
+    "requested_by_dept",
+    "requested_by_designation"
+]
+2025-11-21 12:15:48,870 INFO ipython print("Hiding fields from Job Requisition:\n")
+2025-11-21 12:15:48,870 INFO ipython for fieldname in fields_to_hide:
+    # Check if property setter exists
+    existing = frappe.db.get_value(
+        "Property Setter",
+        {
+            "doc_type": "Job Requisition",
+            "field_name": fieldname,
+            "property": "hidden"
+        }
+    )
+    
+2025-11-21 12:15:48,870 INFO ipython     if existing:
+        # Update to hidden
+        doc = frappe.get_doc("Property Setter", existing)
+        doc.value = "1"
+        doc.save()
+        print(f"  ✓ Updated: {fieldname} -> hidden")
+    else:
+        # Create new property setter
+        try:
+            frappe.get_doc({
+                "doctype": "Property Setter",
+                "doctype_or_field": "DocField",
+                "doc_type": "Job Requisition",
+                "field_name": fieldname,
+                "property": "hidden",
+                "value": "1",
+                "property_type": "Check"
+            }).insert()
+            print(f"  ✓ Created: {fieldname} -> hidden")
+        except Exception as e:
+            print(f"  ✗ Error for {fieldname}: {e}")
+2025-11-21 12:15:48,870 INFO ipython frappe.db.commit()
+2025-11-21 12:15:48,870 INFO ipython frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:15:48,870 INFO ipython print("\nFields hidden successfully!")
+2025-11-21 12:15:48,870 INFO ipython === session end ===
+2025-11-21 12:17:40,372 INFO ipython === bench console session ===
+2025-11-21 12:17:40,372 INFO ipython import frappe
+2025-11-21 12:17:40,372 INFO ipython # Fields to delete - first remove Property Setters, then check if they're Custom Fields
+2025-11-21 12:17:40,372 INFO ipython fields_to_remove = [
+    "requested_by_user",
+    "reports_to_user", 
+    "requested_by_name",
+    "requested_by_dept",
+    "requested_by_designation"
+]
+2025-11-21 12:17:40,372 INFO ipython print("Deleting fields from Job Requisition:\n")
+2025-11-21 12:17:40,373 INFO ipython for fieldname in fields_to_remove:
+    # Delete Property Setters
+    prop_setters = frappe.get_all(
+        "Property Setter",
+        filters={
+            "doc_type": "Job Requisition",
+            "field_name": fieldname
+        }
+    )
+    
+2025-11-21 12:17:40,373 INFO ipython     for ps in prop_setters:
+        frappe.delete_doc("Property Setter", ps.name, force=True)
+        print(f"  ✓ Deleted Property Setter for: {fieldname}")
+    
+2025-11-21 12:17:40,373 INFO ipython     # Check if it's a Custom Field
+2025-11-21 12:17:40,373 INFO ipython     custom_field = frappe.db.get_value("Custom Field", 
+        {"dt": "Job Requisition", "fieldname": fieldname}, 
+        "name")
+2025-11-21 12:17:40,373 INFO ipython     if custom_field:
+        frappe.delete_doc("Custom Field", custom_field, force=True)
+        print(f"  ✓ Deleted Custom Field: {fieldname}")
+    else:
+        # If it's a standard field, we need to hide it via Customize Form
+        print(f"  ! Standard field (cannot delete, will hide): {fieldname}")
+2025-11-21 12:17:40,373 INFO ipython frappe.db.commit()
+2025-11-21 12:17:40,373 INFO ipython frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:17:40,373 INFO ipython print("\nDeletion complete!")
+2025-11-21 12:17:40,373 INFO ipython === session end ===
+2025-11-21 12:28:40,623 INFO ipython === bench console session ===
+2025-11-21 12:28:40,624 INFO ipython import frappe
+2025-11-21 12:28:40,624 INFO ipython # Delete the unused custom fields
+2025-11-21 12:28:40,624 INFO ipython fields_to_delete = [
+    "requested_by_user",
+    "reports_to_user"
+]
+2025-11-21 12:28:40,624 INFO ipython print("Deleting unnecessary custom fields:\n")
+2025-11-21 12:28:40,624 INFO ipython for fieldname in fields_to_delete:
+    custom_field_name = frappe.db.get_value(
+        "Custom Field",
+        {"dt": "Job Requisition", "fieldname": fieldname},
+        "name"
+    )
+    
+2025-11-21 12:28:40,624 INFO ipython     if custom_field_name:
+        frappe.delete_doc("Custom Field", custom_field_name, force=True)
+        print(f"  ✓ Deleted: {fieldname}")
+    else:
+        print(f"  - Not found: {fieldname}")
+2025-11-21 12:28:40,624 INFO ipython frappe.db.commit()
+2025-11-21 12:28:40,624 INFO ipython frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:28:40,624 INFO ipython print("\nCleanup complete!")
+2025-11-21 12:28:40,624 INFO ipython === session end ===
+2025-11-21 12:32:37,087 INFO ipython === bench console session ===
+2025-11-21 12:32:37,088 INFO ipython import frappe
+2025-11-21 12:32:37,088 INFO ipython # Get Customize Form
+2025-11-21 12:32:37,088 INFO ipython cf_name = frappe.db.exists("Customize Form", {"doc_type": "Job Requisition"})
+2025-11-21 12:32:37,088 INFO ipython if cf_name:
+    cf = frappe.get_doc("Customize Form", cf_name)
+    
+2025-11-21 12:32:37,088 INFO ipython     # Find the section break and requested_by
+2025-11-21 12:32:37,088 INFO ipython     section_idx = None
+2025-11-21 12:32:37,088 INFO ipython     rb_idx = None
+2025-11-21 12:32:37,088 INFO ipython     for i, field in enumerate(cf.fields):
+        if field.fieldtype == "Section Break" and field.label == "Requested By":
+            section_idx = i
+            print(f"Found 'Requested By' section at index {i} (idx: {field.idx})")
+        
+2025-11-21 12:32:37,088 INFO ipython         if field.fieldname == "requested_by":
+            rb_idx = i
+            print(f"Found 'requested_by' field at index {i} (idx: {field.idx})")
+            print(f"  hidden: {field.hidden}")
+            print(f"  read_only: {field.read_only}")
+    
+2025-11-21 12:32:37,088 INFO ipython     if section_idx is not None and rb_idx is not None:
+        # Move requested_by to be right after the section
+        requested_by_field = cf.fields.pop(rb_idx)
+        cf.fields.insert(section_idx + 1, requested_by_field)
+        
+2025-11-21 12:32:37,089 INFO ipython         # Update idx values
+2025-11-21 12:32:37,089 INFO ipython         for i, field in enumerate(cf.fields):
+            field.idx = i + 1
+        
+2025-11-21 12:32:37,089 INFO ipython         print(f"\nMoved requested_by to position {section_idx + 2}")
+2025-11-21 12:32:37,089 INFO ipython         # Save
+2025-11-21 12:32:37,089 INFO ipython         cf.save()
+2025-11-21 12:32:37,089 INFO ipython         frappe.db.commit()
+2025-11-21 12:32:37,089 INFO ipython         frappe.clear_cache(doctype="Job Requisition")
+2025-11-21 12:32:37,089 INFO ipython         print("Customize Form saved successfully!")
+2025-11-21 12:32:37,089 INFO ipython     else:
+        print(f"\nCould not find both section ({section_idx}) and field ({rb_idx})")
+2025-11-21 12:32:37,089 INFO ipython else:
+    print("No Customize Form found")
+2025-11-21 12:32:37,089 INFO ipython === session end ===
+2025-11-21 12:33:23,545 INFO ipython === bench console session ===
+2025-11-21 12:33:23,546 INFO ipython import frappe
+2025-11-21 12:33:23,546 INFO ipython # Create a Client Script to ensure requested_by is visible
+2025-11-21 12:33:23,546 INFO ipython script_name = "Job Requisition - Show Requested By"
+2025-11-21 12:33:23,546 INFO ipython existing = frappe.db.exists("Client Script", {"name": script_name})
+2025-11-21 12:33:23,546 INFO ipython if existing:
+    doc = frappe.get_doc("Client Script", existing)
+else:
+    doc = frappe.new_doc("Client Script")
+    doc.name = script_name
+2025-11-21 12:33:23,546 INFO ipython doc.dt = "Job Requisition"
+2025-11-21 12:33:23,546 INFO ipython doc.view = "Form"
+2025-11-21 12:33:23,546 INFO ipython doc.enabled = 1
+2025-11-21 12:33:23,546 INFO ipython doc.script = """
+frappe.ui.form.on('Job Requisition', {
+    refresh(frm) {
+        // Make sure requested_by field is visible and read-only
+        if (frm.fields_dict.requested_by) {
+            frm.set_df_property('requested_by', 'hidden', 0);
+            frm.set_df_property('requested_by', 'read_only', 1);
+            frm.refresh_field('requested_by');
+        }
+    },
+    
+    onload(frm) {
+        // Set on load as well
+        if (frm.fields_dict.requested_by) {
+            frm.set_df_property('requested_by', 'hidden', 0);
+            frm.set_df_property('requested_by', 'read_only', 1);
+        }
+    }
+});
+"""
+2025-11-21 12:33:23,546 INFO ipython doc.save()
+2025-11-21 12:33:23,546 INFO ipython frappe.db.commit()
+2025-11-21 12:33:23,546 INFO ipython print(f"Client Script created/updated: {script_name}")
+2025-11-21 12:33:23,546 INFO ipython print("This will force the requested_by field to be visible on the form")
+2025-11-21 12:33:23,546 INFO ipython === session end ===
+2025-11-21 12:39:09,668 INFO ipython === bench console session ===
+2025-11-21 12:39:09,669 INFO ipython import frappe
+2025-11-21 12:39:09,669 INFO ipython import json
+2025-11-21 12:39:09,669 INFO ipython # Check if the field exists in the meta
+2025-11-21 12:39:09,669 INFO ipython meta = frappe.get_meta("Job Requisition")
+2025-11-21 12:39:09,669 INFO ipython print("=== JOB REQUISITION FIELD ANALYSIS ===\n")
+2025-11-21 12:39:09,669 INFO ipython # Get the requested_by field
+2025-11-21 12:39:09,669 INFO ipython field = meta.get_field("requested_by")
+2025-11-21 12:39:09,669 INFO ipython if field:
+    print("✓ Field EXISTS in meta")
+    print(f"\nField Properties:")
+    print(f"  fieldname: {field.fieldname}")
+    print(f"  fieldtype: {field.fieldtype}")
+    print(f"  label: {field.label}")
+    print(f"  hidden: {field.hidden}")
+    print(f"  read_only: {field.read_only}")
+    print(f"  permlevel: {field.permlevel}")
+    print(f"  depends_on: {field.depends_on}")
+    print(f"  mandatory_depends_on: {field.mandatory_depends_on}")
+    print(f"  idx: {field.idx}")
+    
+2025-11-21 12:39:09,669 INFO ipython     # Check what comes before and after
+2025-11-21 12:39:09,669 INFO ipython     all_fields = meta.fields
+2025-11-21 12:39:09,669 INFO ipython     for i, f in enumerate(all_fields):
+        if f.fieldname == "requested_by":
+            print(f"\n=== FIELD POSITION ===")
+            if i > 0:
+                print(f"BEFORE: {all_fields[i-1].fieldname} ({all_fields[i-1].fieldtype})")
+            print(f">>> CURRENT: {f.fieldname} ({f.fieldtype}) <<<")
+            if i < len(all_fields) - 1:
+                print(f"AFTER: {all_fields[i+1].fieldname} ({all_fields[i+1].fieldtype})")
+            break
+else:
+    print("✗ Field DOES NOT EXIST in meta")
+2025-11-21 12:39:09,669 INFO ipython # Check if there's a permission issue
+2025-11-21 12:39:09,669 INFO ipython print(f"\n=== PERMISSIONS ===")
+2025-11-21 12:39:09,669 INFO ipython from frappe.permissions import has_permission
+2025-11-21 12:39:09,669 INFO ipython can_read = has_permission("Job Requisition", "read")
+2025-11-21 12:39:09,669 INFO ipython print(f"Can read Job Requisition: {can_read}")
+2025-11-21 12:39:09,669 INFO ipython === session end ===
+2025-11-21 12:45:52,012 INFO ipython === bench console session ===
+2025-11-21 12:45:52,012 INFO ipython === session end ===
+2025-11-21 16:07:26,822 INFO ipython === bench console session ===
+2025-11-21 16:07:26,822 INFO ipython import frappe
+2025-11-21 16:07:26,822 INFO ipython # Check a blocked workspace to see its current state
+2025-11-21 16:07:26,822 INFO ipython ws = frappe.get_doc("Workspace", "Quality")
+2025-11-21 16:07:26,822 INFO ipython print(f"Quality workspace:")
+2025-11-21 16:07:26,822 INFO ipython print(f"  Public: {ws.public}")
+2025-11-21 16:07:26,822 INFO ipython print(f"  Roles: {[r.role for r in ws.roles]}")
+2025-11-21 16:07:26,822 INFO ipython # Check HR workspace
+2025-11-21 16:07:26,822 INFO ipython ws_hr = frappe.get_doc("Workspace", "HR")
+2025-11-21 16:07:26,822 INFO ipython print(f"\nHR workspace:")
+2025-11-21 16:07:26,822 INFO ipython print(f"  Public: {ws_hr.public}")
+2025-11-21 16:07:26,822 INFO ipython print(f"  Roles: {[r.role for r in ws_hr.roles]}")
+2025-11-21 16:07:26,822 INFO ipython === session end ===
+2025-11-21 16:13:45,373 INFO ipython === bench console session ===
+2025-11-21 16:13:45,373 INFO ipython import frappe
+2025-11-21 16:13:45,373 INFO ipython # Check if any users have cached workspace preferences
+2025-11-21 16:13:45,373 INFO ipython cached = frappe.db.sql("""
+    SELECT parent, defkey, defvalue 
+    FROM `tabDefaultValue`
+    WHERE defkey IN ('workspace', 'default_workspace')
+    AND defvalue IN ('HR User', 'HR Manager', 'hr-user', 'hr-manager')
+    LIMIT 5
+""", as_dict=True)
+2025-11-21 16:13:45,373 INFO ipython print(f"Found {len(cached)} cached workspace preferences")
+2025-11-21 16:13:45,373 INFO ipython === session end ===
+2025-11-21 16:33:09,387 INFO ipython === bench console session ===
+2025-11-21 16:33:09,387 INFO ipython import frappe
+2025-11-21 16:33:09,387 INFO ipython # Get all HR-related roles
+2025-11-21 16:33:09,387 INFO ipython hr_roles = frappe.get_all("Role", filters={"name": ["like", "%HR%"]}, fields=["name"])
+2025-11-21 16:33:09,388 INFO ipython print("Available HR-related roles:")
+2025-11-21 16:33:09,388 INFO ipython === session end ===
+2025-11-21 16:33:17,107 INFO ipython === bench console session ===
+2025-11-21 16:33:17,107 INFO ipython import frappe
+2025-11-21 16:33:17,107 INFO ipython # Get all roles with HR in the name
+2025-11-21 16:33:17,107 INFO ipython all_roles = frappe.get_all("Role", fields=["name"], order_by="name")
+2025-11-21 16:33:17,107 INFO ipython hr_related = [r.name for r in all_roles if "HR" in r.name or "Human" in r.name]
+2025-11-21 16:33:17,107 INFO ipython print(f"Found {len(hr_related)} HR-related roles:")
+2025-11-21 16:33:17,108 INFO ipython === session end ===
+2025-11-21 16:33:27,761 INFO ipython === bench console session ===
+2025-11-21 16:33:27,761 INFO ipython import frappe
+2025-11-21 16:33:27,761 INFO ipython all_roles = frappe.get_all("Role", fields=["name"], order_by="name")
+2025-11-21 16:33:27,761 INFO ipython hr_related = [r.name for r in all_roles if "HR" in r.name.upper() or "HUMAN" in r.name.upper()]
+2025-11-21 16:33:27,761 INFO ipython === session end ===
+2025-11-21 16:33:39,323 INFO ipython === bench console session ===
+2025-11-21 16:33:39,323 INFO ipython import frappe
+2025-11-21 16:33:39,323 INFO ipython # Check for HR role profiles
+2025-11-21 16:33:39,323 INFO ipython role_profiles = frappe.get_all("Role Profile", filters={"name": ["like", "%HR%"]}, fields=["name"])
+2025-11-21 16:33:39,323 INFO ipython print(f"Found {len(role_profiles)} HR-related Role Profiles:")
+2025-11-21 16:33:39,323 INFO ipython === session end ===
+2025-11-21 16:33:47,936 INFO ipython === bench console session ===
+2025-11-21 16:33:47,936 INFO ipython import frappe
+2025-11-21 16:33:47,936 INFO ipython role_profiles = frappe.get_all("Role Profile", filters={"name": ["like", "%HR%"]}, fields=["name"])
+2025-11-21 16:33:47,936 INFO ipython === session end ===
+2025-11-21 16:36:20,958 INFO ipython === bench console session ===
+2025-11-21 16:36:20,958 INFO ipython import frappe
+2025-11-21 16:36:20,958 INFO ipython # Check the Home workspace configuration
+2025-11-21 16:36:20,958 INFO ipython ws = frappe.get_doc("Workspace", "Home")
+2025-11-21 16:36:20,958 INFO ipython print(f"Home workspace:")
+2025-11-21 16:36:20,958 INFO ipython print(f"  Public: {ws.public}")
+2025-11-21 16:36:20,959 INFO ipython print(f"  Roles: {[r.role for r in ws.roles]}")
+2025-11-21 16:36:20,959 INFO ipython # Check if admin has HR role
+2025-11-21 16:36:20,959 INFO ipython admin_roles = frappe.get_roles("Administrator")
+2025-11-21 16:36:20,959 INFO ipython print(f"\nAdministrator roles: {admin_roles}")
+2025-11-21 16:36:20,959 INFO ipython === session end ===
+2025-11-21 16:38:24,793 INFO ipython === bench console session ===
+2025-11-21 16:38:24,793 INFO ipython import frappe
+2025-11-21 16:38:24,793 INFO ipython # Check current user (assuming you're logged in as Administrator)
+2025-11-21 16:38:24,793 INFO ipython user = "Administrator"
+2025-11-21 16:38:24,793 INFO ipython roles = frappe.get_roles(user)
+2025-11-21 16:38:24,793 INFO ipython print(f"Administrator roles:")
+2025-11-21 16:38:24,793 INFO ipython hr_related = [r for r in roles if "HR" in r or "hr" in r.lower()]
+2025-11-21 16:38:24,793 INFO ipython print(f"HR-related roles: {hr_related}")
+2025-11-21 16:38:24,793 INFO ipython # Check all workspaces and their visibility
+2025-11-21 16:38:24,793 INFO ipython print("\n\nWorkspace visibility:")
+2025-11-21 16:38:24,793 INFO ipython workspaces = frappe.get_all("Workspace", fields=["name", "public"], order_by="name")
+2025-11-21 16:38:24,793 INFO ipython === session end ===
+2025-11-21 16:41:10,724 INFO ipython === bench console session ===
+2025-11-21 16:41:10,725 INFO ipython import frappe
+2025-11-21 16:41:10,725 INFO ipython # Check all active sessions
+2025-11-21 16:41:10,725 INFO ipython sessions = frappe.db.sql("""
+    SELECT user, COUNT(*) as session_count
+    FROM `tabSessions`
+    WHERE user != 'Guest'
+    GROUP BY user
+""", as_dict=True)
+2025-11-21 16:41:10,725 INFO ipython print("Active sessions:")
+2025-11-21 16:41:10,725 INFO ipython === session end ===
+2025-11-21 16:41:26,757 INFO ipython === bench console session ===
+2025-11-21 16:41:26,758 INFO ipython import frappe
+2025-11-21 16:41:26,758 INFO ipython # Clear all sessions to force fresh login
+2025-11-21 16:41:26,758 INFO ipython frappe.db.sql("DELETE FROM `tabSessions` WHERE user != 'Guest'")
+2025-11-21 16:41:26,758 INFO ipython frappe.db.commit()
+2025-11-21 16:41:26,758 INFO ipython print("✅ All user sessions cleared")
+2025-11-21 16:41:26,758 INFO ipython # Verify Administrator no longer has HR roles
+2025-11-21 16:41:26,758 INFO ipython admin_roles = frappe.get_roles("Administrator")
+2025-11-21 16:41:26,758 INFO ipython hr_roles = [r for r in admin_roles if "HR" in r.upper()]
+2025-11-21 16:41:26,758 INFO ipython print(f"\nAdministrator HR roles after cleanup: {hr_roles}")
+2025-11-21 16:41:26,758 INFO ipython === session end ===
+2025-11-21 16:41:37,838 INFO ipython === bench console session ===
+2025-11-21 16:41:37,838 INFO ipython import frappe
+2025-11-21 16:41:37,838 INFO ipython # Check the User document directly
+2025-11-21 16:41:37,838 INFO ipython admin_doc = frappe.get_doc("User", "Administrator")
+2025-11-21 16:41:37,838 INFO ipython print("Administrator roles from User document:")
+2025-11-21 16:41:37,838 INFO ipython for role in admin_doc.roles:
+    if "HR" in role.role.upper():
+        print(f"  - {role.role}")
+2025-11-21 16:41:37,838 INFO ipython # Check Has Role table directly
+2025-11-21 16:41:37,838 INFO ipython has_roles = frappe.db.sql("""
+    SELECT role 
+    FROM `tabHas Role`
+    WHERE parent = 'Administrator'
+    AND role IN ('HR', 'HR Manager', 'HR User')
+""", as_dict=True)
+2025-11-21 16:41:37,838 INFO ipython print(f"\nHas Role table entries: {[r.role for r in has_roles]}")
+2025-11-21 16:41:37,838 INFO ipython === session end ===
+2025-11-21 16:43:43,837 INFO ipython === bench console session ===
+2025-11-21 16:43:43,838 INFO ipython import frappe
+2025-11-21 16:43:43,838 INFO ipython # Check all workspaces configuration
+2025-11-21 16:43:43,838 INFO ipython print("Current workspace configuration:")
+2025-11-21 16:43:43,838 INFO ipython print("=" * 70)
+2025-11-21 16:43:43,838 INFO ipython workspaces = frappe.get_all("Workspace", fields=["name", "title", "public"], order_by="name")
+2025-11-21 16:43:43,838 INFO ipython === session end ===
+2025-11-21 16:43:54,619 INFO ipython === bench console session ===
+2025-11-21 16:43:54,619 INFO ipython import frappe
+2025-11-21 16:43:54,619 INFO ipython workspaces = frappe.get_all("Workspace", fields=["name", "public"], order_by="name")
+2025-11-21 16:43:54,619 INFO ipython === session end ===
+2025-11-21 16:44:41,362 INFO ipython === bench console session ===
+2025-11-21 16:44:41,362 INFO ipython import frappe
+2025-11-21 16:44:41,362 INFO ipython # Check specific blocked workspaces
+2025-11-21 16:44:41,362 INFO ipython blocked_check = ["Accounting", "Buying", "Quality", "Users", "CRM", "Tools", "Stock", "Assets"]
+2025-11-21 16:44:41,362 INFO ipython print("Checking blocked workspaces configuration:")
+2025-11-21 16:44:41,362 INFO ipython === session end ===
+2025-11-21 16:44:50,136 INFO ipython === bench console session ===
+2025-11-21 16:44:50,136 INFO ipython import frappe
+2025-11-21 16:44:50,136 INFO ipython blocked_check = ["Accounting", "Buying", "Quality", "Users", "CRM", "Tools"]
+2025-11-21 16:44:50,136 INFO ipython === session end ===
+2025-11-21 16:47:11,668 INFO ipython === bench console session ===
+2025-11-21 16:47:11,668 INFO ipython import frappe
+2025-11-21 16:47:11,668 INFO ipython # Check Administrator user roles in Has Role table
+2025-11-21 16:47:11,668 INFO ipython has_roles = frappe.db.sql("""
+    SELECT role
+    FROM `tabHas Role`
+    WHERE parent = 'Administrator'
+    AND role IN ('Administrator', 'System Manager')
+""", as_dict=True)
+2025-11-21 16:47:11,668 INFO ipython print(f"Administrator Has Role entries for admin roles: {[r.role for r in has_roles]}")
+2025-11-21 16:47:11,668 INFO ipython # Check User document
+2025-11-21 16:47:11,668 INFO ipython admin_doc = frappe.get_doc("User", "Administrator")
+2025-11-21 16:47:11,668 INFO ipython admin_roles = [r.role for r in admin_doc.roles if r.role in ['Administrator', 'System Manager']]
+2025-11-21 16:47:11,668 INFO ipython print(f"Administrator User doc roles (admin only): {[r.role for r in admin_roles]}")
+2025-11-21 16:47:11,668 INFO ipython === session end ===
+2025-11-21 16:47:29,947 INFO ipython === bench console session ===
+2025-11-21 16:47:29,947 INFO ipython import frappe
+2025-11-21 16:47:29,947 INFO ipython # Clear all sessions to force fresh login
+2025-11-21 16:47:29,947 INFO ipython frappe.db.sql("DELETE FROM `tabSessions`")
+2025-11-21 16:47:29,947 INFO ipython frappe.db.commit()
+2025-11-21 16:47:29,947 INFO ipython print("✅ All sessions cleared - please log in again")
+2025-11-21 16:47:29,947 INFO ipython === session end ===
+2025-11-21 16:49:34,747 INFO ipython === bench console session ===
+2025-11-21 16:49:34,747 INFO ipython import frappe
+2025-11-21 16:49:34,747 INFO ipython from frappe.desk.desktop import get_workspace_sidebar_items
+2025-11-21 16:49:34,747 INFO ipython # Simulate as Administrator
+2025-11-21 16:49:34,747 INFO ipython frappe.set_user("Administrator")
+2025-11-21 16:49:34,747 INFO ipython # Get workspace sidebar items
+2025-11-21 16:49:34,748 INFO ipython result = get_workspace_sidebar_items()
+2025-11-21 16:49:34,748 INFO ipython print(f"Workspaces returned by get_workspace_sidebar_items for Administrator:")
+2025-11-21 16:49:34,748 INFO ipython print(f"Total pages: {len(result.get('pages', []))}")
+2025-11-21 16:49:34,748 INFO ipython === session end ===
+2025-11-21 16:49:42,373 INFO ipython === bench console session ===
+2025-11-21 16:49:42,373 INFO ipython import frappe
+2025-11-21 16:49:42,373 INFO ipython from frappe.desk.desktop import get_workspace_sidebar_items
+2025-11-21 16:49:42,373 INFO ipython frappe.set_user("Administrator")
+2025-11-21 16:49:42,373 INFO ipython result = get_workspace_sidebar_items()
+2025-11-21 16:49:42,373 INFO ipython === session end ===
+2025-11-21 16:50:00,873 INFO ipython === bench console session ===
+2025-11-21 16:50:00,873 INFO ipython import frappe
+2025-11-21 16:50:00,873 INFO ipython # Check Role document for Administrator
+2025-11-21 16:50:00,873 INFO ipython if frappe.db.exists("Role", "Administrator"):
+    admin_role = frappe.get_doc("Role", "Administrator")
+    print(f"Administrator Role properties:")
+    print(f"  Desk Access: {admin_role.desk_access}")
+    print(f"  Disabled: {admin_role.disabled}")
+    
+2025-11-21 16:50:00,873 INFO ipython # Check System Manager role
+2025-11-21 16:50:00,873 INFO ipython if frappe.db.exists("Role", "System Manager"):
+    sm_role = frappe.get_doc("Role", "System Manager")
+    print(f"\nSystem Manager Role properties:")
+    print(f"  Desk Access: {sm_role.desk_access}")
+    print(f"  Disabled: {sm_role.disabled}")
+2025-11-21 16:50:00,873 INFO ipython # Check if there's a workspace permission table
+2025-11-21 16:50:00,873 INFO ipython workspace_perms = frappe.db.sql("""
+    SELECT DISTINCT parent 
+    FROM `tabWorkspace` 
+    WHERE public = 0 
+    LIMIT 5
+""", as_dict=True)
+2025-11-21 16:50:00,873 INFO ipython print(f"\nSample non-public workspaces: {[w.parent for w in workspace_perms]}")
+2025-11-21 16:50:00,873 INFO ipython === session end ===
+2025-11-21 16:50:13,833 INFO ipython === bench console session ===
+2025-11-21 16:50:13,833 INFO ipython import frappe
+2025-11-21 16:50:13,833 INFO ipython # Check Administrator user document for workspace preferences
+2025-11-21 16:50:13,833 INFO ipython admin_doc = frappe.get_doc("User", "Administrator")
+2025-11-21 16:50:13,833 INFO ipython print(f"Administrator user properties:")
+2025-11-21 16:50:13,833 INFO ipython print(f"  Role Profile: {admin_doc.role_profile_name}")
+2025-11-21 16:50:13,833 INFO ipython print(f"  Home Page: {admin_doc.home_page if hasattr(admin_doc, 'home_page') else 'Not set'}")
+2025-11-21 16:50:13,833 INFO ipython # Check for default values
+2025-11-21 16:50:13,833 INFO ipython defaults = frappe.db.sql("""
+    SELECT defkey, defvalue
+    FROM `tabDefaultValue`
+    WHERE parent = 'Administrator'
+    AND defkey LIKE '%workspace%'
+""", as_dict=True)
+2025-11-21 16:50:13,833 INFO ipython === session end ===
+2025-11-21 16:50:27,128 INFO ipython === bench console session ===
+2025-11-21 16:50:27,129 INFO ipython import frappe
+2025-11-21 16:50:27,129 INFO ipython # Force rebuild of the workspace cache
+2025-11-21 16:50:27,129 INFO ipython frappe.cache().delete_value("workspace_sidebar_items:Administrator")
+2025-11-21 16:50:27,129 INFO ipython frappe.cache().delete_value("workspace_sidebar_items:*")
+2025-11-21 16:50:27,129 INFO ipython # Clear all workspace related cache keys
+2025-11-21 16:50:27,129 INFO ipython cache_keys = frappe.cache().get_keys("workspace*")
+2025-11-21 16:50:27,129 INFO ipython print(f"Clearing {len(cache_keys)} workspace cache keys...")
+2025-11-21 16:50:27,129 INFO ipython for key in cache_keys:
+    frappe.cache().delete_value(key)
+2025-11-21 16:50:27,129 INFO ipython print("✅ Workspace cache cleared")
+2025-11-21 16:50:27,129 INFO ipython === session end ===
+2025-11-21 16:51:39,714 INFO ipython === bench console session ===
+2025-11-21 16:51:39,714 INFO ipython import frappe
+2025-11-21 16:51:39,715 INFO ipython # Check if there's an HR role profile
+2025-11-21 16:51:39,715 INFO ipython role_profiles = frappe.get_all("Role Profile", filters={"name": ["like", "%HR%"]}, fields=["name"])
+2025-11-21 16:51:39,715 INFO ipython print(f"HR Role Profiles: {[rp.name for rp in role_profiles]}")
+2025-11-21 16:51:39,715 INFO ipython # Check what the current user sees (simulating logged in user)
+2025-11-21 16:51:39,715 INFO ipython print("\n" + "="*60)
+2025-11-21 16:51:39,715 INFO ipython print("Testing workspace visibility...")
+2025-11-21 16:51:39,715 INFO ipython # Check if Administrator user somehow has an HR role profile
+2025-11-21 16:51:39,715 INFO ipython admin_doc = frappe.get_doc("User", "Administrator")
+2025-11-21 16:51:39,715 INFO ipython if admin_doc.role_profile_name:
+    print(f"Administrator has Role Profile: {admin_doc.role_profile_name}")
+    rp_doc = frappe.get_doc("Role Profile", admin_doc.role_profile_name)
+    print(f"  Roles in profile: {[r.role for r in rp_doc.roles]}")
+else:
+    print("Administrator has no Role Profile (uses direct roles)")
+2025-11-21 16:51:39,715 INFO ipython # Check direct roles
+2025-11-21 16:51:39,715 INFO ipython roles_in_db = frappe.db.sql("""
+    SELECT role 
+    FROM `tabHas Role`
+    WHERE parent = 'Administrator'
+    ORDER BY role
+""", as_list=True)
+2025-11-21 16:51:39,715 INFO ipython print(f"\nDirect roles in database: {[r[0] for r in roles_in_db]}")
+2025-11-21 16:51:39,715 INFO ipython === session end ===
+2025-11-21 17:01:21,688 INFO ipython === bench console session ===
+2025-11-21 17:01:21,688 INFO ipython import frappe
+2025-11-21 17:01:21,688 INFO ipython # Check vijay user
+2025-11-21 17:01:21,688 INFO ipython === session end ===
+2025-11-21 17:01:30,605 INFO ipython === bench console session ===
+2025-11-21 17:01:30,605 INFO ipython import frappe
+2025-11-21 17:01:30,605 INFO ipython users = frappe.db.sql("SELECT name FROM `tabUser` WHERE name LIKE '%vijay%'", as_list=True)
+2025-11-21 17:01:30,605 INFO ipython === session end ===
+2025-11-21 17:02:16,519 INFO ipython === bench console session ===
+2025-11-21 17:02:16,520 INFO ipython import frappe
+2025-11-21 17:02:16,520 INFO ipython # Clear vijay's session
+2025-11-21 17:02:16,520 INFO ipython frappe.db.sql("DELETE FROM `tabSessions` WHERE user = 'vijay.rasquinha@atree.org'")
+2025-11-21 17:02:16,520 INFO ipython frappe.db.commit()
+2025-11-21 17:02:16,520 INFO ipython print("✅ Cleared vijay's session - please log in again")
+2025-11-21 17:02:16,520 INFO ipython === session end ===
+2025-11-21 17:03:58,031 INFO ipython === bench console session ===
+2025-11-21 17:03:58,032 INFO ipython import frappe
+2025-11-21 17:03:58,032 INFO ipython from frappe.desk.desktop import get_workspace_sidebar_items
+2025-11-21 17:03:58,032 INFO ipython # Check what vijay sees
+2025-11-21 17:03:58,032 INFO ipython frappe.set_user("vijay.rasquinha@atree.org")
+2025-11-21 17:03:58,032 INFO ipython vijay_workspaces = get_workspace_sidebar_items()
+2025-11-21 17:03:58,032 INFO ipython vijay_pages = [p.get('title') for p in vijay_workspaces.get('pages', [])]
+2025-11-21 17:03:58,032 INFO ipython print(f"Vijay sees {len(vijay_pages)} workspaces:")
+2025-11-21 17:03:58,032 INFO ipython for p in vijay_pages:
+    print(f"  - {p}")
+2025-11-21 17:03:58,032 INFO ipython # Check what Administrator sees
+2025-11-21 17:03:58,032 INFO ipython print("\n" + "="*60)
+2025-11-21 17:03:58,032 INFO ipython frappe.set_user("Administrator")
+2025-11-21 17:03:58,032 INFO ipython admin_workspaces = get_workspace_sidebar_items()
+2025-11-21 17:03:58,032 INFO ipython admin_pages = [p.get('title') for p in admin_workspaces.get('pages', [])]
+2025-11-21 17:03:58,032 INFO ipython print(f"Administrator sees {len(admin_pages)} workspaces:")
+2025-11-21 17:03:58,032 INFO ipython === session end ===
+2025-11-21 17:04:11,038 INFO ipython === bench console session ===
+2025-11-21 17:04:11,038 INFO ipython import frappe
+2025-11-21 17:04:11,038 INFO ipython # Check HR workspace configuration
+2025-11-21 17:04:11,038 INFO ipython hr_ws = frappe.get_doc("Workspace", "HR")
+2025-11-21 17:04:11,038 INFO ipython print(f"HR workspace:")
+2025-11-21 17:04:11,038 INFO ipython print(f"  public: {hr_ws.public}")
+2025-11-21 17:04:11,038 INFO ipython print(f"  roles: {[r.role for r in hr_ws.roles]}")
+2025-11-21 17:04:11,038 INFO ipython # Check non-HR workspace
+2025-11-21 17:04:11,038 INFO ipython quality_ws = frappe.get_doc("Workspace", "Quality")
+2025-11-21 17:04:11,039 INFO ipython print(f"\nQuality workspace:")
+2025-11-21 17:04:11,039 INFO ipython print(f"  public: {quality_ws.public}")
+2025-11-21 17:04:11,039 INFO ipython print(f"  roles: {[r.role for r in quality_ws.roles]}")
+2025-11-21 17:04:11,039 INFO ipython # Check vijay's roles
+2025-11-21 17:04:11,039 INFO ipython vijay_roles = frappe.get_roles("vijay.rasquinha@atree.org")
+2025-11-21 17:04:11,039 INFO ipython print(f"\nVijay's roles: {vijay_roles}")
+2025-11-21 17:04:11,039 INFO ipython === session end ===
+2025-11-21 17:04:27,147 INFO ipython === bench console session ===
+2025-11-21 17:04:27,147 INFO ipython import frappe
+2025-11-21 17:04:27,147 INFO ipython # Check Has Role table directly
+2025-11-21 17:04:27,147 INFO ipython has_hr = frappe.db.sql("""
+    SELECT role
+    FROM `tabHas Role`
+    WHERE parent = 'vijay.rasquinha@atree.org'
+    AND role = 'HR'
+""", as_list=True)
+2025-11-21 17:04:27,147 INFO ipython print(f"HR role in database for vijay: {has_hr}")
+2025-11-21 17:04:27,147 INFO ipython # Check all roles from database
+2025-11-21 17:04:27,147 INFO ipython all_roles_db = frappe.db.sql("""
+    SELECT role
+    FROM `tabHas Role`
+    WHERE parent = 'vijay.rasquinha@atree.org'
+    ORDER BY role
+""", as_list=True)
+2025-11-21 17:04:27,148 INFO ipython print(f"\nAll roles in database: {[r[0] for r in all_roles_db]}")
+2025-11-21 17:04:27,148 INFO ipython === session end ===
+2025-11-21 17:04:39,138 INFO ipython === bench console session ===
+2025-11-21 17:04:39,138 INFO ipython import frappe
+2025-11-21 17:04:39,138 INFO ipython # Add HR role directly to Has Role table
+2025-11-21 17:04:39,138 INFO ipython frappe.db.sql("""
+    INSERT INTO `tabHas Role` (name, creation, modified, modified_by, owner, docstatus, parent, parentfield, parenttype, role)
+    VALUES (UUID(), NOW(), NOW(), 'Administrator', 'Administrator', 0, 'vijay.rasquinha@atree.org', 'roles', 'User', 'HR')
+""")
+2025-11-21 17:04:39,139 INFO ipython frappe.db.commit()
+2025-11-21 17:04:39,139 INFO ipython print("✅ Added HR role to vijay via SQL")
+2025-11-21 17:04:39,139 INFO ipython # Verify
+2025-11-21 17:04:39,139 INFO ipython has_hr = frappe.db.sql("""
+    SELECT role
+    FROM `tabHas Role`
+    WHERE parent = 'vijay.rasquinha@atree.org'
+    AND role = 'HR'
+""", as_list=True)
+2025-11-21 17:04:39,139 INFO ipython print(f"Verification - HR role in database: {has_hr}")
+2025-11-21 17:04:39,139 INFO ipython === session end ===
+2025-11-21 17:04:46,714 INFO ipython === bench console session ===
+2025-11-21 17:04:46,714 INFO ipython import frappe
+2025-11-21 17:04:46,714 INFO ipython frappe.db.sql("DELETE FROM `tabSessions` WHERE user = 'vijay.rasquinha@atree.org'")
+2025-11-21 17:04:46,714 INFO ipython frappe.db.commit()
+2025-11-21 17:04:46,714 INFO ipython print("✅ Cleared vijay's session")
+2025-11-21 17:04:46,714 INFO ipython === session end ===
+2025-11-21 17:16:06,623 INFO ipython === bench console session ===
+2025-11-21 17:16:06,624 INFO ipython import frappe
+2025-11-21 17:16:06,624 INFO ipython user_email = "vijay.rasquinha@atree.org"
+2025-11-21 17:16:06,624 INFO ipython print(f"Assigning HR Role Profile to {user_email}...")
+2025-11-21 17:16:06,624 INFO ipython print("=" * 60)
+2025-11-21 17:16:06,624 INFO ipython # Get user document
+2025-11-21 17:16:06,624 INFO ipython user_doc = frappe.get_doc("User", user_email)
+2025-11-21 17:16:06,624 INFO ipython print(f"\nBefore:")
+2025-11-21 17:16:06,624 INFO ipython print(f"  Role Profile: {user_doc.role_profile_name or 'None'}")
+2025-11-21 17:16:06,624 INFO ipython print(f"  Roles: {[r.role for r in user_doc.roles]}")
+2025-11-21 17:16:06,624 INFO ipython # Assign HR Role Profile
+2025-11-21 17:16:06,624 INFO ipython user_doc.role_profile_name = "HR"
+2025-11-21 17:16:06,624 INFO ipython user_doc.save(ignore_permissions=True)
+2025-11-21 17:16:06,624 INFO ipython frappe.db.commit()
+2025-11-21 17:16:06,624 INFO ipython # Reload to see updated roles
+2025-11-21 17:16:06,624 INFO ipython user_doc.reload()
+2025-11-21 17:16:06,624 INFO ipython print(f"\nAfter:")
+2025-11-21 17:16:06,624 INFO ipython print(f"  Role Profile: {user_doc.role_profile_name}")
+2025-11-21 17:16:06,624 INFO ipython print(f"  Roles: {[r.role for r in user_doc.roles]}")
+2025-11-21 17:16:06,624 INFO ipython # Clear vijay's session so changes take effect
+2025-11-21 17:16:06,624 INFO ipython frappe.db.sql("DELETE FROM `tabSessions` WHERE user = %s", user_email)
+2025-11-21 17:16:06,624 INFO ipython frappe.db.commit()
+2025-11-21 17:16:06,624 INFO ipython print(f"\n✅ HR Role Profile assigned to {user_email}")
+2025-11-21 17:16:06,624 INFO ipython print(f"✅ Session cleared")
+2025-11-21 17:16:06,624 INFO ipython print(f"\nℹ️  Vijay must log out and log back in to see only HR workspaces")
+2025-11-21 17:16:06,624 INFO ipython print("=" * 60)
+2025-11-21 17:16:06,624 INFO ipython === session end ===
+2025-11-21 17:20:32,971 INFO ipython === bench console session ===
+2025-11-21 17:20:32,971 INFO ipython import frappe
+2025-11-21 17:20:32,971 INFO ipython # Clear all sessions to force logout
+2025-11-21 17:20:32,972 INFO ipython frappe.db.sql("DELETE FROM `tabSessions`")
+2025-11-21 17:20:32,972 INFO ipython frappe.db.commit()
+2025-11-21 17:20:32,972 INFO ipython print("✅ All sessions cleared - all users logged out")
+2025-11-21 17:20:32,972 INFO ipython === session end ===
+2025-11-21 17:23:47,237 INFO ipython === bench console session ===
+2025-11-21 17:23:47,238 INFO ipython import frappe
+2025-11-21 17:23:47,238 INFO ipython # Check vijay's actual roles
+2025-11-21 17:23:47,238 INFO ipython user_email = "vijay.rasquinha@atree.org"
+2025-11-21 17:23:47,238 INFO ipython user_doc = frappe.get_doc("User", user_email)
+2025-11-21 17:23:47,238 INFO ipython print(f"Vijay's configuration:")
+2025-11-21 17:23:47,238 INFO ipython print(f"Role Profile: {user_doc.role_profile_name}")
+2025-11-21 17:23:47,238 INFO ipython print(f"\nRoles from User document:")
+2025-11-21 17:23:47,238 INFO ipython for r in user_doc.roles:
+    print(f"  - {r.role}")
+2025-11-21 17:23:47,238 INFO ipython # Check what frappe.get_roles returns (this is what JavaScript sees)
+2025-11-21 17:23:47,238 INFO ipython roles_list = frappe.get_roles(user_email)
+2025-11-21 17:23:47,238 INFO ipython print(f"\nRoles from frappe.get_roles() (what JS sees):")
+2025-11-21 17:23:47,238 INFO ipython for r in roles_list:
+    print(f"  - {r}")
+2025-11-21 17:23:47,238 INFO ipython # Check if "All" role is present
+2025-11-21 17:23:47,238 INFO ipython === session end ===
+2025-11-21 21:55:33,056 INFO ipython === bench console session ===
+2025-11-21 21:55:33,056 INFO ipython import frappe
+2025-11-21 21:55:33,056 INFO ipython import json
+2025-11-21 21:55:33,056 INFO ipython # Get all Custom DocPerm for PI, Accounts Manager, Accounts User
+2025-11-21 21:55:33,056 INFO ipython perms = frappe.get_all(
+    "Custom DocPerm",
+    filters=[["role", "in", ["PI", "Accounts Manager", "Accounts User"]]],
+    fields=["*"]
+)
+2025-11-21 21:55:33,056 INFO ipython print(f"\nFound {len(perms)} Custom DocPerm records")
+2025-11-21 21:55:33,056 INFO ipython === session end ===
+2025-11-21 22:14:24,059 INFO ipython === bench console session ===
+2025-11-21 22:14:24,060 INFO ipython import frappe
+2025-11-21 22:14:24,060 INFO ipython import json
+2025-11-21 22:14:24,060 INFO ipython # Get all Custom DocPerm for HR Manager
+2025-11-21 22:14:24,060 INFO ipython perms = frappe.get_all(
+    "Custom DocPerm",
+    filters=[["role", "=", "HR Manager"]],
+    fields=["*"],
+    order_by="parent"
+)
+2025-11-21 22:14:24,060 INFO ipython print(f"\nFound {len(perms)} Custom DocPerm records for HR Manager")
+2025-11-21 22:14:24,060 INFO ipython === session end ===
+2025-11-21 22:21:54,439 INFO ipython === bench console session ===
+2025-11-21 22:21:54,440 INFO ipython import frappe
+2025-11-21 22:21:54,440 INFO ipython from frappe.utils import cint
+2025-11-21 22:21:54,440 INFO ipython # Get all Custom DocPerm for HR Manager
+2025-11-21 22:21:54,440 INFO ipython perms = frappe.get_all(
+    "Custom DocPerm",
+    filters=[["role", "=", "HR Manager"]],
+    fields=["parent", "read", "write", "create", "submit", "cancel", "delete"],
+    order_by="parent"
+)
+2025-11-21 22:21:54,440 INFO ipython print(f"\n{'='*80}")
+2025-11-21 22:21:54,440 INFO ipython print(f"HR Manager Custom DocPerm Records: {len(perms)} total")
+2025-11-21 22:21:54,440 INFO ipython print(f"{'='*80}\n")
+2025-11-21 22:21:54,440 INFO ipython # Group by parent DocType
+2025-11-21 22:21:54,440 INFO ipython from collections import defaultdict
+2025-11-21 22:21:54,440 INFO ipython by_doctype = defaultdict(list)
+2025-11-21 22:21:54,440 INFO ipython for p in perms:
+    by_doctype[p.parent].append(p)
+2025-11-21 22:21:54,440 INFO ipython # Display grouped by DocType
+2025-11-21 22:21:54,440 INFO ipython for doctype in sorted(by_doctype.keys()):
+    perm_list = by_doctype[doctype]
+    p = perm_list[0]  # Get first permission for this doctype
+    
+2025-11-21 22:21:54,440 INFO ipython     perms_str = []
+2025-11-21 22:21:54,440 INFO ipython     if p.read: perms_str.append("Read")
+2025-11-21 22:21:54,440 INFO ipython     if p.write: perms_str.append("Write")
+2025-11-21 22:21:54,440 INFO ipython     if p.create: perms_str.append("Create")
+2025-11-21 22:21:54,440 INFO ipython     if p.submit: perms_str.append("Submit")
+2025-11-21 22:21:54,440 INFO ipython     if p.cancel: perms_str.append("Cancel")
+2025-11-21 22:21:54,440 INFO ipython     if p.delete: perms_str.append("Delete")
+2025-11-21 22:21:54,440 INFO ipython     print(f"✓ {doctype:30s} - {', '.join(perms_str)}")
+2025-11-21 22:21:54,440 INFO ipython print(f"\n{'='*80}")
+2025-11-21 22:21:54,440 INFO ipython print(f"All HR Manager fixtures verified successfully!")
+2025-11-21 22:21:54,440 INFO ipython print(f"{'='*80}\n")
+2025-11-21 22:21:54,440 INFO ipython === session end ===
+2025-11-21 22:22:04,612 INFO ipython === bench console session ===
+2025-11-21 22:22:04,612 INFO ipython import frappe
+2025-11-21 22:22:04,612 INFO ipython perms = frappe.get_all(
+    "Custom DocPerm",
+    filters=[["role", "=", "HR Manager"]],
+    fields=["parent", "read", "write", "create", "submit", "cancel", "delete"],
+    order_by="parent"
+)
+2025-11-21 22:22:04,612 INFO ipython print(f"\nHR Manager has {len(perms)} Custom DocPerm records:\n")
+2025-11-21 22:22:04,612 INFO ipython for p in perms:
+    perms_str = []
+    if p.read: perms_str.append("R")
+    if p.write: perms_str.append("W")
+    if p.create: perms_str.append("C")
+    if p.submit: perms_str.append("S")
+    if p.cancel: perms_str.append("X")
+    if p.delete: perms_str.append("D")
+    
+2025-11-21 22:22:04,612 INFO ipython     print(f"  {p.parent:35s} [{','.join(perms_str)}]")
+2025-11-21 22:22:04,612 INFO ipython print(f"\nLegend: R=Read, W=Write, C=Create, S=Submit, X=Cancel, D=Delete\n")
+2025-11-21 22:22:04,612 INFO ipython === session end ===
+2025-11-21 22:30:59,661 INFO ipython === bench console session ===
+2025-11-21 22:30:59,662 INFO ipython import frappe
+2025-11-21 22:30:59,662 INFO ipython recruitment_doctypes = ['Job Requisition', 'Job Opening', 'Job Offer', 'Interview', 'Job Applicant']
+2025-11-21 22:30:59,662 INFO ipython print("\n" + "="*80)
+2025-11-21 22:30:59,662 INFO ipython print("Checking HR Manager permissions for recruitment DocTypes")
+2025-11-21 22:30:59,662 INFO ipython print("="*80 + "\n")
+2025-11-21 22:30:59,662 INFO ipython for dt in recruitment_doctypes:
+    # Check Custom DocPerm
+    custom = frappe.db.get_all(
+        "Custom DocPerm",
+        filters={"parent": dt, "role": "HR Manager"},
+        fields=["read", "write", "create", "submit", "cancel", "delete"]
+    )
+    
+2025-11-21 22:30:59,662 INFO ipython     # Check standard DocType permissions
+2025-11-21 22:30:59,662 INFO ipython     doc = frappe.get_meta(dt)
+2025-11-21 22:30:59,662 INFO ipython     standard = [p for p in doc.permissions if p.role == "HR Manager"]
+2025-11-21 22:30:59,662 INFO ipython     print(f"{dt}:")
+2025-11-21 22:30:59,662 INFO ipython     if custom:
+        print(f"  Custom DocPerm: {len(custom)} record(s)")
+        for c in custom:
+            print(f"    R:{c.read} W:{c.write} C:{c.create} S:{c.submit} X:{c.cancel} D:{c.delete}")
+    else:
+        print(f"  Custom DocPerm: None")
+    
+2025-11-21 22:30:59,662 INFO ipython     if standard:
+        print(f"  Standard Perm: {len(standard)} record(s)")
+        for s in standard:
+            print(f"    R:{s.read} W:{s.write} C:{s.create} S:{s.submit} X:{s.cancel} D:{s.delete}")
+    else:
+        print(f"  Standard Perm: None")
+    print()
+2025-11-21 22:30:59,662 INFO ipython === session end ===
+2025-11-21 22:31:16,249 INFO ipython === bench console session ===
+2025-11-21 22:31:16,249 INFO ipython import frappe
+2025-11-21 22:31:16,249 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-21 22:31:16,249 INFO ipython recruitment_perms = [
+    {"parent": "Job Requisition", "read": 1, "write": 1, "create": 1, "delete": 1, "submit": 0, "cancel": 0},
+    {"parent": "Job Opening", "read": 1, "write": 1, "create": 1, "delete": 1, "submit": 0, "cancel": 0},
+    {"parent": "Job Applicant", "read": 1, "write": 1, "create": 1, "delete": 1, "submit": 0, "cancel": 0},
+    {"parent": "Interview", "read": 1, "write": 1, "create": 1, "delete": 1, "submit": 0, "cancel": 0},
+    {"parent": "Job Offer", "read": 1, "write": 1, "create": 1, "delete": 1, "submit": 1, "cancel": 1},
+]
+2025-11-21 22:31:16,249 INFO ipython added = 0
+2025-11-21 22:31:16,249 INFO ipython for perm in recruitment_perms:
+    parent = perm["parent"]
+    
+2025-11-21 22:31:16,249 INFO ipython     # Check if already exists
+2025-11-21 22:31:16,249 INFO ipython     if frappe.db.exists("Custom DocPerm", {"parent": parent, "role": "HR Manager", "permlevel": 0}):
+        print(f"✓ Already exists: {parent}")
+        continue
+2025-11-21 22:31:16,249 INFO ipython     # Create Custom DocPerm
+2025-11-21 22:31:16,250 INFO ipython     doc = frappe.get_doc({
+        "doctype": "Custom DocPerm",
+        "parent": parent,
+        "parenttype": "DocType",
+        "parentfield": "permissions",
+        "role": "HR Manager",
+        "permlevel": 0,
+        **{k: v for k, v in perm.items() if k != "parent"}
+    })
+2025-11-21 22:31:16,250 INFO ipython     doc.insert(ignore_permissions=True)
+2025-11-21 22:31:16,250 INFO ipython     added += 1
+2025-11-21 22:31:16,250 INFO ipython     print(f"✓ Added: {parent}")
+2025-11-21 22:31:16,250 INFO ipython frappe.db.commit()
+2025-11-21 22:31:16,250 INFO ipython print(f"\n✓ Added {added} Custom DocPerm records for HR Manager")
+2025-11-21 22:31:16,250 INFO ipython print("Run: bench export-fixtures")
+2025-11-21 22:31:16,250 INFO ipython === session end ===
+2025-11-21 22:39:08,767 INFO ipython === bench console session ===
+2025-11-21 22:39:08,767 INFO ipython import frappe
+2025-11-21 22:39:08,767 INFO ipython # Check Custom DocPerm
+2025-11-21 22:39:08,768 INFO ipython custom = frappe.db.get_all(
+    "Custom DocPerm",
+    filters={"parent": "Project", "role": "HR Manager"},
+    fields=["name", "read", "write", "create", "delete", "permlevel"]
+)
+2025-11-21 22:39:08,768 INFO ipython print("\nCustom DocPerm for HR Manager on Project:")
+2025-11-21 22:39:08,768 INFO ipython === session end ===
+2025-11-21 22:42:39,929 INFO ipython === bench console session ===
+2025-11-21 22:42:39,929 INFO ipython import frappe
+2025-11-21 22:42:39,929 INFO ipython # Check if there's a standard permission
+2025-11-21 22:42:39,929 INFO ipython project = frappe.get_doc("DocType", "Project")
+2025-11-21 22:42:39,929 INFO ipython hr_perms = [p for p in project.permissions if p.role == "HR Manager"]
+2025-11-21 22:42:39,929 INFO ipython if hr_perms:
+    print("Standard HR Manager permissions found on Project DocType:")
+    for p in hr_perms:
+        print(f"  Read: {p.read}, Write: {p.write}, Create: {p.create}, Delete: {p.delete}")
+        
+2025-11-21 22:42:39,929 INFO ipython     # Remove the standard permission
+2025-11-21 22:42:39,929 INFO ipython     for p in hr_perms:
+        project.permissions.remove(p)
+    
+2025-11-21 22:42:39,929 INFO ipython     project.save()
+2025-11-21 22:42:39,929 INFO ipython     frappe.db.commit()
+2025-11-21 22:42:39,929 INFO ipython     print("\n✓ Removed standard HR Manager permissions from Project")
+2025-11-21 22:42:39,929 INFO ipython else:
+    print("No standard HR Manager permissions found")
+2025-11-21 22:42:39,929 INFO ipython === session end ===
+2025-11-21 22:42:52,390 INFO ipython === bench console session ===
+2025-11-21 22:42:52,390 INFO ipython import frappe
+2025-11-21 22:42:52,390 INFO ipython # Test actual permission
+2025-11-21 22:42:52,390 INFO ipython has_perm = frappe.has_permission("Project", "create", user="test_hr@example.com")
+2025-11-21 22:42:52,390 INFO ipython print(f"Can HR Manager create Projects: {has_perm}")
+2025-11-21 22:42:52,390 INFO ipython # Check what frappe sees
+2025-11-21 22:42:52,390 INFO ipython perms = frappe.get_meta("Project").get_permissions("HR Manager")
+2025-11-21 22:42:52,390 INFO ipython print(f"\nEffective permissions for HR Manager on Project:")
+2025-11-21 22:42:52,391 INFO ipython === session end ===
+2025-11-21 22:44:13,564 INFO ipython === bench console session ===
+2025-11-21 22:44:13,564 INFO ipython import frappe
+2025-11-21 22:44:13,564 INFO ipython # Check if HR Manager has standard permissions on Project
+2025-11-21 22:44:13,564 INFO ipython meta = frappe.get_meta("Project")
+2025-11-21 22:44:13,564 INFO ipython standard_perms = [p for p in meta.permissions if p.role == "HR Manager"]
+2025-11-21 22:44:13,564 INFO ipython print("Standard permissions for HR Manager on Project:")
+2025-11-21 22:44:13,564 INFO ipython === session end ===
+2025-11-21 22:45:38,146 INFO ipython === bench console session ===
+2025-11-21 22:45:38,146 INFO ipython import frappe
+2025-11-21 22:45:38,146 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-21 22:45:38,146 INFO ipython # Delete existing Custom DocPerm for HR Manager on Project
+2025-11-21 22:45:38,146 INFO ipython existing = frappe.db.get_all("Custom DocPerm", filters={"parent": "Project", "role": "HR Manager"})
+2025-11-21 22:45:38,146 INFO ipython for e in existing:
+    frappe.delete_doc("Custom DocPerm", e.name, ignore_permissions=True)
+    print(f"Deleted: {e.name}")
+2025-11-21 22:45:38,146 INFO ipython # Create new Custom DocPerm with ALL permissions explicitly set
+2025-11-21 22:45:38,146 INFO ipython doc = frappe.get_doc({
+    "doctype": "Custom DocPerm",
+    "parent": "Project",
+    "parenttype": "DocType",
+    "parentfield": "permissions",
+    "role": "HR Manager",
+    "permlevel": 0,
+    "read": 1,
+    "write": 0,
+    "create": 0,
+    "delete": 0,
+    "submit": 0,
+    "cancel": 0,
+    "amend": 0,
+    "if_owner": 0,
+    "print": 0,
+    "email": 0,
+    "report": 0,
+    "import": 0,
+    "export": 0,
+    "share": 0,
+    "select": 0,
+})
+2025-11-21 22:45:38,146 INFO ipython doc.insert(ignore_permissions=True)
+2025-11-21 22:45:38,146 INFO ipython frappe.db.commit()
+2025-11-21 22:45:38,146 INFO ipython print(f"\n✓ Created new Custom DocPerm: {doc.name}")
+2025-11-21 22:45:38,146 INFO ipython print("  Read: 1, all other permissions: 0")
+2025-11-21 22:45:38,146 INFO ipython === session end ===
+2025-11-21 22:48:43,107 INFO ipython === bench console session ===
+2025-11-21 22:48:43,107 INFO ipython import frappe
+2025-11-21 22:48:43,107 INFO ipython import json
+2025-11-21 22:48:43,107 INFO ipython # Get ALL permissions for Project
+2025-11-21 22:48:43,107 INFO ipython meta = frappe.get_meta("Project")
+2025-11-21 22:48:43,107 INFO ipython print("\n" + "="*80)
+2025-11-21 22:48:43,107 INFO ipython print("ALL PERMISSIONS ON PROJECT DOCTYPE")
+2025-11-21 22:48:43,107 INFO ipython print("="*80 + "\n")
+2025-11-21 22:48:43,107 INFO ipython print("STANDARD PERMISSIONS:")
+2025-11-21 22:48:43,107 INFO ipython for p in meta.permissions:
+    if p.role == "HR Manager":
+        print(f"  HR Manager (permlevel {p.permlevel}):")
+        print(f"    Read: {p.read}, Write: {p.write}, Create: {p.create}, Delete: {p.delete}")
+2025-11-21 22:48:43,107 INFO ipython print("\nCUSTOM DOCPERM (from database):")
+2025-11-21 22:48:43,107 INFO ipython custom = frappe.db.sql("""
+    SELECT name, permlevel, `read`, `write`, `create`, `delete`
+    FROM `tabCustom DocPerm`
+    WHERE parent = 'Project' AND role = 'HR Manager'
+""", as_dict=True)
+2025-11-21 22:48:43,107 INFO ipython for c in custom:
+    print(f"  {c.name} (permlevel {c.permlevel}):")
+    print(f"    Read: {c.read}, Write: {c.write}, Create: {c.create}, Delete: {c.delete}")
+2025-11-21 22:48:43,107 INFO ipython print("\n" + "="*80)
+2025-11-21 22:48:43,107 INFO ipython === session end ===
+2025-11-21 22:48:58,734 INFO ipython === bench console session ===
+2025-11-21 22:48:58,734 INFO ipython import frappe
+2025-11-21 22:48:58,734 INFO ipython meta = frappe.get_meta("Project")
+2025-11-21 22:48:58,734 INFO ipython print("\n" + "="*80)
+2025-11-21 22:48:58,734 INFO ipython print("ALL ROLES WITH PROJECT PERMISSIONS")
+2025-11-21 22:48:58,734 INFO ipython print("="*80 + "\n")
+2025-11-21 22:48:58,734 INFO ipython print("STANDARD PERMISSIONS:")
+2025-11-21 22:48:58,734 INFO ipython for p in meta.permissions:
+    if p.create or p.write or p.delete:
+        print(f"  {p.role} (permlevel {p.permlevel}):")
+        print(f"    Read: {p.read}, Write: {p.write}, Create: {p.create}, Delete: {p.delete}")
+2025-11-21 22:48:58,734 INFO ipython print("\nCUSTOM DOCPERM:")
+2025-11-21 22:48:58,734 INFO ipython custom = frappe.db.sql("""
+    SELECT role, permlevel, `read`, `write`, `create`, `delete`
+    FROM `tabCustom DocPerm`
+    WHERE parent = 'Project' AND (`create` = 1 OR `write` = 1 OR `delete` = 1)
+    ORDER BY role
+""", as_dict=True)
+2025-11-21 22:48:58,734 INFO ipython for c in custom:
+    print(f"  {c.role} (permlevel {c.permlevel}):")
+    print(f"    Read: {c.read}, Write: {c.write}, Create: {c.create}, Delete: {c.delete}")
+2025-11-21 22:48:58,734 INFO ipython print("\n" + "="*80)
+2025-11-21 22:48:58,734 INFO ipython === session end ===
+2025-11-21 22:49:46,338 INFO ipython === bench console session ===
+2025-11-21 22:49:46,338 INFO ipython import frappe
+2025-11-21 22:49:46,338 INFO ipython user = "vijay@atree.org"  # or just "vijay" - let me check both
+2025-11-21 22:49:46,338 INFO ipython # Try to find the user
+2025-11-21 22:49:46,338 INFO ipython users = frappe.db.get_all("User", filters={"name": ["like", "%vijay%"]}, fields=["name", "full_name"])
+2025-11-21 22:49:46,338 INFO ipython print("\nUsers matching 'vijay':")
+2025-11-21 22:49:46,338 INFO ipython for u in users:
+    print(f"  - {u.name} ({u.full_name})")
+2025-11-21 22:49:46,338 INFO ipython # Get roles for the likely user
+2025-11-21 22:49:46,338 INFO ipython if users:
+    username = users[0].name
+    roles = frappe.get_roles(username)
+    
+2025-11-21 22:49:46,338 INFO ipython     print(f"\nRoles for {username}:")
+2025-11-21 22:49:46,338 INFO ipython     for role in sorted(roles):
+        print(f"  - {role}")
+    
+2025-11-21 22:49:46,338 INFO ipython     # Check which roles give Project create permission
+2025-11-21 22:49:46,338 INFO ipython     project_create_roles = ["Projects Manager", "Projects User", "Accounts Manager", "Accounts User"]
+2025-11-21 22:49:46,338 INFO ipython     conflicting = [r for r in roles if r in project_create_roles]
+2025-11-21 22:49:46,338 INFO ipython === session end ===
+2025-11-21 22:51:21,917 INFO ipython === bench console session ===
+2025-11-21 22:51:21,917 INFO ipython import frappe
+2025-11-21 22:51:21,917 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-21 22:51:21,917 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-21 22:51:21,917 INFO ipython # Get user document
+2025-11-21 22:51:21,917 INFO ipython user = frappe.get_doc("User", username)
+2025-11-21 22:51:21,917 INFO ipython # Find and remove Projects User role
+2025-11-21 22:51:21,917 INFO ipython roles_before = [r.role for r in user.roles]
+2025-11-21 22:51:21,917 INFO ipython print(f"Roles before: {', '.join(sorted(roles_before))}\n")
+2025-11-21 22:51:21,917 INFO ipython # Remove Projects User role
+2025-11-21 22:51:21,917 INFO ipython user.roles = [r for r in user.roles if r.role != "Projects User"]
+2025-11-21 22:51:21,917 INFO ipython # Save user
+2025-11-21 22:51:21,917 INFO ipython user.save(ignore_permissions=True)
+2025-11-21 22:51:21,917 INFO ipython frappe.db.commit()
+2025-11-21 22:51:21,917 INFO ipython roles_after = [r.role for r in user.roles]
+2025-11-21 22:51:21,917 INFO ipython print(f"Roles after: {', '.join(sorted(roles_after))}\n")
+2025-11-21 22:51:21,917 INFO ipython print("✓ Removed 'Projects User' role from vijay.rasquinha@atree.org")
+2025-11-21 22:51:21,917 INFO ipython print("\nPlease log out and log back in to apply the change.")
+2025-11-21 22:51:21,917 INFO ipython === session end ===
+2025-11-21 22:51:32,668 INFO ipython === bench console session ===
+2025-11-21 22:51:32,668 INFO ipython import frappe
+2025-11-21 22:51:32,668 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-21 22:51:32,668 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-21 22:51:32,668 INFO ipython # Get user document
+2025-11-21 22:51:32,668 INFO ipython user = frappe.get_doc("User", username)
+2025-11-21 22:51:32,668 INFO ipython print(f"Roles before removal:")
+2025-11-21 22:51:32,668 INFO ipython for r in user.roles:
+    print(f"  - {r.role}")
+2025-11-21 22:51:32,668 INFO ipython # Find and remove the Projects User role
+2025-11-21 22:51:32,668 INFO ipython to_remove = None
+2025-11-21 22:51:32,668 INFO ipython for r in user.roles:
+    if r.role == "Projects User":
+        to_remove = r
+        break
+2025-11-21 22:51:32,668 INFO ipython if to_remove:
+    user.roles.remove(to_remove)
+    user.save(ignore_permissions=True)
+    frappe.db.commit()
+    
+2025-11-21 22:51:32,668 INFO ipython     print(f"\n✓ Removed 'Projects User' role")
+2025-11-21 22:51:32,668 INFO ipython     print(f"\nRoles after removal:")
+2025-11-21 22:51:32,668 INFO ipython     for r in user.roles:
+        print(f"  - {r.role}")
+else:
+    print("\n✗ 'Projects User' role not found")
+2025-11-21 22:51:32,668 INFO ipython === session end ===
+2025-11-21 22:51:45,026 INFO ipython === bench console session ===
+2025-11-21 22:51:45,026 INFO ipython import frappe
+2025-11-21 22:51:45,026 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-21 22:51:45,026 INFO ipython roles = frappe.get_roles(username)
+2025-11-21 22:51:45,026 INFO ipython print("\nCurrent roles for vijay.rasquinha@atree.org:")
+2025-11-21 22:51:45,026 INFO ipython for role in sorted(roles):
+    print(f"  - {role}")
+2025-11-21 22:51:45,026 INFO ipython # Check if Projects User is still there
+2025-11-21 22:51:45,026 INFO ipython if "Projects User" in roles:
+    print("\n✗ Projects User role still present")
+else:
+    print("\n✓ Projects User role successfully removed")
+    
+2025-11-21 22:51:45,026 INFO ipython # Check Project permissions
+2025-11-21 22:51:45,026 INFO ipython print("\nCan vijay create Projects?")
+2025-11-21 22:51:45,026 INFO ipython print(f"  frappe.has_permission check: {frappe.has_permission('Project', 'create', user=username)}")
+2025-11-21 22:51:45,026 INFO ipython === session end ===
+2025-11-21 22:52:26,267 INFO ipython === bench console session ===
+2025-11-21 22:52:26,267 INFO ipython import frappe
+2025-11-21 22:52:26,267 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-21 22:52:26,268 INFO ipython # Force reload from database
+2025-11-21 22:52:26,268 INFO ipython frappe.clear_cache(user=username)
+2025-11-21 22:52:26,268 INFO ipython roles = frappe.get_roles(username)
+2025-11-21 22:52:26,268 INFO ipython print("\nCurrent roles for vijay.rasquinha@atree.org:")
+2025-11-21 22:52:26,268 INFO ipython for role in sorted(roles):
+    if role not in ["All", "Guest", "Desk User"]:  # Skip system roles
+        print(f"  - {role}")
+2025-11-21 22:52:26,268 INFO ipython # Check if Projects User is still there
+2025-11-21 22:52:26,268 INFO ipython if "Projects User" in roles:
+    print("\n✗ Projects User role still present")
+else:
+    print("\n✓ Projects User role successfully removed")
+    
+2025-11-21 22:52:26,268 INFO ipython # Check Project permissions
+2025-11-21 22:52:26,268 INFO ipython can_create = frappe.has_permission('Project', 'create', user=username)
+2025-11-21 22:52:26,268 INFO ipython print(f"\nCan vijay create Projects? {can_create}")
+2025-11-21 22:52:26,268 INFO ipython === session end ===
+2025-11-21 22:59:37,572 INFO ipython === bench console session ===
+2025-11-21 22:59:37,573 INFO ipython import frappe
+2025-11-21 22:59:37,573 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-21 22:59:37,573 INFO ipython # Get all Custom DocPerm for Accounts Manager on Project
+2025-11-21 22:59:37,573 INFO ipython perms = frappe.get_all(
+    "Custom DocPerm",
+    filters={"parent": "Project", "role": "Accounts Manager"},
+    fields=["name", "read", "write", "create", "delete"]
+)
+2025-11-21 22:59:37,573 INFO ipython print("\nCurrent Accounts Manager permissions on Project:")
+2025-11-21 22:59:37,573 INFO ipython for p in perms:
+    print(f"  {p.name}: Read={p.read}, Write={p.write}, Create={p.create}, Delete={p.delete}")
+2025-11-21 22:59:37,573 INFO ipython # Update to remove delete permission
+2025-11-21 22:59:37,573 INFO ipython for p in perms:
+    if p.delete:
+        doc = frappe.get_doc("Custom DocPerm", p.name)
+        doc.delete = 0
+        doc.save(ignore_permissions=True)
+        print(f"\n✓ Removed delete permission from {p.name}")
+2025-11-21 22:59:37,573 INFO ipython frappe.db.commit()
+2025-11-21 22:59:37,573 INFO ipython print("\n✓ Accounts Manager can no longer delete Projects")
+2025-11-21 22:59:37,573 INFO ipython === session end ===
+2025-11-21 22:59:47,924 INFO ipython === bench console session ===
+2025-11-21 22:59:47,924 INFO ipython import frappe
+2025-11-21 22:59:47,924 INFO ipython meta = frappe.get_meta("Project")
+2025-11-21 22:59:47,924 INFO ipython print("\nStandard permissions for Accounts Manager on Project:")
+2025-11-21 22:59:47,924 INFO ipython === session end ===
+2025-11-21 23:02:12,875 INFO ipython === bench console session ===
+2025-11-21 23:02:12,875 INFO ipython import frappe
+2025-11-21 23:02:12,875 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-21 23:02:12,875 INFO ipython roles = frappe.get_roles(username)
+2025-11-21 23:02:12,875 INFO ipython print("\nAll roles for vijay.rasquinha@atree.org:")
+2025-11-21 23:02:12,875 INFO ipython for role in sorted(roles):
+    if role not in ["All", "Guest", "Desk User"]:
+        print(f"  - {role}")
+2025-11-21 23:02:12,875 INFO ipython # Check which roles can delete Projects
+2025-11-21 23:02:12,875 INFO ipython meta = frappe.get_meta("Project")
+2025-11-21 23:02:12,875 INFO ipython delete_roles = []
+2025-11-21 23:02:12,875 INFO ipython for perm in meta.permissions:
+    if perm.delete:
+        delete_roles.append(perm.role)
+2025-11-21 23:02:12,875 INFO ipython print("\n\nRoles that can delete Projects:")
+2025-11-21 23:02:12,875 INFO ipython === session end ===
+2025-11-21 23:04:06,718 INFO ipython === bench console session ===
+2025-11-21 23:04:06,719 INFO ipython import frappe
+2025-11-21 23:04:06,719 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-21 23:04:06,719 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-21 23:04:06,719 INFO ipython # Get user document
+2025-11-21 23:04:06,719 INFO ipython user = frappe.get_doc("User", username)
+2025-11-21 23:04:06,719 INFO ipython print("Roles before removal:")
+2025-11-21 23:04:06,719 INFO ipython for r in user.roles:
+    print(f"  - {r.role}")
+2025-11-21 23:04:06,719 INFO ipython # Find and remove the Projects Manager role
+2025-11-21 23:04:06,719 INFO ipython to_remove = None
+2025-11-21 23:04:06,719 INFO ipython for r in user.roles:
+    if r.role == "Projects Manager":
+        to_remove = r
+        break
+2025-11-21 23:04:06,719 INFO ipython if to_remove:
+    user.roles.remove(to_remove)
+    user.save(ignore_permissions=True)
+    frappe.db.commit()
+    
+2025-11-21 23:04:06,719 INFO ipython     print(f"\n✓ Removed 'Projects Manager' role")
+2025-11-21 23:04:06,719 INFO ipython     print(f"\nRoles after removal:")
+2025-11-21 23:04:06,719 INFO ipython     for r in user.roles:
+        print(f"  - {r.role}")
+else:
+    print("\n✗ 'Projects Manager' role not found")
+2025-11-21 23:04:06,719 INFO ipython === session end ===
+2025-11-21 23:04:28,743 INFO ipython === bench console session ===
+2025-11-21 23:04:28,744 INFO ipython import frappe
+2025-11-21 23:04:28,744 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-21 23:04:28,744 INFO ipython # Force reload from database
+2025-11-21 23:04:28,744 INFO ipython frappe.clear_cache(user=username)
+2025-11-21 23:04:28,744 INFO ipython roles = frappe.get_roles(username)
+2025-11-21 23:04:28,744 INFO ipython print("\nCurrent roles for vijay.rasquinha@atree.org:")
+2025-11-21 23:04:28,744 INFO ipython for role in sorted(roles):
+    if role not in ["All", "Guest", "Desk User"]:
+        print(f"  - {role}")
+2025-11-21 23:04:28,744 INFO ipython # Check if Projects Manager is still there
+2025-11-21 23:04:28,744 INFO ipython if "Projects Manager" in roles:
+    print("\n✗ Projects Manager role still present")
+else:
+    print("\n✓ Projects Manager role successfully removed")
+    
+2025-11-21 23:04:28,744 INFO ipython # Check Project delete permission
+2025-11-21 23:04:28,744 INFO ipython can_delete = frappe.has_permission('Project', 'delete', user=username)
+2025-11-21 23:04:28,744 INFO ipython can_create = frappe.has_permission('Project', 'create', user=username)
+2025-11-21 23:04:28,744 INFO ipython can_write = frappe.has_permission('Project', 'write', user=username)
+2025-11-21 23:04:28,744 INFO ipython print(f"\nProject permissions for vijay (as Accounts Manager):")
+2025-11-21 23:04:28,744 INFO ipython print(f"  Create: {can_create}")
+2025-11-21 23:04:28,744 INFO ipython print(f"  Write: {can_write}")
+2025-11-21 23:04:28,744 INFO ipython print(f"  Delete: {can_delete}")
+2025-11-21 23:04:28,744 INFO ipython === session end ===
+2025-11-21 23:04:58,810 INFO ipython === bench console session ===
+2025-11-21 23:04:58,811 INFO ipython import frappe
+2025-11-21 23:04:58,811 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-21 23:04:58,811 INFO ipython # Force reload from database
+2025-11-21 23:04:58,811 INFO ipython frappe.clear_cache(user=username)
+2025-11-21 23:04:58,811 INFO ipython roles = frappe.get_roles(username)
+2025-11-21 23:04:58,811 INFO ipython print("\nCurrent roles for vijay.rasquinha@atree.org:")
+2025-11-21 23:04:58,811 INFO ipython for role in sorted(roles):
+    if role not in ["All", "Guest", "Desk User"]:
+        print(f"  - {role}")
+2025-11-21 23:04:58,811 INFO ipython # Check Project delete permission
+2025-11-21 23:04:58,811 INFO ipython can_delete = frappe.has_permission('Project', 'delete', user=username)
+2025-11-21 23:04:58,811 INFO ipython can_create = frappe.has_permission('Project', 'create', user=username)
+2025-11-21 23:04:58,811 INFO ipython can_write = frappe.has_permission('Project', 'write', user=username)
+2025-11-21 23:04:58,811 INFO ipython print(f"\nProject permissions for vijay (as Accounts Manager):")
+2025-11-21 23:04:58,811 INFO ipython print(f"  Create: {can_create}")
+2025-11-21 23:04:58,811 INFO ipython print(f"  Write: {can_write}")
+2025-11-21 23:04:58,811 INFO ipython print(f"  Delete: {can_delete}")
+2025-11-21 23:04:58,811 INFO ipython === session end ===
+2025-11-21 23:10:48,925 INFO ipython === bench console session ===
+2025-11-21 23:10:48,926 INFO ipython import frappe
+2025-11-21 23:10:48,926 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-21 23:10:48,926 INFO ipython doctypes = ["Department", "Designation"]
+2025-11-21 23:10:48,926 INFO ipython for dt in doctypes:
+    # Check if already exists
+    existing = frappe.db.exists("Custom DocPerm", {"parent": dt, "role": "Accounts Manager", "permlevel": 0})
+    
+2025-11-21 23:10:48,926 INFO ipython     if existing:
+        print(f"✓ Already exists: {dt}")
+        continue
+2025-11-21 23:10:48,926 INFO ipython     # Create Custom DocPerm - Read only
+2025-11-21 23:10:48,926 INFO ipython     doc = frappe.get_doc({
+        "doctype": "Custom DocPerm",
+        "parent": dt,
+        "parenttype": "DocType",
+        "parentfield": "permissions",
+        "role": "Accounts Manager",
+        "permlevel": 0,
+        "read": 1,
+        "write": 0,
+        "create": 0,
+        "delete": 0,
+        "submit": 0,
+        "cancel": 0,
+    })
+2025-11-21 23:10:48,926 INFO ipython     doc.insert(ignore_permissions=True)
+2025-11-21 23:10:48,926 INFO ipython     print(f"✓ Added read-only permission: {dt}")
+2025-11-21 23:10:48,926 INFO ipython frappe.db.commit()
+2025-11-21 23:10:48,926 INFO ipython print("\n✓ Accounts Manager can now view Department and Designation (read-only)")
+2025-11-21 23:10:48,926 INFO ipython === session end ===
+2025-11-21 23:11:00,853 INFO ipython === bench console session ===
+2025-11-21 23:11:00,853 INFO ipython import frappe
+2025-11-21 23:11:00,853 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-21 23:11:00,853 INFO ipython # Check if Department permission exists
+2025-11-21 23:11:00,853 INFO ipython existing = frappe.db.exists("Custom DocPerm", {"parent": "Department", "role": "Accounts Manager", "permlevel": 0})
+2025-11-21 23:11:00,853 INFO ipython === session end ===
+2025-11-21 23:14:58,654 INFO ipython === bench console session ===
+2025-11-21 23:14:58,654 INFO ipython import frappe
+2025-11-21 23:14:58,654 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-21 23:14:58,654 INFO ipython # Clear user cache
+2025-11-21 23:14:58,654 INFO ipython frappe.clear_cache(user=username)
+2025-11-21 23:14:58,654 INFO ipython # Test permissions for Department and Designation
+2025-11-21 23:14:58,654 INFO ipython dept_read = frappe.has_permission('Department', 'read', user=username)
+2025-11-21 23:14:58,654 INFO ipython dept_create = frappe.has_permission('Department', 'create', user=username)
+2025-11-21 23:14:58,654 INFO ipython dept_write = frappe.has_permission('Department', 'write', user=username)
+2025-11-21 23:14:58,655 INFO ipython desig_read = frappe.has_permission('Designation', 'read', user=username)
+2025-11-21 23:14:58,655 INFO ipython desig_create = frappe.has_permission('Designation', 'create', user=username)
+2025-11-21 23:14:58,655 INFO ipython desig_write = frappe.has_permission('Designation', 'write', user=username)
+2025-11-21 23:14:58,655 INFO ipython print("\n" + "="*80)
+2025-11-21 23:14:58,655 INFO ipython print("ACCOUNTS MANAGER PERMISSIONS TEST (vijay)")
+2025-11-21 23:14:58,655 INFO ipython print("="*80)
+2025-11-21 23:14:58,655 INFO ipython print("\nDepartment:")
+2025-11-21 23:14:58,655 INFO ipython print(f"  Read: {dept_read}")
+2025-11-21 23:14:58,655 INFO ipython print(f"  Create: {dept_create}")
+2025-11-21 23:14:58,655 INFO ipython print(f"  Write: {dept_write}")
+2025-11-21 23:14:58,655 INFO ipython print("\nDesignation:")
+2025-11-21 23:14:58,655 INFO ipython print(f"  Read: {desig_read}")
+2025-11-21 23:14:58,655 INFO ipython print(f"  Create: {desig_create}")
+2025-11-21 23:14:58,655 INFO ipython print(f"  Write: {desig_write}")
+2025-11-21 23:14:58,655 INFO ipython # Summary
+2025-11-21 23:14:58,655 INFO ipython print("\n" + "="*80)
+2025-11-21 23:14:58,655 INFO ipython if dept_read and desig_read and not dept_create and not desig_create:
+    print("✓ SUCCESS: Accounts Manager has read-only access to Department & Designation")
+else:
+    print("✗ ISSUE: Permissions not as expected")
+print("="*80 + "\n")
+2025-11-21 23:14:58,655 INFO ipython === session end ===
+2025-11-21 23:16:54,861 INFO ipython === bench console session ===
+2025-11-21 23:16:54,862 INFO ipython import frappe
+2025-11-21 23:16:54,862 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-21 23:16:54,862 INFO ipython # Check if Warehouse permission exists
+2025-11-21 23:16:54,862 INFO ipython existing = frappe.db.exists("Custom DocPerm", {"parent": "Warehouse", "role": "Accounts Manager", "permlevel": 0})
+2025-11-21 23:16:54,862 INFO ipython === session end ===
+2025-11-23 17:49:39,404 INFO ipython === bench console session ===
+2025-11-23 17:49:39,405 INFO ipython import frappe
+2025-11-23 17:49:39,405 INFO ipython # Find an HR Manager user
+2025-11-23 17:49:39,405 INFO ipython hr_users = frappe.db.sql("""
+    SELECT DISTINCT u.name 
+    FROM tabUser u
+    JOIN `tabHas Role` hr ON hr.parent = u.name
+    WHERE hr.role = 'HR Manager' AND u.name != 'Administrator'
+    LIMIT 1
+""", as_dict=True)
+2025-11-23 17:49:39,405 INFO ipython if hr_users:
+    username = hr_users[0].name
+else:
+    username = "vijay.rasquinha@atree.org"  # fallback
+2025-11-23 17:49:39,405 INFO ipython # Clear user cache
+2025-11-23 17:49:39,405 INFO ipython frappe.clear_cache(user=username)
+2025-11-23 17:49:39,405 INFO ipython # Test permissions for Employment Type and Branch
+2025-11-23 17:49:39,405 INFO ipython emp_type_read = frappe.has_permission('Employment Type', 'read', user=username)
+2025-11-23 17:49:39,405 INFO ipython emp_type_create = frappe.has_permission('Employment Type', 'create', user=username)
+2025-11-23 17:49:39,405 INFO ipython emp_type_write = frappe.has_permission('Employment Type', 'write', user=username)
+2025-11-23 17:49:39,405 INFO ipython branch_read = frappe.has_permission('Branch', 'read', user=username)
+2025-11-23 17:49:39,405 INFO ipython branch_create = frappe.has_permission('Branch', 'create', user=username)
+2025-11-23 17:49:39,405 INFO ipython branch_write = frappe.has_permission('Branch', 'write', user=username)
+2025-11-23 17:49:39,405 INFO ipython print("\n" + "="*80)
+2025-11-23 17:49:39,405 INFO ipython print(f"HR MANAGER PERMISSIONS TEST ({username})")
+2025-11-23 17:49:39,405 INFO ipython print("="*80)
+2025-11-23 17:49:39,405 INFO ipython print("\nEmployment Type:")
+2025-11-23 17:49:39,405 INFO ipython print(f"  Read: {emp_type_read}")
+2025-11-23 17:49:39,405 INFO ipython print(f"  Create: {emp_type_create}")
+2025-11-23 17:49:39,405 INFO ipython print(f"  Write: {emp_type_write}")
+2025-11-23 17:49:39,405 INFO ipython print("\nBranch:")
+2025-11-23 17:49:39,405 INFO ipython print(f"  Read: {branch_read}")
+2025-11-23 17:49:39,405 INFO ipython print(f"  Create: {branch_create}")
+2025-11-23 17:49:39,405 INFO ipython print(f"  Write: {branch_write}")

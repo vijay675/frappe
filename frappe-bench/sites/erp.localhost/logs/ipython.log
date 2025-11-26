@@ -1,0 +1,1398 @@
+2025-11-23 17:49:39,405 INFO ipython # Summary
+2025-11-23 17:49:39,406 INFO ipython print("\n" + "="*80)
+2025-11-23 17:49:39,406 INFO ipython if emp_type_read and branch_read:
+    print("✓ SUCCESS: HR Manager has read access to Employment Type & Branch")
+    if not emp_type_create and not branch_create:
+        print("✓ Read-only confirmed (no create access)")
+    else:
+        print("⚠ NOTE: Create access is enabled (may be from standard permissions)")
+else:
+    print("✗ ISSUE: Permissions not as expected")
+print("="*80 + "\n")
+2025-11-23 17:49:39,406 INFO ipython === session end ===
+2025-11-23 17:53:46,579 INFO ipython === bench console session ===
+2025-11-23 17:53:46,579 INFO ipython import frappe
+2025-11-23 17:53:46,579 INFO ipython # Find a PI user or use vijay as test
+2025-11-23 17:53:46,579 INFO ipython pi_users = frappe.db.sql("""
+    SELECT DISTINCT u.name 
+    FROM tabUser u
+    JOIN `tabHas Role` hr ON hr.parent = u.name
+    WHERE hr.role = 'PI' AND u.name != 'Administrator'
+    LIMIT 1
+""", as_dict=True)
+2025-11-23 17:53:46,580 INFO ipython if pi_users:
+    username = pi_users[0].name
+else:
+    # Add PI role to vijay for testing
+    username = "vijay.rasquinha@atree.org"
+    user_doc = frappe.get_doc("User", username)
+    if not any(r.role == 'PI' for r in user_doc.roles):
+        user_doc.append("roles", {"role": "PI"})
+        user_doc.save(ignore_permissions=True)
+        frappe.db.commit()
+        print(f"Added PI role to {username} for testing")
+2025-11-23 17:53:46,580 INFO ipython # Clear cache
+2025-11-23 17:53:46,580 INFO ipython frappe.clear_cache(user=username)
+2025-11-23 17:53:46,580 INFO ipython # Test PI permissions
+2025-11-23 17:53:46,580 INFO ipython test_doctypes = {
+    'Job Requisition': {'expected': {'read': True, 'write': True, 'create': True}},
+    'Job Opening': {'expected': {'read': True, 'write': True, 'create': True}},
+    'Job Applicant': {'expected': {'read': True, 'write': True, 'create': True}},
+    'Interview': {'expected': {'read': True, 'write': True, 'create': True}},
+    'Project': {'expected': {'read': True, 'write': False, 'create': False}},
+}
+2025-11-23 17:53:46,580 INFO ipython print("\n" + "="*80)
+2025-11-23 17:53:46,580 INFO ipython print(f"PI ROLE PERMISSIONS TEST ({username})")
+2025-11-23 17:53:46,580 INFO ipython print("="*80 + "\n")
+2025-11-23 17:53:46,580 INFO ipython all_pass = True
+2025-11-23 17:53:46,580 INFO ipython for doctype, config in test_doctypes.items():
+    read = frappe.has_permission(doctype, 'read', user=username)
+    write = frappe.has_permission(doctype, 'write', user=username)
+    create = frappe.has_permission(doctype, 'create', user=username)
+    
+2025-11-23 17:53:46,580 INFO ipython     expected = config['expected']
+2025-11-23 17:53:46,580 INFO ipython     passed = (read == expected['read'] and 
+              write == expected['write'] and 
+              create == expected['create'])
+2025-11-23 17:53:46,580 INFO ipython     status = "✓" if passed else "✗"
+2025-11-23 17:53:46,580 INFO ipython     print(f"{status} {doctype:20s}")
+2025-11-23 17:53:46,580 INFO ipython     print(f"   Read: {read} (expected: {expected['read']})")
+2025-11-23 17:53:46,580 INFO ipython     print(f"   Write: {write} (expected: {expected['write']})")
+2025-11-23 17:53:46,580 INFO ipython     print(f"   Create: {create} (expected: {expected['create']})")
+2025-11-23 17:53:46,580 INFO ipython     if not passed:
+        all_pass = False
+2025-11-23 17:53:46,580 INFO ipython print("\n" + "="*80)
+2025-11-23 17:53:46,580 INFO ipython if all_pass:
+    print("✓ SUCCESS: All PI permissions working correctly!")
+else:
+    print("✗ SOME TESTS FAILED")
+print("="*80 + "\n")
+2025-11-23 17:53:46,580 INFO ipython === session end ===
+2025-11-23 17:54:03,713 INFO ipython === bench console session ===
+2025-11-23 17:54:03,713 INFO ipython import frappe
+2025-11-23 17:54:03,713 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-23 17:54:03,713 INFO ipython # Clear cache
+2025-11-23 17:54:03,713 INFO ipython frappe.clear_cache(user=username)
+2025-11-23 17:54:03,714 INFO ipython # Check roles
+2025-11-23 17:54:03,714 INFO ipython roles = frappe.get_roles(username)
+2025-11-23 17:54:03,714 INFO ipython print(f"\nUser roles: {', '.join([r for r in roles if r not in ['All', 'Guest', 'Desk User']])}")
+2025-11-23 17:54:03,714 INFO ipython # Test PI permissions
+2025-11-23 17:54:03,714 INFO ipython doctypes = ['Job Requisition', 'Job Opening', 'Job Applicant', 'Interview', 'Project']
+2025-11-23 17:54:03,714 INFO ipython print("\n" + "="*80)
+2025-11-23 17:54:03,714 INFO ipython print(f"PI PERMISSIONS TEST - {username}")
+2025-11-23 17:54:03,714 INFO ipython print("="*80 + "\n")
+2025-11-23 17:54:03,714 INFO ipython for dt in doctypes:
+    read = frappe.has_permission(dt, 'read', user=username)
+    write = frappe.has_permission(dt, 'write', user=username)
+    create = frappe.has_permission(dt, 'create', user=username)
+    
+2025-11-23 17:54:03,714 INFO ipython     print(f"{dt:20s}: R={read}, W={write}, C={create}")
+2025-11-23 17:54:03,714 INFO ipython print("\n" + "="*80)
+2025-11-23 17:54:03,714 INFO ipython === session end ===
+2025-11-23 17:54:32,418 INFO ipython === bench console session ===
+2025-11-23 17:54:32,419 INFO ipython import frappe
+2025-11-23 17:54:32,419 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-23 17:54:32,419 INFO ipython frappe.clear_cache(user=username)
+2025-11-23 17:54:32,419 INFO ipython print("\n" + "="*80)
+2025-11-23 17:54:32,419 INFO ipython print("PI ROLE PERMISSIONS - COMPREHENSIVE TEST")
+2025-11-23 17:54:32,419 INFO ipython print("="*80 + "\n")
+2025-11-23 17:54:32,419 INFO ipython # Direct test each permission
+2025-11-23 17:54:32,419 INFO ipython tests = [
+    ("Job Requisition", "create"),
+    ("Job Requisition", "read"),
+    ("Job Requisition", "write"),
+    ("Job Opening", "create"),
+    ("Job Opening", "read"),
+    ("Job Opening", "write"),
+    ("Job Applicant", "create"),
+    ("Job Applicant", "read"),
+    ("Job Applicant", "write"),
+    ("Interview", "create"),
+    ("Interview", "read"),
+    ("Interview", "write"),
+    ("Project", "read"),
+    ("Project", "create"),
+]
+2025-11-23 17:54:32,419 INFO ipython for doctype, ptype in tests:
+    result = frappe.has_permission(doctype, ptype, user=username)
+    status = "✓" if result else "✗"
+    print(f"{status} {doctype:20s} {ptype:10s}: {result}")
+2025-11-23 17:54:32,419 INFO ipython print("\n" + "="*80)
+2025-11-23 17:54:32,419 INFO ipython print("Expected: All ✓ except 'Project create' should be ✗")
+2025-11-23 17:54:32,419 INFO ipython print("="*80 + "\n")
+2025-11-23 17:54:32,419 INFO ipython === session end ===
+2025-11-23 17:55:28,881 INFO ipython === bench console session ===
+2025-11-23 17:55:28,881 INFO ipython import frappe
+2025-11-23 17:55:28,881 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-23 17:55:28,881 INFO ipython # Workspaces PI should access
+2025-11-23 17:55:28,881 INFO ipython workspaces_for_pi = [
+    "Recruitment",  # For Job Requisition, Job Opening, Job Applicant, Interview
+    "Projects",     # For viewing Projects (read-only)
+]
+2025-11-23 17:55:28,881 INFO ipython print("\n" + "="*80)
+2025-11-23 17:55:28,881 INFO ipython print("CONFIGURING WORKSPACE ACCESS FOR PI ROLE")
+2025-11-23 17:55:28,881 INFO ipython print("="*80 + "\n")
+2025-11-23 17:55:28,881 INFO ipython for ws_name in workspaces_for_pi:
+    try:
+        if frappe.db.exists("Workspace", ws_name):
+            ws = frappe.get_doc("Workspace", ws_name)
+            
+            # Check if PI role already exists
+            has_pi = any(r.role == "PI" for r in ws.roles)
+            
+            if not has_pi:
+                ws.append("roles", {"role": "PI"})
+                ws.save(ignore_permissions=True)
+                print(f"✓ Added PI role to {ws_name} workspace")
+            else:
+                print(f"✓ PI role already has access to {ws_name}")
+        else:
+            print(f"✗ Workspace '{ws_name}' not found")
+    except Exception as e:
+        print(f"✗ Error updating {ws_name}: {e}")
+2025-11-23 17:55:28,881 INFO ipython frappe.db.commit()
+2025-11-23 17:55:28,881 INFO ipython print("\n" + "="*80)
+2025-11-23 17:55:28,881 INFO ipython print("✓ Workspace configuration complete")
+2025-11-23 17:55:28,881 INFO ipython print("="*80 + "\n")
+2025-11-23 17:55:28,881 INFO ipython === session end ===
+2025-11-23 17:55:58,716 INFO ipython === bench console session ===
+2025-11-23 17:55:58,717 INFO ipython import frappe
+2025-11-23 17:55:58,717 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-23 17:55:58,717 INFO ipython # Clear cache
+2025-11-23 17:55:58,717 INFO ipython frappe.clear_cache(user=username)
+2025-11-23 17:55:58,717 INFO ipython # Get workspaces for PI user
+2025-11-23 17:55:58,717 INFO ipython frappe.set_user(username)
+2025-11-23 17:55:58,717 INFO ipython workspaces = frappe.desk.desktop.get_workspace_sidebar_items()
+2025-11-23 17:55:58,717 INFO ipython print("\n" + "="*80)
+2025-11-23 17:55:58,717 INFO ipython print(f"WORKSPACES VISIBLE TO PI USER ({username})")
+2025-11-23 17:55:58,717 INFO ipython print("="*80 + "\n")
+2025-11-23 17:55:58,717 INFO ipython if workspaces and workspaces.get('pages'):
+    for page in workspaces['pages']:
+        print(f"  ✓ {page.get('title')}")
+    print(f"\nTotal: {len(workspaces['pages'])} workspaces")
+else:
+    print("  No workspaces found")
+2025-11-23 17:55:58,717 INFO ipython print("\n" + "="*80)
+2025-11-23 17:55:58,717 INFO ipython # Check specifically for Recruitment and Projects
+2025-11-23 17:55:58,717 INFO ipython recruitment_found = any(p.get('title') == 'Recruitment' for p in workspaces.get('pages', []))
+2025-11-23 17:55:58,718 INFO ipython projects_found = any(p.get('title') == 'Projects' for p in workspaces.get('pages', []))
+2025-11-23 17:55:58,718 INFO ipython if recruitment_found and projects_found:
+    print("✓ SUCCESS: PI can see Recruitment and Projects workspaces")
+else:
+    if not recruitment_found:
+        print("✗ Recruitment workspace not visible")
+    if not projects_found:
+        print("✗ Projects workspace not visible")
+2025-11-23 17:55:58,718 INFO ipython print("="*80 + "\n")
+2025-11-23 17:55:58,718 INFO ipython === session end ===
+2025-11-23 17:56:20,428 INFO ipython === bench console session ===
+2025-11-23 17:56:20,428 INFO ipython import frappe
+2025-11-23 17:56:20,428 INFO ipython from frappe.desk.desktop import get_workspace_sidebar_items
+2025-11-23 17:56:20,428 INFO ipython username = "vijay.rasquinha@atree.org"
+2025-11-23 17:56:20,428 INFO ipython frappe.set_user(username)
+2025-11-23 17:56:20,428 INFO ipython frappe.clear_cache(user=username)
+2025-11-23 17:56:20,428 INFO ipython workspaces = get_workspace_sidebar_items()
+2025-11-23 17:56:20,428 INFO ipython print("\nWorkspaces visible to PI user:")
+2025-11-23 17:56:20,428 INFO ipython === session end ===
+2025-11-23 17:56:52,056 INFO ipython === bench console session ===
+2025-11-23 17:56:52,056 INFO ipython import frappe
+2025-11-23 17:56:52,056 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-23 17:56:52,056 INFO ipython # Check Recruitment and Projects workspaces
+2025-11-23 17:56:52,056 INFO ipython workspaces = ["Recruitment", "Projects"]
+2025-11-23 17:56:52,056 INFO ipython print("\nChecking workspace configuration:\n")
+2025-11-23 17:56:52,056 INFO ipython for ws_name in workspaces:
+    if frappe.db.exists("Workspace", ws_name):
+        ws = frappe.get_doc("Workspace", ws_name)
+        print(f"{ws_name}:")
+        print(f"  Module: {ws.module or 'None'}")
+        print(f"  Public: {ws.public}")
+        print(f"  Roles: {', '.join([r.role for r in ws.roles]) if ws.roles else 'None'}")
+        
+2025-11-23 17:56:52,056 INFO ipython         # Remove module restriction if exists
+2025-11-23 17:56:52,056 INFO ipython         if ws.module:
+            ws.module = ""
+            ws.save(ignore_permissions=True)
+            print(f"  ✓ Removed module restriction")
+        
+2025-11-23 17:56:52,056 INFO ipython         # Ensure public
+2025-11-23 17:56:52,056 INFO ipython         if not ws.public:
+            ws.public = 1
+            ws.save(ignore_permissions=True)
+            print(f"  ✓ Made public")
+        print()
+2025-11-23 17:56:52,056 INFO ipython frappe.db.commit()
+2025-11-23 17:56:52,056 INFO ipython print("✓ Workspace configuration updated")
+2025-11-23 17:56:52,056 INFO ipython === session end ===
+2025-11-23 17:59:09,198 INFO ipython === bench console session ===
+2025-11-23 17:59:09,198 INFO ipython import frappe
+2025-11-23 17:59:09,198 INFO ipython from custom_app.overrides.workspace import get_workspace_sidebar_items
+2025-11-23 17:59:09,198 INFO ipython # Set user to PI
+2025-11-23 17:59:09,198 INFO ipython frappe.set_user("vijay.rasquinha@atree.org")
+2025-11-23 17:59:09,198 INFO ipython frappe.clear_cache(user="vijay.rasquinha@atree.org")
+2025-11-23 17:59:09,198 INFO ipython # Get roles
+2025-11-23 17:59:09,198 INFO ipython roles = frappe.get_roles()
+2025-11-23 17:59:09,198 INFO ipython print(f"\nUser roles: {[r for r in roles if r not in ['All', 'Guest', 'Desk User']]}")
+2025-11-23 17:59:09,198 INFO ipython # Call the override directly
+2025-11-23 17:59:09,199 INFO ipython result = get_workspace_sidebar_items()
+2025-11-23 17:59:09,199 INFO ipython print(f"\nWorkspaces returned: {len(result.get('pages', []))}")
+2025-11-23 17:59:09,199 INFO ipython if result.get('pages'):
+    for page in result['pages']:
+        print(f"  - {page.get('title')}")
+        
+2025-11-23 17:59:09,199 INFO ipython     # Check for Recruitment specifically
+2025-11-23 17:59:09,199 INFO ipython     recruitment = [p for p in result['pages'] if p.get('title') == 'Recruitment']
+2025-11-23 17:59:09,199 INFO ipython     if recruitment:
+        print(f"\n✓ Recruitment workspace found")
+    else:
+        print(f"\n✗ Recruitment workspace NOT found")
+else:
+    print("  No workspaces found")
+2025-11-23 17:59:09,199 INFO ipython === session end ===
+2025-11-23 18:03:02,722 INFO ipython === bench console session ===
+2025-11-23 18:03:02,723 INFO ipython import frappe
+2025-11-23 18:03:02,723 INFO ipython import json
+2025-11-23 18:03:02,723 INFO ipython # Simulate the API call as PI user
+2025-11-23 18:03:02,723 INFO ipython frappe.set_user("vijay.rasquinha@atree.org")
+2025-11-23 18:03:02,723 INFO ipython frappe.clear_cache()
+2025-11-23 18:03:02,723 INFO ipython # Call via frappe.call to simulate browser request
+2025-11-23 18:03:02,723 INFO ipython result = frappe.call("frappe.desk.desktop.get_workspace_sidebar_items")
+2025-11-23 18:03:02,723 INFO ipython print("\n" + "="*80)
+2025-11-23 18:03:02,723 INFO ipython print("API RESPONSE FOR PI USER (vijay.rasquinha@atree.org)")
+2025-11-23 18:03:02,723 INFO ipython print("="*80 + "\n")
+2025-11-23 18:03:02,723 INFO ipython if result and result.get('pages'):
+    print(f"Total workspaces: {len(result['pages'])}\n")
+    for page in result['pages']:
+        print(f"  • {page.get('title')}")
+    
+2025-11-23 18:03:02,723 INFO ipython     # Check for Recruitment
+2025-11-23 18:03:02,723 INFO ipython     has_recruitment = any(p.get('title') == 'Recruitment' for p in result['pages'])
+2025-11-23 18:03:02,723 INFO ipython     print("\n" + "="*80)
+2025-11-23 18:03:02,723 INFO ipython     if has_recruitment:
+        print("✓ Recruitment IS in the API response")
+    else:
+        print("✗ Recruitment NOT in the API response")
+else:
+    print("No pages in response")
+2025-11-23 18:03:02,723 INFO ipython print("="*80 + "\n")
+2025-11-23 18:03:02,723 INFO ipython === session end ===
+2025-11-23 18:05:54,510 INFO ipython === bench console session ===
+2025-11-23 18:05:54,511 INFO ipython import frappe
+2025-11-23 18:05:54,511 INFO ipython frappe.set_user("vijay.rasquinha@atree.org")
+2025-11-23 18:05:54,511 INFO ipython # Check Recruitment workspace specifically
+2025-11-23 18:05:54,511 INFO ipython rec_ws = frappe.get_doc("Workspace", "Recruitment")
+2025-11-23 18:05:54,511 INFO ipython print("\n" + "="*80)
+2025-11-23 18:05:54,511 INFO ipython print("RECRUITMENT WORKSPACE DETAILS")
+2025-11-23 18:05:54,511 INFO ipython print("="*80 + "\n")
+2025-11-23 18:05:54,511 INFO ipython print(f"Name: {rec_ws.name}")
+2025-11-23 18:05:54,511 INFO ipython print(f"Title: {rec_ws.title}")
+2025-11-23 18:05:54,511 INFO ipython print(f"Public: {rec_ws.public}")
+2025-11-23 18:05:54,511 INFO ipython print(f"Module: {rec_ws.module or 'None'}")
+2025-11-23 18:05:54,511 INFO ipython print(f"For User: {rec_ws.for_user or 'None'}")
+2025-11-23 18:05:54,511 INFO ipython print(f"Extends: {rec_ws.extends or 'None'}")
+2025-11-23 18:05:54,511 INFO ipython print(f"Extends Another Page: {rec_ws.extends_another_page}")
+2025-11-23 18:05:54,511 INFO ipython print(f"Is Hidden: {rec_ws.is_hidden}")
+2025-11-23 18:05:54,511 INFO ipython print(f"\nRoles ({len(rec_ws.roles)}):")
+2025-11-23 18:05:54,511 INFO ipython for r in rec_ws.roles:
+    print(f"  - {r.role}")
+2025-11-23 18:05:54,511 INFO ipython # Check if user has permission to see this workspace
+2025-11-23 18:05:54,511 INFO ipython print(f"\nPI role in workspace roles: {'PI' in [r.role for r in rec_ws.roles]}")
+2025-11-23 18:05:54,511 INFO ipython # Check workspace visibility
+2025-11-23 18:05:54,511 INFO ipython print("\n" + "="*80)
+2025-11-23 18:05:54,511 INFO ipython # Get all workspaces visible to this user
+2025-11-23 18:05:54,511 INFO ipython all_workspaces = frappe.get_all(
+    "Workspace", 
+    fields=["name", "title", "public", "for_user"],
+    order_by="title"
+)
+2025-11-23 18:05:54,511 INFO ipython print(f"\nAll workspaces in database: {len(all_workspaces)}")
+2025-11-23 18:05:54,511 INFO ipython print("\nWorkspaces where public=1 or for_user=vijay.rasquinha@atree.org:")
+2025-11-23 18:05:54,511 INFO ipython for ws in all_workspaces:
+    if ws.public or ws.for_user == "vijay.rasquinha@atree.org":
+        print(f"  - {ws.title}")
+2025-11-23 18:05:54,511 INFO ipython print("="*80 + "\n")
+2025-11-23 18:05:54,511 INFO ipython === session end ===
+2025-11-23 18:09:48,389 INFO ipython === bench console session ===
+2025-11-23 18:09:48,390 INFO ipython import frappe
+2025-11-23 18:09:48,390 INFO ipython # Check Recruitment workspace category
+2025-11-23 18:09:48,390 INFO ipython rec = frappe.get_doc("Workspace", "Recruitment")
+2025-11-23 18:09:48,390 INFO ipython print(f"Recruitment workspace:")
+2025-11-23 18:09:48,390 INFO ipython print(f"  Category: {rec.category or 'None'}")
+2025-11-23 18:09:48,390 INFO ipython print(f"  Is Hidden: {rec.is_hidden}")
+2025-11-23 18:09:48,390 INFO ipython print(f"  Public: {rec.public}")
+2025-11-23 18:09:48,390 INFO ipython print(f"  Module: {rec.module or 'None'}")
+2025-11-23 18:09:48,390 INFO ipython print(f"  Parent Page: {rec.parent_page or 'None'}")
+2025-11-23 18:09:48,390 INFO ipython # Check Projects workspace for comparison
+2025-11-23 18:09:48,390 INFO ipython proj = frappe.get_doc("Workspace", "Projects")
+2025-11-23 18:09:48,390 INFO ipython print(f"\nProjects workspace:")
+2025-11-23 18:09:48,390 INFO ipython print(f"  Category: {proj.category or 'None'}")
+2025-11-23 18:09:48,390 INFO ipython print(f"  Is Hidden: {proj.is_hidden}")
+2025-11-23 18:09:48,390 INFO ipython print(f"  Public: {proj.public}")
+2025-11-23 18:09:48,390 INFO ipython print(f"  Module: {proj.module or 'None'}")
+2025-11-23 18:09:48,390 INFO ipython print(f"  Parent Page: {proj.parent_page or 'None'}")
+2025-11-23 18:09:48,390 INFO ipython # Check what the override is actually returning
+2025-11-23 18:09:48,390 INFO ipython frappe.set_user("vijay.rasquinha@atree.org")
+2025-11-23 18:09:48,390 INFO ipython frappe.clear_cache()
+2025-11-23 18:09:48,390 INFO ipython from custom_app.overrides.workspace import get_workspace_sidebar_items
+2025-11-23 18:09:48,390 INFO ipython result = get_workspace_sidebar_items()
+2025-11-23 18:09:48,390 INFO ipython print(f"\nWorkspaces in API response:")
+2025-11-23 18:09:48,390 INFO ipython === session end ===
+2025-11-23 18:10:16,049 INFO ipython === bench console session ===
+2025-11-23 18:10:16,050 INFO ipython import frappe
+2025-11-23 18:10:16,050 INFO ipython frappe.flags.ignore_permissions = True
+2025-11-23 18:10:16,050 INFO ipython # Remove parent page from Recruitment workspace
+2025-11-23 18:10:16,050 INFO ipython rec = frappe.get_doc("Workspace", "Recruitment")
+2025-11-23 18:10:16,050 INFO ipython print(f"Current Parent Page: {rec.parent_page}")
+2025-11-23 18:10:16,050 INFO ipython rec.parent_page = ""
+2025-11-23 18:10:16,050 INFO ipython rec.save(ignore_permissions=True)
+2025-11-23 18:10:16,050 INFO ipython frappe.db.commit()
+2025-11-23 18:10:16,050 INFO ipython print(f"✓ Removed parent page from Recruitment workspace")
+2025-11-23 18:10:16,050 INFO ipython print(f"New Parent Page: {rec.parent_page or 'None'}")
+2025-11-23 18:10:16,050 INFO ipython print("\nRecruitment is now a top-level workspace!")
+2025-11-23 18:10:16,050 INFO ipython === session end ===
+2025-11-23 18:23:29,827 INFO ipython === bench console session ===
+2025-11-23 18:23:29,828 INFO ipython import frappe
+2025-11-23 18:23:29,828 INFO ipython # Add read permissions for Employment Type, Location, and Department to PI role
+2025-11-23 18:23:29,828 INFO ipython doctypes = ["Employment Type", "Location", "Department"]
+2025-11-23 18:23:29,828 INFO ipython for doctype in doctypes:
+    # Check if permission already exists
+    existing = frappe.db.exists("Custom DocPerm", {
+        "parent": doctype,
+        "role": "PI",
+        "permlevel": 0
+    })
+    
+2025-11-23 18:23:29,828 INFO ipython     if existing:
+        print(f"Permission already exists for {doctype}")
+        continue
+2025-11-23 18:23:29,828 INFO ipython     # Create custom permission
+2025-11-23 18:23:29,828 INFO ipython     perm = frappe.get_doc({
+        "doctype": "Custom DocPerm",
+        "parent": doctype,
+        "parenttype": "DocType",
+        "parentfield": "permissions",
+        "role": "PI",
+        "permlevel": 0,
+        "read": 1,
+        "write": 0,
+        "create": 0,
+        "delete": 0,
+        "submit": 0,
+        "cancel": 0,
+        "amend": 0
+    })
+2025-11-23 18:23:29,829 INFO ipython     perm.insert(ignore_permissions=True)
+2025-11-23 18:23:29,829 INFO ipython     print(f"Added read permission for PI to {doctype}")
+2025-11-23 18:23:29,829 INFO ipython frappe.db.commit()
+2025-11-23 18:23:29,829 INFO ipython print("\nAll permissions added successfully!")
+2025-11-23 18:23:29,829 INFO ipython === session end ===
+2025-11-23 18:33:56,651 INFO ipython === bench console session ===
+2025-11-23 18:33:56,651 INFO ipython import frappe
+2025-11-23 18:33:56,651 INFO ipython jr = frappe.get_meta("Job Requisition")
+2025-11-23 18:33:56,651 INFO ipython print("=== Job Requisition Unique Fields ===\n")
+2025-11-23 18:33:56,652 INFO ipython for field in jr.fields:
+    if field.unique:
+        print(f"Field: {field.fieldname}")
+        print(f"  Label: {field.label}")
+        print(f"  Type: {field.fieldtype}")
+        print(f"  Unique: {field.unique}")
+        print()
+2025-11-23 18:33:56,652 INFO ipython # Also check if there are any unique indexes
+2025-11-23 18:33:56,652 INFO ipython print("\n=== Checking for unique constraints ===")
+2025-11-23 18:33:56,652 INFO ipython unique_fields = [f.fieldname for f in jr.fields if f.unique]
+2025-11-23 18:33:56,652 INFO ipython === session end ===
+2025-11-24 10:01:37,124 INFO ipython === bench console session ===
+2025-11-24 10:01:37,124 INFO ipython # Verify created accounts and GL codes
+2025-11-24 10:01:37,124 INFO ipython accounts = frappe.get_all("Account", 
+    filters=[
+        ["account_name", "like", "%Domestic%"],
+        ["company", "=", "Ashoka Trust for Research in Ecology and the Environment"]
+    ],
+    fields=["name", "account_name", "account_number", "parent_account", "root_type"],
+    order_by="account_number"
+)
+2025-11-24 10:01:37,124 INFO ipython print("\n" + "="*80)
+2025-11-24 10:01:37,124 INFO ipython print("DOMESTIC ACCOUNTS - Verification")
+2025-11-24 10:01:37,124 INFO ipython print("="*80)
+2025-11-24 10:01:37,124 INFO ipython for acc in accounts:
+    print(f"\nAccount: {acc.name}")
+    print(f"  Account Name: {acc.account_name}")
+    print(f"  GL Code: {acc.account_number}")
+    print(f"  Parent: {acc.parent_account}")
+    print(f"  Root Type: {acc.root_type}")
+2025-11-24 10:01:37,124 INFO ipython print("\n" + "="*80)
+2025-11-24 10:01:37,124 INFO ipython fcra_accounts = frappe.get_all("Account", 
+    filters=[
+        ["account_name", "like", "%FCRA%"],
+        ["company", "=", "Ashoka Trust for Research in Ecology and the Environment"]
+    ],
+    fields=["name", "account_name", "account_number", "parent_account", "root_type"],
+    order_by="account_number"
+)
+2025-11-24 10:01:37,124 INFO ipython print("FCRA ACCOUNTS - Verification")
+2025-11-24 10:01:37,124 INFO ipython print("="*80)
+2025-11-24 10:01:37,124 INFO ipython for acc in fcra_accounts:
+    print(f"\nAccount: {acc.name}")
+    print(f"  Account Name: {acc.account_name}")
+    print(f"  GL Code: {acc.account_number}")
+    print(f"  Parent: {acc.parent_account}")
+    print(f"  Root Type: {acc.root_type}")
+2025-11-24 10:01:37,124 INFO ipython print("\n" + "="*80)
+2025-11-24 10:01:37,124 INFO ipython print(f"Total Domestic Accounts: {len(accounts)}")
+2025-11-24 10:01:37,124 INFO ipython print(f"Total FCRA Accounts: {len(fcra_accounts)}")
+2025-11-24 10:01:37,124 INFO ipython print("="*80 + "\n")
+2025-11-24 10:01:37,124 INFO ipython === session end ===
+2025-11-24 10:07:31,849 INFO ipython === bench console session ===
+2025-11-24 10:07:31,849 INFO ipython # Get all accounts with GL codes that we just created
+2025-11-24 10:07:31,849 INFO ipython accounts = frappe.db.sql("""
+    SELECT
+        account_number AS gl_code,
+        account_name,
+        parent_account,
+        root_type
+    FROM `tabAccount`
+    WHERE company = 'Ashoka Trust for Research in Ecology and the Environment'
+    AND account_number IS NOT NULL
+    AND account_number REGEXP '^[12]9'
+    ORDER BY account_number
+""", as_dict=True)
+2025-11-24 10:07:31,849 INFO ipython print("\n" + "="*100)
+2025-11-24 10:07:31,849 INFO ipython print("GL CODES CREATED - Domestic and FCRA Accounts")
+2025-11-24 10:07:31,849 INFO ipython print("="*100)
+2025-11-24 10:07:31,849 INFO ipython domestic = [a for a in accounts if a.gl_code.startswith('19')]
+2025-11-24 10:07:31,849 INFO ipython fcra = [a for a in accounts if a.gl_code.startswith('29')]
+2025-11-24 10:07:31,849 INFO ipython print(f"\nDOMESTIC ACCOUNTS (Prefix: 19) - Total: {len(domestic)}")
+2025-11-24 10:07:31,849 INFO ipython print("-"*100)
+2025-11-24 10:07:31,849 INFO ipython for acc in domestic:
+    print(f"{acc.gl_code}  |  {acc.account_name:<40}  |  Parent: {acc.parent_account}")
+2025-11-24 10:07:31,849 INFO ipython print(f"\n\nFCRA ACCOUNTS (Prefix: 29) - Total: {len(fcra)}")
+2025-11-24 10:07:31,849 INFO ipython print("-"*100)
+2025-11-24 10:07:31,849 INFO ipython for acc in fcra:
+    print(f"{acc.gl_code}  |  {acc.account_name:<40}  |  Parent: {acc.parent_account}")
+2025-11-24 10:07:31,849 INFO ipython print("\n" + "="*100)
+2025-11-24 10:07:31,850 INFO ipython print(f"TOTAL GL CODES: {len(accounts)}")
+2025-11-24 10:07:31,850 INFO ipython print("="*100 + "\n")
+2025-11-24 10:07:31,850 INFO ipython === session end ===
+2025-11-24 10:20:25,844 INFO ipython === bench console session ===
+2025-11-24 10:20:25,844 INFO ipython # Get count and summary of all GL codes created
+2025-11-24 10:20:25,844 INFO ipython accounts = frappe.db.sql("""
+    SELECT
+        CASE
+            WHEN account_number LIKE '19%' THEN 'Domestic'
+            WHEN account_number LIKE '29%' THEN 'FCRA'
+        END as fund_type,
+        root_type,
+        COUNT(*) as count
+    FROM `tabAccount`
+    WHERE company = 'Ashoka Trust for Research in Ecology and the Environment'
+    AND account_number IS NOT NULL
+    AND account_number REGEXP '^[12]9'
+    GROUP BY fund_type, root_type
+    ORDER BY fund_type, root_type
+""", as_dict=True)
+2025-11-24 10:20:25,844 INFO ipython print("\n" + "="*80)
+2025-11-24 10:20:25,844 INFO ipython print("GL CODES SUMMARY - By Fund Type and Account Type")
+2025-11-24 10:20:25,844 INFO ipython print("="*80)
+2025-11-24 10:20:25,844 INFO ipython for acc in accounts:
+    print(f"{acc.fund_type:<15} | {acc.root_type:<15} | {acc.count:>5} accounts")
+2025-11-24 10:20:25,844 INFO ipython # Get total count
+2025-11-24 10:20:25,844 INFO ipython total = frappe.db.sql("""
+    SELECT COUNT(*) as total
+    FROM `tabAccount`
+    WHERE company = 'Ashoka Trust for Research in Ecology and the Environment'
+    AND account_number IS NOT NULL
+    AND account_number REGEXP '^[12]9'
+""", as_dict=True)[0]
+2025-11-24 10:20:25,844 INFO ipython print("="*80)
+2025-11-24 10:20:25,844 INFO ipython print(f"TOTAL GL CODES CREATED: {total.total}")
+2025-11-24 10:20:25,844 INFO ipython print("="*80 + "\n")
+2025-11-24 10:20:25,844 INFO ipython === session end ===
+2025-11-24 10:23:37,597 INFO ipython === bench console session ===
+2025-11-24 10:23:37,598 INFO ipython # Check the account details
+2025-11-24 10:23:37,598 INFO ipython account = frappe.get_doc("Account", "19000054 - Project Assets - Others - Domestic - ATREE")
+2025-11-24 10:23:37,598 INFO ipython print("\n" + "="*80)
+2025-11-24 10:23:37,598 INFO ipython print("ACCOUNT DETAILS: Project Assets - Others - Domestic")
+2025-11-24 10:23:37,598 INFO ipython print("="*80)
+2025-11-24 10:23:37,598 INFO ipython print(f"Account Name: {account.account_name}")
+2025-11-24 10:23:37,598 INFO ipython print(f"GL Code: {account.account_number}")
+2025-11-24 10:23:37,598 INFO ipython print(f"Is Group: {account.is_group}")
+2025-11-24 10:23:37,598 INFO ipython print(f"Root Type: {account.root_type}")
+2025-11-24 10:23:37,598 INFO ipython print(f"Account Type: {account.account_type}")
+2025-11-24 10:23:37,598 INFO ipython print(f"Parent Account: {account.parent_account}")
+2025-11-24 10:23:37,598 INFO ipython print("="*80 + "\n")
+2025-11-24 10:23:37,598 INFO ipython # Check what the Excel has for this account
+2025-11-24 10:23:37,598 INFO ipython print("Checking Excel source data...")
+2025-11-24 10:23:37,598 INFO ipython === session end ===
+2025-11-24 10:24:40,068 INFO ipython === bench console session ===
+2025-11-24 10:24:40,068 INFO ipython # Fix the Project Assets - Others accounts (both Domestic and FCRA)
+2025-11-24 10:24:40,068 INFO ipython accounts_to_fix = [
+    "19000054 - Project Assets - Others - Domestic - ATREE",
+    "29000054 - Project Assets - Others - FCRA - ATREE"
+]
+2025-11-24 10:24:40,068 INFO ipython print("\n" + "="*80)
+2025-11-24 10:24:40,068 INFO ipython print("FIXING: Project Assets - Others accounts")
+2025-11-24 10:24:40,068 INFO ipython print("="*80 + "\n")
+2025-11-24 10:24:40,068 INFO ipython for acc_name in accounts_to_fix:
+    if frappe.db.exists("Account", acc_name):
+        account = frappe.get_doc("Account", acc_name)
+        
+2025-11-24 10:24:40,068 INFO ipython         print(f"Account: {acc_name}")
+2025-11-24 10:24:40,068 INFO ipython         print(f"  Before: is_group = {account.is_group}")
+2025-11-24 10:24:40,068 INFO ipython         # Change to ledger account
+2025-11-24 10:24:40,068 INFO ipython         account.is_group = 0
+2025-11-24 10:24:40,068 INFO ipython         account.account_type = "Fixed Asset"
+2025-11-24 10:24:40,068 INFO ipython         account.save(ignore_permissions=True)
+2025-11-24 10:24:40,068 INFO ipython         print(f"  After: is_group = {account.is_group}, account_type = {account.account_type}")
+2025-11-24 10:24:40,069 INFO ipython         print(f"  ✓ Fixed\n")
+2025-11-24 10:24:40,069 INFO ipython frappe.db.commit()
+2025-11-24 10:24:40,069 INFO ipython print("="*80)
+2025-11-24 10:24:40,069 INFO ipython print("DONE - Accounts converted to ledger accounts")
+2025-11-24 10:24:40,069 INFO ipython print("="*80 + "\n")
+2025-11-24 10:24:40,069 INFO ipython === session end ===
+2025-11-24 10:25:56,249 INFO ipython === bench console session ===
+2025-11-24 10:25:56,249 INFO ipython # Check current status
+2025-11-24 10:25:56,249 INFO ipython account = frappe.get_doc("Account", "19000054 - Project Assets - Others - Domestic - ATREE")
+2025-11-24 10:25:56,249 INFO ipython print("\n" + "="*80)
+2025-11-24 10:25:56,250 INFO ipython print("CURRENT STATUS: 19000054 - Project Assets - Others - Domestic - ATREE")
+2025-11-24 10:25:56,250 INFO ipython print("="*80)
+2025-11-24 10:25:56,250 INFO ipython print(f"is_group: {account.is_group}")
+2025-11-24 10:25:56,250 INFO ipython print(f"account_type: {account.account_type}")
+2025-11-24 10:25:56,250 INFO ipython print(f"root_type: {account.root_type}")
+2025-11-24 10:25:56,250 INFO ipython print(f"parent_account: {account.parent_account}")
+2025-11-24 10:25:56,250 INFO ipython print("="*80 + "\n")
+2025-11-24 10:25:56,250 INFO ipython # Check if it has any child accounts
+2025-11-24 10:25:56,250 INFO ipython children = frappe.db.count("Account", {"parent_account": account.name})
+2025-11-24 10:25:56,250 INFO ipython print(f"Number of child accounts: {children}")
+2025-11-24 10:25:56,250 INFO ipython === session end ===
+2025-11-24 10:26:08,158 INFO ipython === bench console session ===
+2025-11-24 10:26:08,159 INFO ipython # Fix both accounts properly
+2025-11-24 10:26:08,159 INFO ipython accounts_to_fix = [
+    "19000054 - Project Assets - Others - Domestic - ATREE",
+    "29000054 - Project Assets - Others - FCRA - ATREE"
+]
+2025-11-24 10:26:08,159 INFO ipython print("\n" + "="*80)
+2025-11-24 10:26:08,159 INFO ipython print("FIXING ACCOUNTS")
+2025-11-24 10:26:08,159 INFO ipython print("="*80 + "\n")
+2025-11-24 10:26:08,159 INFO ipython for acc_name in accounts_to_fix:
+    try:
+        account = frappe.get_doc("Account", acc_name)
+        
+        print(f"Fixing: {acc_name}")
+        print(f"  Current is_group: {account.is_group}")
+        
+        # Update to ledger account
+        frappe.db.set_value("Account", acc_name, {
+            "is_group": 0,
+            "account_type": "Fixed Asset"
+        })
+        
+        # Verify the change
+        account.reload()
+        print(f"  Updated is_group: {account.is_group}")
+        print(f"  Updated account_type: {account.account_type}")
+        print(f"  ✓ Success\n")
+        
+    except Exception as e:
+        print(f"  ✗ Error: {e}\n")
+2025-11-24 10:26:08,159 INFO ipython frappe.db.commit()
+2025-11-24 10:26:08,159 INFO ipython print("="*80)
+2025-11-24 10:26:08,159 INFO ipython print("DONE")
+2025-11-24 10:26:08,159 INFO ipython print("="*80 + "\n")
+2025-11-24 10:26:08,159 INFO ipython === session end ===
+2025-11-24 10:26:21,197 INFO ipython === bench console session ===
+2025-11-24 10:26:21,197 INFO ipython # Verify the fix
+2025-11-24 10:26:21,197 INFO ipython account = frappe.get_doc("Account", "19000054 - Project Assets - Others - Domestic - ATREE")
+2025-11-24 10:26:21,197 INFO ipython print("\n" + "="*80)
+2025-11-24 10:26:21,197 INFO ipython print("VERIFICATION: 19000054 - Project Assets - Others - Domestic - ATREE")
+2025-11-24 10:26:21,197 INFO ipython print("="*80)
+2025-11-24 10:26:21,197 INFO ipython print(f"✓ is_group: {account.is_group} (0 = Ledger, 1 = Group)")
+2025-11-24 10:26:21,197 INFO ipython print(f"✓ account_type: {account.account_type}")
+2025-11-24 10:26:21,197 INFO ipython print(f"✓ root_type: {account.root_type}")
+2025-11-24 10:26:21,197 INFO ipython print(f"✓ GL Code: {account.account_number}")
+2025-11-24 10:26:21,197 INFO ipython print("="*80)
+2025-11-24 10:26:21,197 INFO ipython if account.is_group == 0:
+    print("\n✅ Account is now a LEDGER account (can accept transactions)")
+else:
+    print("\n⚠ Account is still a GROUP account")
+print()
+2025-11-24 10:26:21,197 INFO ipython === session end ===
+2025-11-24 10:27:06,901 INFO ipython === bench console session ===
+2025-11-24 10:27:06,901 INFO ipython # Find all accounts with "Others" in the name and check if they are groups
+2025-11-24 10:27:06,901 INFO ipython accounts = frappe.get_all("Account",
+    filters={
+        "company": "Ashoka Trust for Research in Ecology and the Environment",
+        "account_name": ["like", "%Others%"]
+    },
+    fields=["name", "account_name", "is_group", "account_type", "account_number"],
+    order_by="account_number"
+)
+2025-11-24 10:27:06,901 INFO ipython print("\n" + "="*100)
+2025-11-24 10:27:06,901 INFO ipython print("ACCOUNTS WITH 'OTHERS' IN NAME")
+2025-11-24 10:27:06,901 INFO ipython print("="*100)
+2025-11-24 10:27:06,901 INFO ipython print(f"{'GL Code':<12} | {'Account Name':<50} | {'Group?':<7} | {'Type':<15}")
+2025-11-24 10:27:06,901 INFO ipython print("-"*100)
+2025-11-24 10:27:06,901 INFO ipython group_count = 0
+2025-11-24 10:27:06,901 INFO ipython ledger_count = 0
+2025-11-24 10:27:06,901 INFO ipython for acc in accounts:
+    if acc.account_number:  # Only show accounts with GL codes
+        is_group_text = "GROUP" if acc.is_group else "LEDGER"
+        acc_type = acc.account_type or ""
+        
+2025-11-24 10:27:06,901 INFO ipython         print(f"{acc.account_number:<12} | {acc.account_name:<50} | {is_group_text:<7} | {acc_type:<15}")
+2025-11-24 10:27:06,901 INFO ipython         if acc.is_group:
+            group_count += 1
+        else:
+            ledger_count += 1
+2025-11-24 10:27:06,901 INFO ipython print("-"*100)
+2025-11-24 10:27:06,901 INFO ipython print(f"\nTotal: {len(accounts)} accounts")
+2025-11-24 10:27:06,901 INFO ipython print(f"  - Groups: {group_count}")
+2025-11-24 10:27:06,901 INFO ipython print(f"  - Ledgers: {ledger_count}")
+2025-11-24 10:27:06,901 INFO ipython if group_count > 0:
+    print(f"\n⚠ Found {group_count} accounts with 'Others' that are GROUPS")
+else:
+    print("\n✓ All 'Others' accounts are correctly set as LEDGERS")
+2025-11-24 10:27:06,901 INFO ipython print("="*100 + "\n")
+2025-11-24 10:27:06,901 INFO ipython === session end ===
+2025-11-24 10:27:19,091 INFO ipython === bench console session ===
+2025-11-24 10:27:19,091 INFO ipython # Get detailed list of all accounts with "Others"
+2025-11-24 10:27:19,091 INFO ipython accounts = frappe.db.sql("""
+    SELECT 
+        name,
+        account_name,
+        account_number,
+        is_group,
+        account_type,
+        root_type
+    FROM `tabAccount`
+    WHERE company = 'Ashoka Trust for Research in Ecology and the Environment'
+    AND (account_name LIKE '%Others%' OR account_name LIKE '%others%')
+    AND account_number IS NOT NULL
+    ORDER BY account_number
+""", as_dict=True)
+2025-11-24 10:27:19,091 INFO ipython print("\n" + "="*110)
+2025-11-24 10:27:19,091 INFO ipython print("ALL ACCOUNTS WITH 'OTHERS' IN NAME")
+2025-11-24 10:27:19,091 INFO ipython print("="*110)
+2025-11-24 10:27:19,091 INFO ipython print(f"{'GL Code':<12} | {'Account Name':<55} | {'Is Group':<8} | {'Account Type':<15}")
+2025-11-24 10:27:19,091 INFO ipython print("-"*110)
+2025-11-24 10:27:19,091 INFO ipython for acc in accounts:
+    is_group_text = "YES" if acc.is_group else "NO"
+    acc_type = acc.account_type or "(none)"
+    print(f"{acc.account_number:<12} | {acc.account_name:<55} | {is_group_text:<8} | {acc_type:<15}")
+2025-11-24 10:27:19,091 INFO ipython print("="*110 + "\n")
+2025-11-24 10:27:19,091 INFO ipython # Count groups
+2025-11-24 10:27:19,091 INFO ipython groups = [a for a in accounts if a.is_group]
+2025-11-24 10:27:19,091 INFO ipython print(f"Total accounts with 'Others': {len(accounts)}")
+2025-11-24 10:27:19,091 INFO ipython print(f"Accounts that are GROUPS: {len(groups)}")
+2025-11-24 10:27:19,091 INFO ipython === session end ===
+2025-11-24 10:27:51,842 INFO ipython === bench console session ===
+2025-11-24 10:27:51,842 INFO ipython # Fix all 4 accounts with "Others" that are incorrectly marked as groups
+2025-11-24 10:27:51,842 INFO ipython accounts_to_fix = {
+    "19010401 - Fixed Deposits - Others - Domestic - ATREE": {
+        "account_type": "Stock",  # INV sub-type
+        "root_type": "Asset"
+    },
+    "29010401 - Fixed Deposits - Others - FCRA - ATREE": {
+        "account_type": "Stock",  # INV sub-type
+        "root_type": "Asset"
+    },
+    "19106091 - Provisions Payable - Others - Domestic - ATREE": {
+        "account_type": "Payable",  # CLP = Current Liability Payable
+        "root_type": "Liability"
+    },
+    "29106091 - Provisions Payable - Others - FCRA - ATREE": {
+        "account_type": "Payable",  # CLP = Current Liability Payable
+        "root_type": "Liability"
+    }
+}
+2025-11-24 10:27:51,842 INFO ipython print("\n" + "="*100)
+2025-11-24 10:27:51,842 INFO ipython print("FIXING ACCOUNTS WITH 'OTHERS' INCORRECTLY MARKED AS GROUPS")
+2025-11-24 10:27:51,842 INFO ipython print("="*100 + "\n")
+2025-11-24 10:27:51,842 INFO ipython for acc_name, props in accounts_to_fix.items():
+    try:
+        account = frappe.get_doc("Account", acc_name)
+        
+        print(f"Fixing: {acc_name}")
+        print(f"  Before: is_group={account.is_group}, account_type={account.account_type or '(none)'}")
+        
+        # Update to ledger account
+        frappe.db.set_value("Account", acc_name, {
+            "is_group": 0,
+            "account_type": props["account_type"]
+        })
+        
+        # Verify
+        account.reload()
+        print(f"  After:  is_group={account.is_group}, account_type={account.account_type}")
+        print(f"  ✓ Fixed\n")
+        
+    except Exception as e:
+        print(f"  ✗ Error: {e}\n")
+2025-11-24 10:27:51,842 INFO ipython frappe.db.commit()
+2025-11-24 10:27:51,842 INFO ipython print("="*100)
+2025-11-24 10:27:51,842 INFO ipython print("ALL ACCOUNTS FIXED")
+2025-11-24 10:27:51,842 INFO ipython print("="*100 + "\n")
+2025-11-24 10:27:51,842 INFO ipython === session end ===
+2025-11-24 10:28:10,105 INFO ipython === bench console session ===
+2025-11-24 10:28:10,106 INFO ipython # Verify all accounts with "Others" are now ledgers
+2025-11-24 10:28:10,106 INFO ipython accounts = frappe.db.sql("""
+    SELECT 
+        account_number,
+        account_name,
+        is_group,
+        account_type
+    FROM `tabAccount`
+    WHERE company = 'Ashoka Trust for Research in Ecology and the Environment'
+    AND (account_name LIKE '%Others%' OR account_name LIKE '%others%')
+    AND account_number IS NOT NULL
+    ORDER BY account_number
+""", as_dict=True)
+2025-11-24 10:28:10,106 INFO ipython print("\n" + "="*100)
+2025-11-24 10:28:10,106 INFO ipython print("VERIFICATION: ALL ACCOUNTS WITH 'OTHERS'")
+2025-11-24 10:28:10,106 INFO ipython print("="*100)
+2025-11-24 10:28:10,106 INFO ipython print(f"{'GL Code':<12} | {'Account Name':<55} | {'Is Group':<8} | {'Account Type':<15}")
+2025-11-24 10:28:10,106 INFO ipython print("-"*100)
+2025-11-24 10:28:10,106 INFO ipython groups = 0
+2025-11-24 10:28:10,106 INFO ipython ledgers = 0
+2025-11-24 10:28:10,106 INFO ipython for acc in accounts:
+    is_group_text = "YES ⚠" if acc.is_group else "NO ✓"
+    acc_type = acc.account_type or "(none)"
+    print(f"{acc.account_number:<12} | {acc.account_name:<55} | {is_group_text:<8} | {acc_type:<15}")
+    
+2025-11-24 10:28:10,106 INFO ipython     if acc.is_group:
+        groups += 1
+    else:
+        ledgers += 1
+2025-11-24 10:28:10,106 INFO ipython print("-"*100)
+2025-11-24 10:28:10,106 INFO ipython print(f"\nTotal: {len(accounts)} accounts")
+2025-11-24 10:28:10,106 INFO ipython print(f"  Ledgers: {ledgers}")
+2025-11-24 10:28:10,106 INFO ipython print(f"  Groups: {groups}")
+2025-11-24 10:28:10,106 INFO ipython if groups == 0:
+    print("\n✅ SUCCESS: All accounts with 'Others' are now LEDGER accounts!")
+else:
+    print(f"\n⚠ WARNING: Still {groups} accounts marked as groups")
+2025-11-24 10:28:10,106 INFO ipython print("="*100 + "\n")
+2025-11-24 10:28:10,106 INFO ipython === session end ===
+2025-11-24 10:29:08,269 INFO ipython === bench console session ===
+2025-11-24 10:29:08,269 INFO ipython # Find all Asset accounts without GL codes
+2025-11-24 10:29:08,269 INFO ipython accounts = frappe.db.sql("""
+    SELECT 
+        name,
+        account_name,
+        account_number,
+        is_group,
+        account_type,
+        parent_account
+    FROM `tabAccount`
+    WHERE company = 'Ashoka Trust for Research in Ecology and the Environment'
+    AND root_type = 'Asset'
+    AND (account_number IS NULL OR account_number = '')
+    AND (account_name LIKE '%Current%' OR account_name LIKE '%Asset%')
+    ORDER BY name
+""", as_dict=True)
+2025-11-24 10:29:08,269 INFO ipython print("\n" + "="*110)
+2025-11-24 10:29:08,269 INFO ipython print("ASSET ACCOUNTS WITHOUT GL CODES")
+2025-11-24 10:29:08,269 INFO ipython print("="*110)
+2025-11-24 10:29:08,269 INFO ipython print(f"{'Account Name':<60} | {'Is Group':<8} | {'Account Type':<20} | {'Parent':<30}")
+2025-11-24 10:29:08,269 INFO ipython print("-"*110)
+2025-11-24 10:29:08,269 INFO ipython for acc in accounts:
+    is_group_text = "YES" if acc.is_group else "NO"
+    acc_type = acc.account_type or "(none)"
+    parent = acc.parent_account or "(none)"
+    # Shorten parent name for display
+    parent_short = parent.replace(" - ATREE", "") if parent else "(none)"
+    print(f"{acc.account_name:<60} | {is_group_text:<8} | {acc_type:<20} | {parent_short:<30}")
+2025-11-24 10:29:08,269 INFO ipython print("-"*110)
+2025-11-24 10:29:08,269 INFO ipython print(f"\nTotal: {len(accounts)} asset accounts without GL codes")
+2025-11-24 10:29:08,269 INFO ipython print("="*110 + "\n")
+2025-11-24 10:29:08,269 INFO ipython === session end ===
+2025-11-24 10:29:22,224 INFO ipython === bench console session ===
+2025-11-24 10:29:22,225 INFO ipython # Check all accounts under "Current Assets" parent
+2025-11-24 10:29:22,225 INFO ipython accounts = frappe.db.sql("""
+    SELECT 
+        name,
+        account_name,
+        account_number,
+        is_group,
+        account_type
+    FROM `tabAccount`
+    WHERE company = 'Ashoka Trust for Research in Ecology and the Environment'
+    AND parent_account LIKE '%Current Assets%'
+    ORDER BY account_number, account_name
+""", as_dict=True)
+2025-11-24 10:29:22,225 INFO ipython print("\n" + "="*110)
+2025-11-24 10:29:22,225 INFO ipython print("ACCOUNTS UNDER 'CURRENT ASSETS' PARENT")
+2025-11-24 10:29:22,225 INFO ipython print("="*110)
+2025-11-24 10:29:22,225 INFO ipython print(f"{'GL Code':<12} | {'Account Name':<60} | {'Is Group':<8} | {'Account Type':<20}")
+2025-11-24 10:29:22,225 INFO ipython print("-"*110)
+2025-11-24 10:29:22,225 INFO ipython with_gl = 0
+2025-11-24 10:29:22,225 INFO ipython without_gl = 0
+2025-11-24 10:29:22,225 INFO ipython for acc in accounts:
+    gl_code = acc.account_number or "(no GL code)"
+    is_group_text = "YES" if acc.is_group else "NO"
+    acc_type = acc.account_type or "(none)"
+    
+2025-11-24 10:29:22,225 INFO ipython     print(f"{gl_code:<12} | {acc.account_name:<60} | {is_group_text:<8} | {acc_type:<20}")
+2025-11-24 10:29:22,225 INFO ipython     if acc.account_number:
+        with_gl += 1
+    else:
+        without_gl += 1
+2025-11-24 10:29:22,225 INFO ipython print("-"*110)
+2025-11-24 10:29:22,225 INFO ipython print(f"\nTotal: {len(accounts)} accounts")
+2025-11-24 10:29:22,225 INFO ipython print(f"  With GL codes: {with_gl}")
+2025-11-24 10:29:22,225 INFO ipython print(f"  Without GL codes: {without_gl}")
+2025-11-24 10:29:22,225 INFO ipython print("="*110 + "\n")
+2025-11-24 10:29:22,225 INFO ipython === session end ===
+2025-11-24 10:29:46,107 INFO ipython === bench console session ===
+2025-11-24 10:29:46,107 INFO ipython # Show current asset type accounts from our import
+2025-11-24 10:29:46,107 INFO ipython accounts = frappe.db.sql("""
+    SELECT 
+        account_number,
+        account_name,
+        parent_account
+    FROM `tabAccount`
+    WHERE company = 'Ashoka Trust for Research in Ecology and the Environment'
+    AND account_number IS NOT NULL
+    AND account_number REGEXP '^[12]9'
+    AND (
+        account_name LIKE '%Advance%'
+        OR account_name LIKE '%Deposit%'
+        OR account_name LIKE '%Debtor%'
+        OR account_name LIKE '%TDS%'
+        OR account_name LIKE '%Prepaid%'
+        OR account_name LIKE '%Current%'
+    )
+    ORDER BY account_number
+""", as_dict=True)
+2025-11-24 10:29:46,107 INFO ipython print("\n" + "="*110)
+2025-11-24 10:29:46,107 INFO ipython print("CURRENT ASSET ACCOUNTS WITH GL CODES (from our import)")
+2025-11-24 10:29:46,107 INFO ipython print("="*110)
+2025-11-24 10:29:46,107 INFO ipython print(f"{'GL Code':<12} | {'Account Name':<60} | {'Parent':<35}")
+2025-11-24 10:29:46,107 INFO ipython print("-"*110)
+2025-11-24 10:29:46,107 INFO ipython for acc in accounts:
+    parent_short = acc.parent_account.replace(" - ATREE", "")
+    print(f"{acc.account_number:<12} | {acc.account_name:<60} | {parent_short:<35}")
+2025-11-24 10:29:46,108 INFO ipython print("-"*110)
+2025-11-24 10:29:46,108 INFO ipython print(f"\nTotal: {len(accounts)} current asset accounts with GL codes")
+2025-11-24 10:29:46,108 INFO ipython print("\nThese are under 'Assets - Domestic - ATREE' and 'Assets - FCRA - ATREE'")
+2025-11-24 10:29:46,108 INFO ipython print("They have proper GL codes from the Excel import")
+2025-11-24 10:29:46,108 INFO ipython print("="*110 + "\n")
+2025-11-24 10:29:46,108 INFO ipython === session end ===
+2025-11-24 19:30:32,053 INFO ipython === bench console session ===
+2025-11-24 19:30:32,054 INFO ipython === session end ===
+2025-11-25 11:59:59,839 INFO ipython === bench console session ===
+2025-11-25 11:59:59,841 INFO ipython === session end ===
+2025-11-25 12:20:42,394 INFO ipython === bench console session ===
+2025-11-25 12:20:42,395 INFO ipython === session end ===
+2025-11-25 14:42:50,724 INFO ipython === bench console session ===
+2025-11-25 14:42:50,724 INFO ipython === session end ===
+2025-11-25 19:35:06,322 INFO ipython === bench console session ===
+2025-11-25 19:35:06,323 INFO ipython import frappe
+2025-11-25 19:35:06,323 INFO ipython frappe.init(site='erp.localhost')
+2025-11-25 19:35:06,323 INFO ipython frappe.connect()
+2025-11-25 19:35:06,323 INFO ipython # Check if funding_source field exists in Deal table
+2025-11-25 19:35:06,323 INFO ipython result = frappe.db.sql("DESCRIBE `tabDeal`")
+2025-11-25 19:35:06,323 INFO ipython funding_field = [r for r in result if 'funding_source' in str(r)]
+2025-11-25 19:35:06,323 INFO ipython print("\nFunding Source field in Deal table:")
+2025-11-25 19:35:06,323 INFO ipython if funding_field:
+    print("✅ Field exists:")
+    for field in funding_field:
+        print(f"   {field}")
+else:
+    print("❌ Field not found")
+2025-11-25 19:35:06,323 INFO ipython # Check Deal DocType meta
+2025-11-25 19:35:06,323 INFO ipython from frappe.model.meta import get_meta
+2025-11-25 19:35:06,323 INFO ipython meta = get_meta('Deal')
+2025-11-25 19:35:06,323 INFO ipython funding_field_meta = meta.get_field('funding_source')
+2025-11-25 19:35:06,323 INFO ipython if funding_field_meta:
+    print("\n✅ Funding Source field in DocType meta:")
+    print(f"   Label: {funding_field_meta.label}")
+    print(f"   Type: {funding_field_meta.fieldtype}")
+    print(f"   Options: {funding_field_meta.options}")
+    print(f"   Required: {funding_field_meta.reqd}")
+else:
+    print("\n❌ Funding Source field not in DocType meta")
+2025-11-25 19:35:06,323 INFO ipython frappe.db.commit()
+2025-11-25 19:35:06,323 INFO ipython === session end ===
+2025-11-25 20:32:19,555 INFO ipython === bench console session ===
+2025-11-25 20:32:19,556 INFO ipython import frappe
+2025-11-25 20:32:19,556 INFO ipython frappe.connect()
+2025-11-25 20:32:19,556 INFO ipython print("\n" + "="*80)
+2025-11-25 20:32:19,556 INFO ipython print("DEAL MODULE VERIFICATION")
+2025-11-25 20:32:19,556 INFO ipython print("="*80)
+2025-11-25 20:32:19,556 INFO ipython # Check if Deal DocType is accessible
+2025-11-25 20:32:19,556 INFO ipython try:
+    deal_meta = frappe.get_meta("Deal")
+    print("\n✅ Deal DocType is accessible")
+    print(f"   Module: {deal_meta.module}")
+    print(f"   Fields: {len(deal_meta.fields)}")
+    
+    # Check specific fields
+    if deal_meta.has_field("funding_source"):
+        print("   ✅ funding_source field exists")
+    if deal_meta.has_field("deal_name"):
+        print("   ✅ deal_name field exists")
+    if deal_meta.has_field("total_deal_amount"):
+        print("   ✅ total_deal_amount field exists")
+        
+except Exception as e:
+    print(f"\n❌ Error accessing Deal DocType: {e}")
+2025-11-25 20:32:19,556 INFO ipython # Check Deal Allocation
+2025-11-25 20:32:19,556 INFO ipython try:
+    alloc_meta = frappe.get_meta("Deal Allocation")
+    print("\n✅ Deal Allocation DocType is accessible")
+    print(f"   Fields: {len(alloc_meta.fields)}")
+except Exception as e:
+    print(f"\n❌ Error accessing Deal Allocation: {e}")
+2025-11-25 20:32:19,556 INFO ipython # Check Deal Allocation History
+2025-11-25 20:32:19,556 INFO ipython try:
+    hist_meta = frappe.get_meta("Deal Allocation History")
+    print("\n✅ Deal Allocation History DocType is accessible")
+    print(f"   Fields: {len(hist_meta.fields)}")
+except Exception as e:
+    print(f"\n❌ Error accessing Deal Allocation History: {e}")
+2025-11-25 20:32:19,556 INFO ipython # Check if Project has Deal fields
+2025-11-25 20:32:19,556 INFO ipython try:
+    project_meta = frappe.get_meta("Project")
+    print("\n✅ Project DocType Deal Integration:")
+    
+    deal_fields = ["deal_reference", "allocated_amount_from_deal", "deal_funding_source"]
+    for field in deal_fields:
+        if project_meta.has_field(field):
+            print(f"   ✅ {field} field exists")
+        else:
+            print(f"   ❌ {field} field MISSING")
+            
+except Exception as e:
+    print(f"\n❌ Error checking Project fields: {e}")
+2025-11-25 20:32:19,556 INFO ipython print("\n" + "="*80)
+2025-11-25 20:32:19,556 INFO ipython print("Deal module is ready for use locally!")
+2025-11-25 20:32:19,556 INFO ipython print("="*80 + "\n")
+2025-11-25 20:32:19,556 INFO ipython === session end ===
+2025-11-25 20:35:54,631 INFO ipython === bench console session ===
+2025-11-25 20:35:54,632 INFO ipython import frappe
+2025-11-25 20:35:54,632 INFO ipython frappe.connect()
+2025-11-25 20:35:54,632 INFO ipython try:
+    # Try to get the controller class
+    from custom_app.doctype.deal.deal import Deal
+    print("✅ Successfully imported Deal controller")
+    
+    # Try to get meta
+    meta = frappe.get_meta("Deal")
+    print(f"✅ Deal meta loaded: {meta.name}, Module: {meta.module}")
+    
+    # Try to check if we can create a new doc (without saving)
+    doc = frappe.new_doc("Deal")
+    print("✅ Can create new Deal doc instance")
+    
+except Exception as e:
+    print(f"❌ Error: {e}")
+    import traceback
+    traceback.print_exc()
+2025-11-25 20:35:54,632 INFO ipython === session end ===
+2025-11-25 20:36:17,208 INFO ipython === bench console session ===
+2025-11-25 20:36:17,209 INFO ipython import frappe
+2025-11-25 20:36:17,209 INFO ipython frappe.connect()
+2025-11-25 20:36:17,209 INFO ipython # Try to reload the DocType from JSON
+2025-11-25 20:36:17,209 INFO ipython for doctype_name in ["Deal Allocation", "Deal Allocation History", "Deal"]:
+    try:
+        frappe.reload_doctype(doctype_name, force=True)
+        print(f"✅ Reloaded {doctype_name}")
+    except Exception as e:
+        print(f"❌ Error reloading {doctype_name}: {e}")
+2025-11-25 20:36:17,209 INFO ipython frappe.db.commit()
+2025-11-25 20:36:17,209 INFO ipython print("\nClearing cache...")
+2025-11-25 20:36:17,209 INFO ipython frappe.clear_cache()
+2025-11-25 20:36:17,209 INFO ipython print("✅ Done")
+2025-11-25 20:36:17,209 INFO ipython === session end ===
+2025-11-25 20:36:35,077 INFO ipython === bench console session ===
+2025-11-25 20:36:35,077 INFO ipython import frappe
+2025-11-25 20:36:35,077 INFO ipython frappe.connect()
+2025-11-25 20:36:35,077 INFO ipython # Check how Frappe resolves the path
+2025-11-25 20:36:35,077 INFO ipython from frappe.modules import get_module_path, get_doctype_module
+2025-11-25 20:36:35,077 INFO ipython print("Checking module path resolution:")
+2025-11-25 20:36:35,077 INFO ipython print(f"App path: {frappe.get_app_path('custom_app')}")
+2025-11-25 20:36:35,077 INFO ipython print(f"Module path: {get_module_path('Custom App')}")
+2025-11-25 20:36:35,077 INFO ipython try:
+    module = get_doctype_module('Deal', 'Custom App')
+    print(f"DocType module path: {module}")
+except Exception as e:
+    print(f"Error: {e}")
+2025-11-25 20:36:35,077 INFO ipython # Check app_name in Module Def
+2025-11-25 20:36:35,077 INFO ipython module_def = frappe.get_doc("Module Def", "Custom App")
+2025-11-25 20:36:35,077 INFO ipython print(f"\nModule Def:")
+2025-11-25 20:36:35,077 INFO ipython print(f"  name: {module_def.name}")
+2025-11-25 20:36:35,077 INFO ipython print(f"  app_name: {module_def.app_name}")
+2025-11-25 20:36:35,077 INFO ipython === session end ===
+2025-11-25 20:37:10,133 INFO ipython === bench console session ===
+2025-11-25 20:37:10,133 INFO ipython import frappe
+2025-11-25 20:37:10,133 INFO ipython frappe.connect()
+2025-11-25 20:37:10,133 INFO ipython # The issue is that get_module_path is adding app_name incorrectly
+2025-11-25 20:37:10,133 INFO ipython # Let's update the app_name to be empty or NULL
+2025-11-25 20:37:10,133 INFO ipython frappe.db.sql("UPDATE `tabModule Def` SET app_name = NULL WHERE name = 'Custom App'")
+2025-11-25 20:37:10,133 INFO ipython frappe.db.commit()
+2025-11-25 20:37:10,133 INFO ipython print("✅ Cleared app_name from Module Def")
+2025-11-25 20:37:10,133 INFO ipython print("Now clearing cache...")
+2025-11-25 20:37:10,133 INFO ipython frappe.clear_cache()
+2025-11-25 20:37:10,133 INFO ipython print("✅ Done")
+2025-11-25 20:37:10,133 INFO ipython === session end ===
+2025-11-25 20:37:40,175 INFO ipython === bench console session ===
+2025-11-25 20:37:40,175 INFO ipython import frappe
+2025-11-25 20:37:40,175 INFO ipython frappe.connect()
+2025-11-25 20:37:40,175 INFO ipython print("Testing Deal DocType access after fix:")
+2025-11-25 20:37:40,175 INFO ipython try:
+    # Try to create a new doc
+    doc = frappe.new_doc("Deal")
+    print("✅ Can create new Deal doc instance!")
+    print(f"   DocType: {doc.doctype}")
+    
+    # Check if we can access meta
+    meta = frappe.get_meta("Deal")
+    print(f"✅ Deal meta loaded: {len(meta.fields)} fields")
+    
+except Exception as e:
+    print(f"❌ Error: {e}")
+    import traceback
+    traceback.print_exc()
+2025-11-25 20:37:40,175 INFO ipython === session end ===
+2025-11-25 20:38:24,818 INFO ipython === bench console session ===
+2025-11-25 20:38:24,819 INFO ipython import frappe
+2025-11-25 20:38:24,819 INFO ipython frappe.connect()
+2025-11-25 20:38:24,819 INFO ipython # Check what Frappe expects for app resolution
+2025-11-25 20:38:24,819 INFO ipython import os
+2025-11-25 20:38:24,819 INFO ipython from frappe.modules import scrub
+2025-11-25 20:38:24,819 INFO ipython app_name = "custom_app"
+2025-11-25 20:38:24,819 INFO ipython module_name = "Custom App"
+2025-11-25 20:38:24,819 INFO ipython scrubbed = scrub(module_name)  # This converts "Custom App" to "custom_app"
+2025-11-25 20:38:24,819 INFO ipython print(f"Module name: {module_name}")
+2025-11-25 20:38:24,819 INFO ipython print(f"Scrubbed module: {scrubbed}")
+2025-11-25 20:38:24,819 INFO ipython print(f"App name: {app_name}")
+2025-11-25 20:38:24,819 INFO ipython # The issue is: Frappe creates path as: app_name + scrubbed_module + doctype + ...
+2025-11-25 20:38:24,819 INFO ipython # Which becomes: custom_app + custom_app + doctype...
+2025-11-25 20:38:24,819 INFO ipython # Solution: Use a different module name like "Deals" instead of "Custom App"
+2025-11-25 20:38:24,819 INFO ipython print("\nLet's check if 'Deals' module exists:")
+2025-11-25 20:38:24,819 INFO ipython if frappe.db.exists("Module Def", "Deals"):
+    print("✅ Deals module exists")
+else:
+    print("❌ Deals module doesn't exist - we need to create it")
+2025-11-25 20:38:24,819 INFO ipython === session end ===
+2025-11-25 20:38:38,261 INFO ipython === bench console session ===
+2025-11-25 20:38:38,261 INFO ipython import frappe
+2025-11-25 20:38:38,261 INFO ipython frappe.connect()
+2025-11-25 20:38:38,261 INFO ipython # Create Deals module
+2025-11-25 20:38:38,261 INFO ipython deals_module = frappe.get_doc({
+    "doctype": "Module Def",
+    "module_name": "Deals",
+    "app_name": "custom_app"
+})
+2025-11-25 20:38:38,261 INFO ipython deals_module.insert(ignore_permissions=True)
+2025-11-25 20:38:38,261 INFO ipython print("✅ Created Deals module")
+2025-11-25 20:38:38,261 INFO ipython # Update Deal DocTypes to use Deals module
+2025-11-25 20:38:38,261 INFO ipython for doctype_name in ["Deal", "Deal Allocation", "Deal Allocation History"]:
+    frappe.db.set_value("DocType", doctype_name, "module", "Deals")
+    print(f"✅ Updated {doctype_name} to use Deals module")
+2025-11-25 20:38:38,261 INFO ipython frappe.db.commit()
+2025-11-25 20:38:38,261 INFO ipython print("\n✅ All updates committed")
+2025-11-25 20:38:38,261 INFO ipython # Clear cache
+2025-11-25 20:38:38,262 INFO ipython frappe.clear_cache()
+2025-11-25 20:38:38,262 INFO ipython print("✅ Cache cleared")
+2025-11-25 20:38:38,262 INFO ipython === session end ===
+2025-11-25 20:38:59,019 INFO ipython === bench console session ===
+2025-11-25 20:38:59,020 INFO ipython import frappe
+2025-11-25 20:38:59,020 INFO ipython frappe.connect()
+2025-11-25 20:38:59,020 INFO ipython # Update Deal DocTypes to use Setup module (which is part of ERPNext)
+2025-11-25 20:38:59,020 INFO ipython # Actually, let's check which module we should use from custom_app
+2025-11-25 20:38:59,020 INFO ipython # The files are in custom_app/doctype/deal/, so the module path resolution expects:
+2025-11-25 20:38:59,020 INFO ipython # app_name/module_name/doctype/deal/
+2025-11-25 20:38:59,020 INFO ipython # If app_name = custom_app and module_name scrubs to X, then: custom_app/X/doctype/deal/
+2025-11-25 20:38:59,020 INFO ipython # For this to be custom_app/doctype/deal/, X must be empty or "."
+2025-11-25 20:38:59,020 INFO ipython # Actually, the issue is simpler - let's just update the Module Name to something that scrubs to "doctype"
+2025-11-25 20:38:59,020 INFO ipython # No wait, that doesn't make sense either.
+2025-11-25 20:38:59,020 INFO ipython # Let me check what works: if the module is NULL or empty
+2025-11-25 20:38:59,020 INFO ipython frappe.db.sql("DELETE FROM `tabModule Def` WHERE name = 'Deals'")
+2025-11-25 20:38:59,020 INFO ipython # Let's try just updating the JSON files module field and reloading
+2025-11-25 20:38:59,020 INFO ipython print("Updating Deal JSON files...")
+2025-11-25 20:38:59,020 INFO ipython import json
+2025-11-25 20:38:59,020 INFO ipython import os
+2025-11-25 20:38:59,020 INFO ipython app_path = frappe.get_app_path("custom_app")
+2025-11-25 20:38:59,020 INFO ipython for doctype_name in ["deal", "deal_allocation", "deal_allocation_history"]:
+    json_path = os.path.join(app_path, "doctype", doctype_name, f"{doctype_name}.json")
+    
+2025-11-25 20:38:59,020 INFO ipython     with open(json_path, 'r') as f:
+        doctype_dict = json.load(f)
+    
+2025-11-25 20:38:59,020 INFO ipython     # Change module to something that works
+2025-11-25 20:38:59,020 INFO ipython     old_module = doctype_dict.get("module")
+2025-11-25 20:38:59,020 INFO ipython     doctype_dict["module"] = "Custom"  # Use the existing "Custom" module from Frappe
+2025-11-25 20:38:59,020 INFO ipython     with open(json_path, 'w') as f:
+        json.dump(doctype_dict, f, indent=1)
+    
+2025-11-25 20:38:59,020 INFO ipython     print(f"✅ Updated {doctype_name}.json: {old_module} → Custom")
+2025-11-25 20:38:59,020 INFO ipython frappe.db.commit()
+2025-11-25 20:38:59,020 INFO ipython print("\n✅ Done - now run: bench migrate")
+2025-11-25 20:38:59,020 INFO ipython === session end ===
+2025-11-25 20:39:58,252 INFO ipython === bench console session ===
+2025-11-25 20:39:58,252 INFO ipython import json
+2025-11-25 20:39:58,252 INFO ipython import os
+2025-11-25 20:39:58,252 INFO ipython import frappe
+2025-11-25 20:39:58,252 INFO ipython # Revert the JSON changes - change module back to "Custom App"
+2025-11-25 20:39:58,252 INFO ipython app_path = "/Users/vijayrasquinha/Work/frappe/frappe-bench/apps/custom_app/custom_app"
+2025-11-25 20:39:58,252 INFO ipython for doctype_name in ["deal", "deal_allocation", "deal_allocation_history"]:
+    json_path = os.path.join(app_path, "doctype", doctype_name, f"{doctype_name}.json")
+    
+2025-11-25 20:39:58,252 INFO ipython     with open(json_path, 'r') as f:
+        doctype_dict = json.load(f)
+    
+2025-11-25 20:39:58,252 INFO ipython     doctype_dict["module"] = "Custom App"
+2025-11-25 20:39:58,252 INFO ipython     with open(json_path, 'w') as f:
+        json.dump(doctype_dict, f, indent=1)
+    
+2025-11-25 20:39:58,252 INFO ipython     print(f"✅ Reverted {doctype_name}.json back to Custom App module")
+2025-11-25 20:39:58,252 INFO ipython print("\n✅ Done")
+2025-11-25 20:39:58,252 INFO ipython === session end ===
+2025-11-25 20:40:12,665 INFO ipython === bench console session ===
+2025-11-25 20:40:12,665 INFO ipython import frappe
+2025-11-25 20:40:12,665 INFO ipython frappe.connect()
+2025-11-25 20:40:12,665 INFO ipython # Debug the exact module path Frappe is generating
+2025-11-25 20:40:12,665 INFO ipython from frappe.modules import scrub, get_module_path
+2025-11-25 20:40:12,665 INFO ipython module = "Custom App"
+2025-11-25 20:40:12,665 INFO ipython app = "custom_app"
+2025-11-25 20:40:12,665 INFO ipython # This is what Frappe does internally
+2025-11-25 20:40:12,665 INFO ipython module_path = get_module_path(module)
+2025-11-25 20:40:12,665 INFO ipython print(f"get_module_path('{module}'): {module_path}")
+2025-11-25 20:40:12,665 INFO ipython # Check the app path
+2025-11-25 20:40:12,665 INFO ipython app_path = frappe.get_app_path(app)
+2025-11-25 20:40:12,666 INFO ipython print(f"get_app_path('{app}'): {app_path}")
+2025-11-25 20:40:12,666 INFO ipython # The module path should be: app_path + "/" + scrubbed_module_name
+2025-11-25 20:40:12,666 INFO ipython scrubbed = scrub(module)
+2025-11-25 20:40:12,666 INFO ipython print(f"\nScrubbed '{module}': {scrubbed}")
+2025-11-25 20:40:12,666 INFO ipython expected_path = f"{app_path}/{scrubbed}"
+2025-11-25 20:40:12,666 INFO ipython print(f"Expected path would be: {expected_path}")
+2025-11-25 20:40:12,666 INFO ipython print(f"Actual module_path is: {module_path}")
+2025-11-25 20:40:12,666 INFO ipython if expected_path == module_path:
+    print("\n✅ Paths match!")
+else:
+    print(f"\n❌ Path mismatch!")
+    print(f"   Frappe added an extra '{scrubbed}' in the path")
+2025-11-25 20:40:12,666 INFO ipython === session end ===
+2025-11-25 20:42:22,487 INFO ipython === bench console session ===
+2025-11-25 20:42:22,487 INFO ipython import frappe
+2025-11-25 20:42:22,487 INFO ipython frappe.connect()
+2025-11-25 20:42:22,487 INFO ipython print("Testing Deal DocType access after moving files:")
+2025-11-25 20:42:22,487 INFO ipython try:
+    # Try to create a new doc
+    doc = frappe.new_doc("Deal")
+    print("✅ Can create new Deal doc instance!")
+    print(f"   DocType: {doc.doctype}")
+    print(f"   Module: {frappe.get_meta('Deal').module}")
+    
+    # Try to access specific fields
+    meta = frappe.get_meta("Deal")
+    print(f"\n✅ Deal has {len(meta.fields)} fields")
+    
+    if meta.has_field("funding_source"):
+        print("   ✅ funding_source field exists")
+    if meta.has_field("deal_name"):
+        print("   ✅ deal_name field exists")
+        
+    print("\n🎉 Deal DocType is now working correctly!")
+    
+except Exception as e:
+    print(f"❌ Error: {e}")
+    import traceback
+    traceback.print_exc()
+2025-11-25 20:42:22,487 INFO ipython === session end ===
+2025-11-25 20:42:37,616 INFO ipython === bench console session ===
+2025-11-25 20:42:37,616 INFO ipython import frappe
+2025-11-25 20:42:37,616 INFO ipython frappe.connect()
+2025-11-25 20:42:37,616 INFO ipython # Check current module assignment
+2025-11-25 20:42:37,616 INFO ipython print("Current module assignments:")
+2025-11-25 20:42:37,616 INFO ipython for doctype_name in ["Deal", "Deal Allocation", "Deal Allocation History"]:
+    module = frappe.db.get_value("DocType", doctype_name, "module")
+    print(f"  {doctype_name}: {module}")
+2025-11-25 20:42:37,616 INFO ipython # Update back to Custom App
+2025-11-25 20:42:37,616 INFO ipython print("\nUpdating to Custom App module...")
+2025-11-25 20:42:37,616 INFO ipython for doctype_name in ["Deal", "Deal Allocation", "Deal Allocation History"]:
+    frappe.db.set_value("DocType", doctype_name, "module", "Custom App")
+    print(f"  ✅ Updated {doctype_name}")
+2025-11-25 20:42:37,617 INFO ipython frappe.db.commit()
+2025-11-25 20:42:37,617 INFO ipython # Delete the Deals module we created
+2025-11-25 20:42:37,617 INFO ipython if frappe.db.exists("Module Def", "Deals"):
+    frappe.delete_doc("Module Def", "Deals", force=True)
+    print("\n✅ Deleted 'Deals' module")
+2025-11-25 20:42:37,617 INFO ipython frappe.db.commit()
+2025-11-25 20:42:37,617 INFO ipython frappe.clear_cache()
+2025-11-25 20:42:37,617 INFO ipython print("✅ Cache cleared")
+2025-11-25 20:42:37,617 INFO ipython === session end ===
+2025-11-25 20:43:22,232 INFO ipython === bench console session ===
+2025-11-25 20:43:22,232 INFO ipython import frappe
+2025-11-25 20:43:22,232 INFO ipython frappe.connect()
+2025-11-25 20:43:22,232 INFO ipython # Restore app_name in Module Def
+2025-11-25 20:43:22,232 INFO ipython frappe.db.set_value("Module Def", "Custom App", "app_name", "custom_app")
+2025-11-25 20:43:22,232 INFO ipython frappe.db.commit()
+2025-11-25 20:43:22,232 INFO ipython print("✅ Restored app_name in Module Def")
+2025-11-25 20:43:22,233 INFO ipython === session end ===
+2025-11-25 20:45:31,852 INFO ipython === bench console session ===
+2025-11-25 20:45:31,852 INFO ipython import frappe
+2025-11-25 20:45:31,852 INFO ipython frappe.connect()
+2025-11-25 20:45:31,852 INFO ipython # Check current module for Deal
+2025-11-25 20:45:31,852 INFO ipython deal_meta = frappe.get_meta("Deal")
+2025-11-25 20:45:31,852 INFO ipython print(f"Deal current module: {deal_meta.module}")
+2025-11-25 20:45:31,852 INFO ipython # Get the Accounts workspace
+2025-11-25 20:45:31,852 INFO ipython if frappe.db.exists("Workspace", "Accounts"):
+    workspace = frappe.get_doc("Workspace", "Accounts")
+    
+2025-11-25 20:45:31,852 INFO ipython     # Check if Deal link already exists
+2025-11-25 20:45:31,852 INFO ipython     deal_exists = False
+2025-11-25 20:45:31,852 INFO ipython     for link in workspace.links:
+        if link.link_to == "Deal":
+            deal_exists = True
+            print("\n✅ Deal link already exists in Accounts workspace")
+            break
+    
+2025-11-25 20:45:31,852 INFO ipython     if not deal_exists:
+        # Find a good section to add Deal to
+        print("\nCurrent Accounts workspace sections:")
+        for link in workspace.links:
+            if link.type == "Card Break":
+                print(f"  - {link.label}")
+        
+2025-11-25 20:45:31,852 INFO ipython         # Add Deal link after finding appropriate section
+2025-11-25 20:45:31,853 INFO ipython         print("\n⚠️ Deal link needs to be added to Accounts workspace")
+2025-11-25 20:45:31,853 INFO ipython     # Check if we need to create workspace customization
+2025-11-25 20:45:31,853 INFO ipython     print("\nTo add Deal to Accounts workspace, we should:")
+2025-11-25 20:45:31,853 INFO ipython     print("1. Find the right section (like 'Accounting Masters' or create 'Deal Management')")
+2025-11-25 20:45:31,853 INFO ipython     print("2. Add Deal link to that section")
+2025-11-25 20:45:31,853 INFO ipython else:
+    print("❌ Accounts workspace not found")
+2025-11-25 20:45:31,853 INFO ipython # Also check if Deal should appear in Projects workspace
+2025-11-25 20:45:31,853 INFO ipython if frappe.db.exists("Workspace", "Projects"):
+    print("\n✅ Projects workspace exists - Deal could also be added here")
+2025-11-25 20:45:31,853 INFO ipython === session end ===
+2025-11-25 20:46:12,780 INFO ipython === bench console session ===
+2025-11-25 20:46:12,781 INFO ipython import frappe
+2025-11-25 20:46:12,781 INFO ipython frappe.connect()
+2025-11-25 20:46:12,781 INFO ipython # Check if the custom field exists
+2025-11-25 20:46:12,781 INFO ipython if frappe.db.exists("Custom Field", "Project-funding_type"):
+    field = frappe.get_doc("Custom Field", "Project-funding_type")
+    print(f"Found Custom Field: Project-funding_type")
+    print(f"  Label: {field.label}")
+    print(f"  Fieldtype: {field.fieldtype}")
+    print(f"  Options: {field.options}")
+    
+2025-11-25 20:46:12,781 INFO ipython     # Check if Funding Type DocType exists
+2025-11-25 20:46:12,781 INFO ipython     if frappe.db.exists("DocType", "Funding Type"):
+        print("\n✅ Funding Type DocType exists")
+    else:
+        print("\n❌ Funding Type DocType does NOT exist")
+        print("\nOptions:")
+        print("1. Delete the funding_type field (if not needed)")
+        print("2. Create Funding Type DocType")
+        print("3. Change field to Select with options: DOMESTIC\\nFCRA")
+        
+2025-11-25 20:46:12,781 INFO ipython         # Since we already have Funding Source DocType, let's change this field to link to Funding Source
+2025-11-25 20:46:12,781 INFO ipython         print("\n💡 Recommended: Change to link to Funding Source instead")
+2025-11-25 20:46:12,781 INFO ipython         field.options = "Funding Source"
+2025-11-25 20:46:12,781 INFO ipython         field.save()
+2025-11-25 20:46:12,781 INFO ipython         frappe.db.commit()
+2025-11-25 20:46:12,781 INFO ipython         print("\n✅ Updated funding_type field to link to Funding Source")
+2025-11-25 20:46:12,781 INFO ipython else:
+    print("❌ Custom Field Project-funding_type not found")
+2025-11-25 20:46:12,782 INFO ipython === session end ===
+2025-11-25 20:52:01,097 INFO ipython === bench console session ===
+2025-11-25 20:52:01,098 INFO ipython import frappe
+2025-11-25 20:52:01,098 INFO ipython frappe.connect()
+2025-11-25 20:52:01,098 INFO ipython # Get all projects
+2025-11-25 20:52:01,098 INFO ipython projects = frappe.get_all("Project", fields=["name", "project_name", "status"])
+2025-11-25 20:52:01,098 INFO ipython print(f"Found {len(projects)} projects:")
+2025-11-25 20:52:01,098 INFO ipython print("=" * 80)
+2025-11-25 20:52:01,098 INFO ipython for idx, project in enumerate(projects, 1):
+    print(f"{idx}. {project.name}: {project.project_name} ({project.status})")
+2025-11-25 20:52:01,098 INFO ipython print("=" * 80)
+2025-11-25 20:52:01,098 INFO ipython print(f"\nTotal projects to delete: {len(projects)}")
+2025-11-25 20:52:01,098 INFO ipython # Ask for confirmation before proceeding
+2025-11-25 20:52:01,098 INFO ipython if len(projects) > 0:
+    print("\nPreparing to delete all projects...")
+else:
+    print("\nNo projects found to delete.")
+2025-11-25 20:52:01,098 INFO ipython === session end ===
+2025-11-25 20:52:18,404 INFO ipython === bench console session ===
+2025-11-25 20:52:18,405 INFO ipython import frappe
+2025-11-25 20:52:18,405 INFO ipython frappe.connect()
+2025-11-25 20:52:18,405 INFO ipython # Get all projects
+2025-11-25 20:52:18,405 INFO ipython projects = frappe.get_all("Project", fields=["name", "project_name"])
+2025-11-25 20:52:18,405 INFO ipython print(f"Deleting {len(projects)} projects...")
+2025-11-25 20:52:18,405 INFO ipython print("=" * 80)
+2025-11-25 20:52:18,405 INFO ipython deleted_count = 0
+2025-11-25 20:52:18,405 INFO ipython error_count = 0
+2025-11-25 20:52:18,405 INFO ipython for project in projects:
+    try:
+        # Delete the project
+        frappe.delete_doc("Project", project.name, force=True, ignore_permissions=True)
+        deleted_count += 1
+        print(f"✅ Deleted: {project.name} - {project.project_name}")
+    except Exception as e:
+        error_count += 1
+        print(f"❌ Error deleting {project.name}: {str(e)}")
+2025-11-25 20:52:18,405 INFO ipython # Commit changes
+2025-11-25 20:52:18,405 INFO ipython frappe.db.commit()
+2025-11-25 20:52:18,405 INFO ipython print("=" * 80)
+2025-11-25 20:52:18,405 INFO ipython print(f"\nSummary:")
+2025-11-25 20:52:18,405 INFO ipython print(f"  ✅ Successfully deleted: {deleted_count}")
+2025-11-25 20:52:18,405 INFO ipython print(f"  ❌ Errors: {error_count}")
+2025-11-25 20:52:18,405 INFO ipython print(f"\n✅ All projects deleted and committed to database")
+2025-11-25 20:52:18,405 INFO ipython === session end ===
+2025-11-26 14:51:01,768 INFO ipython === bench console session ===
+2025-11-26 14:51:01,768 INFO ipython # Check if Funding Source DocType exists
+2025-11-26 14:51:01,768 INFO ipython if frappe.db.exists('DocType', 'Funding Source'):
+    print('✓ Funding Source DocType exists')
+    sources = frappe.get_all('Funding Source', fields=['name'])
+    print(f'  Found {len(sources)} records: {[s.name for s in sources]}')
+else:
+    print('✗ Funding Source DocType does NOT exist')
+    
+2025-11-26 14:51:01,768 INFO ipython # Check custom field
+2025-11-26 14:51:01,768 INFO ipython if frappe.db.exists('Custom Field', 'Account-default_funding_source'):
+    field = frappe.get_doc('Custom Field', 'Account-default_funding_source')
+    print(f'\n✓ Custom Field: {field.fieldname}')
+    print(f'  Label: {field.label}')
+    print(f'  Insert After: {field.insert_after}')
+    print(f'  Hidden: {field.hidden}')
+    print(f'  Allow in Quick Entry: {field.allow_in_quick_entry}')
+else:
+    print('\n✗ Custom Field does NOT exist')
+exit()
+2025-11-26 14:51:01,768 INFO ipython === session end ===
+2025-11-26 14:53:09,002 INFO ipython === bench console session ===
+2025-11-26 14:53:09,002 INFO ipython # Get Account DocType metadata
+2025-11-26 14:53:09,002 INFO ipython meta = frappe.get_meta('Account')
+2025-11-26 14:53:09,002 INFO ipython print('Account form fields:')
+2025-11-26 14:53:09,002 INFO ipython for field in meta.fields:
+    if field.fieldname in ['account_name', 'is_group', 'default_funding_source', 'root_type', 'account_type', 'parent_account', 'account_number']:
+        print(f'  {field.idx:3d}: {field.fieldname:25s} - {field.label:30s} (fieldtype: {field.fieldtype})')
+exit()
+2025-11-26 14:53:09,002 INFO ipython === session end ===
+2025-11-26 15:05:21,612 INFO ipython === bench console session ===
+2025-11-26 15:05:21,613 INFO ipython # Check if the custom field is really there and not hidden
+2025-11-26 15:05:21,613 INFO ipython field = frappe.get_doc('Custom Field', 'Account-default_funding_source')
+2025-11-26 15:05:21,613 INFO ipython print(f"Field Configuration:")
+2025-11-26 15:05:21,613 INFO ipython print(f"  Fieldname: {field.fieldname}")
+2025-11-26 15:05:21,613 INFO ipython print(f"  Label: {field.label}")
+2025-11-26 15:05:21,613 INFO ipython print(f"  Hidden: {field.hidden}")
+2025-11-26 15:05:21,613 INFO ipython print(f"  Depends On: {field.depends_on or 'None'}")
+2025-11-26 15:05:21,613 INFO ipython print(f"  Mandatory Depends On: {field.mandatory_depends_on or 'None'}")
+2025-11-26 15:05:21,613 INFO ipython # Check Account meta to see actual field properties
+2025-11-26 15:05:21,613 INFO ipython from frappe.model import meta
+2025-11-26 15:05:21,613 INFO ipython meta.clear_cache('Account')
+2025-11-26 15:05:21,613 INFO ipython account_meta = frappe.get_meta('Account')
+2025-11-26 15:05:21,613 INFO ipython print(f"\nAccount Meta - default_funding_source field:")
+2025-11-26 15:05:21,613 INFO ipython for f in account_meta.fields:
+    if f.fieldname == 'default_funding_source':
+        print(f"  Label: {f.label}")
+        print(f"  Fieldtype: {f.fieldtype}")
+        print(f"  Hidden: {f.hidden}")
+        print(f"  Options: {f.options}")
+        print(f"  Insert After: {getattr(f, 'insert_after', 'N/A')}")
+        print(f"  Allow in Quick Entry: {getattr(f, 'allow_in_quick_entry', 'N/A')}")
+        break
+else:
+    print("  Field NOT found in meta!")
+2025-11-26 15:05:21,613 INFO ipython === session end ===
